@@ -3,12 +3,13 @@ import { NavLink, Route, Routes } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, BarChart3, Check, ChevronRight, CircleHelp,
   Compass, FolderOpen, Layers3, MapPin, Menu, PanelLeftClose, RefreshCw, ShieldCheck, X, Zap } from 'lucide-react';
 import { getSystemInfo } from './api/client';
+import { AuthPage, AuthProvider, RequireAuth, useAuth } from './auth';
 
 function Projects() {
   return <>
     <div className="page-heading"><div><div className="eyebrow">YOUR PLANNING WORKSPACE</div>
       <h1>Projects</h1><p>A considered place to plan what comes next.</p></div>
-      <span className="preview-badge"><span /> Workspace preview</span></div>
+      <span className="preview-badge"><span /> Planner workspace</span></div>
     <section className="welcome-panel" aria-labelledby="welcome-heading">
       <div className="welcome-copy"><span className="section-kicker">BETTER PLACES TO CHARGE</span>
         <h2 id="welcome-heading">Turn a location into<br />a planning decision.</h2>
@@ -35,7 +36,7 @@ function Projects() {
     <section className="empty-projects" aria-labelledby="private-workspace-heading">
       <div className="empty-icon"><FolderOpen size={27} strokeWidth={1.5}/></div>
       <h3 id="private-workspace-heading">A space for your next project</h3>
-      <p>Account access and saved projects are coming next.<br />This preview introduces your planning workspace.</p>
+      <p>Your account is ready.<br />Project creation and saved sites are coming next.</p>
       <span className="upcoming-tag">Project creation coming soon</span>
     </section>
     <section className="workflow" id="planning-workflow" aria-labelledby="workflow-heading">
@@ -71,7 +72,9 @@ function Connection() {
     {state === 'offline' && <button onClick={() => setAttempt(n=>n+1)} aria-label="Retry connection"><RefreshCw size={13}/></button>}</div>;
 }
 
-export default function App() {
+export function Workspace() {
+  const auth=useAuth();
+  const [logoutError,setLogoutError]=useState('');
   const [menuOpen,setMenuOpen] = useState(false);
   const sidebarRef = useRef<HTMLElement>(null);
   useEffect(() => {
@@ -108,11 +111,23 @@ export default function App() {
         <NavLink to="/estimator" onClick={()=>setMenuOpen(false)}><Compass size={18}/>Site estimator</NavLink>
         <NavLink to="/trends" onClick={()=>setMenuOpen(false)}><BarChart3 size={18}/>EV adoption trends</NavLink>
       </nav>
-      <div className="sidebar-bottom"><div className="study-label"><span className="small-dot"/> STUDY AREA</div><p>Kuala Lumpur<br />&amp; Selangor</p><div className="sidebar-rule"/><span className="prototype-label">FYP research prototype <ArrowUpRight size={13}/></span></div>
+      <div className="sidebar-bottom"><div className="study-label"><span className="small-dot"/> STUDY AREA</div><p>Kuala Lumpur<br />&amp; Selangor</p><div className="sidebar-rule"/><span className="prototype-label">FYP research prototype <ArrowUpRight size={13}/></span><button className="signout" onClick={()=>{setLogoutError('');void auth.signOut().catch(()=>setLogoutError('Unable to sign out. Please retry.'));}}>Sign out</button>{logoutError&&<p role="alert">{logoutError}</p>}</div>
     </aside>
-    <div className="main-shell"><header className="utility-bar"><div className="breadcrumb"><button className="mobile-menu" aria-label="Open navigation" aria-expanded={menuOpen} onClick={()=>setMenuOpen(true)}><Menu size={20}/></button><PanelLeftClose size={17} className="desktop-panel-icon"/><span>Workspace</span><ChevronRight size={13}/><span className="breadcrumb-current">CastraVolt</span></div><div className="utility-right"><span className="prototype-label header-prototype"><Check size={13}/> Planning with context</span><span className="avatar" aria-label="Preview workspace">CV</span></div></header>
+    <div className="main-shell"><header className="utility-bar"><div className="breadcrumb"><button className="mobile-menu" aria-label="Open navigation" aria-expanded={menuOpen} onClick={()=>setMenuOpen(true)}><Menu size={20}/></button><PanelLeftClose size={17} className="desktop-panel-icon"/><span>Workspace</span><ChevronRight size={13}/><span className="breadcrumb-current">CastraVolt</span></div><div className="utility-right"><span className="prototype-label header-prototype"><Check size={13}/> {auth.user?.name}</span><span className="avatar" aria-label="Your account">{auth.user?.name.slice(0,2).toUpperCase()}</span></div></header>
       <main id="main" className="main-content" tabIndex={-1}><Routes><Route path="/" element={<Projects/>}/><Route path="/estimator" element={<RoadmapPage/>}/><Route path="/trends" element={<RoadmapPage trends/>}/><Route path="*" element={<section className="empty-projects"><h1>Page not found</h1><NavLink to="/" className="button primary">Return to projects <ArrowRight size={16}/></NavLink></section>}/></Routes>
       <footer><span>CastraVolt <span className="footer-divider">/</span> Urban EV infrastructure planning</span><Connection/></footer></main>
     </div>
   </div>;
+}
+
+export default function App() {
+  return <AuthProvider><Routes>
+    <Route path="/login" element={<AuthPage mode="login"/>}/>
+    <Route path="/register" element={<AuthPage mode="register"/>}/>
+    <Route path="/verify-email" element={<AuthPage mode="verify-email"/>}/>
+    <Route path="/resend-verification" element={<AuthPage mode="resend-verification"/>}/>
+    <Route path="/forgot-password" element={<AuthPage mode="forgot-password"/>}/>
+    <Route path="/reset-password" element={<AuthPage mode="reset-password"/>}/>
+    <Route path="/*" element={<RequireAuth><Workspace/></RequireAuth>}/>
+  </Routes></AuthProvider>;
 }

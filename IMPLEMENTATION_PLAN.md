@@ -148,10 +148,10 @@ Completion: local services start, migrations apply, and frontend/API communicate
 
 ### Phase 2 — individual accounts
 
-- [ ] Implement registration, verification, login/logout, current session and password reset.
-- [ ] Add opaque cookie sessions, Argon2id password hashing, CSRF and rate limits.
-- [ ] Build account screens and protected routes.
-- [ ] Test expiry, token reuse, reset revocation, generic account-recovery responses and authentication failure states.
+- [x] Implement registration, verification, login/logout, current session and password reset.
+- [x] Add opaque cookie sessions, Argon2id password hashing, CSRF and rate limits.
+- [x] Build account screens and protected routes.
+- [x] Test expiry, token reuse, reset revocation, generic account-recovery responses and authentication failure states.
 
 Completion: each verified planner can enter/leave a private authenticated session.
 
@@ -373,7 +373,8 @@ Initial state: planning documents and a training notebook exist. These do not me
 
 - Stage 0 — Pending dependency. The uploaded default candidate differs from the selected tuned RF. Reconstructed `model/verified_rf80_cv5/evaluated_pipeline.joblib` reproduces all 153 saved test predictions (max difference 1.78e-15); manifest and ten fixtures saved. Original POI tag/geometry/deduplication parity is still pending. See docs/STAGE_0_HANDOFF.md.
 - Stage 1 — Complete. React/TypeScript foundation, typed FastAPI connection, bounded PostgreSQL setup, migrations, lockfiles and setup/start/check launchers delivered. Live startup verified on 26 October 2026: PostgreSQL healthy on host port 55432, migration baseline applied, API database readiness passed and frontend started. Current backend/launcher suite: 18 passing tests. Original application build and four frontend tests passed. Account/project CRUD and live prediction serving remain later stages.
-- Stage 2 — Not started.
+- Stage 2 — Complete for local development. Added account/session/token/rate-limit migration, Argon2id password hashing, hashed opaque sessions, CSRF/origin protection, expiring single-use email/reset tokens, generic recovery responses, session revocation, protected navigation and Midnight Iris account screens. Development email capture is private under tmp/mailbox; SMTP is configurable, not externally tested. PostgreSQL integration tests use disposable databases, including concurrent verification consumption. Browser QA on isolated 8001/5174 verified register → local email → verification → login → Projects → logout and password recovery/reset; user ports 8000/5173 were not used. Review fixes cover consistent token/user locking, post-response delivery and browser session revalidation. Project CRUD remains Stage 3.
+- Stage 2 verification record: final backend/account/launcher suite 25 passed; frontend suite 8 passed; production frontend build passed. Code review findings addressed. Temporary 8001/5174 services were stopped and their disposable browser-test database removed. No real email was sent. Main application migrations run on the user's next start.
 - Stage 3 — Not started.
 - Stage 4 — Not started.
 - Stage 5 — Not started.

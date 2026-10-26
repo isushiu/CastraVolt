@@ -2,7 +2,7 @@
 
 CastraVolt helps planners estimate the total EV charging points for a proposed site in Kuala Lumpur or Selangor. It also displays monthly EV registration trends.
 
-Built with React, TypeScript, FastAPI and PostgreSQL. Currently under development.
+Built with React, TypeScript, FastAPI and PostgreSQL. Individual account access is available; private project creation and live predictions are still under development.
 
 ## Requirements
 
@@ -43,6 +43,12 @@ This starts PostgreSQL, applies migrations, and launches the backend and fronten
 Open [CastraVolt](http://127.0.0.1:5173/). Keep the terminal open; press **Ctrl+C** to stop the app. Database data is preserved. A database already running before startup is left running.
 
 After the first setup, you normally only need to open Docker and run `.\start.cmd`.
+
+## Try an account locally
+
+After starting, choose **Create an account**. Verification and password-reset emails are saved as `.eml` files in `tmp/mailbox` for local development; they are not sent to your real inbox. Open the newest file in a text editor, copy its link into the browser, and complete verification. Then sign in to Projects.
+
+Existing users updating to this version should stop their running app, run setup again, and start it. Startup applies the new account database migration automatically. No demo account or shared default password is created.
 
 ## macOS / Linux
 

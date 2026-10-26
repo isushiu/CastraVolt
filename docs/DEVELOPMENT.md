@@ -4,7 +4,15 @@ Urban EV infrastructure planning for Kuala Lumpur and Selangor.
 
 ## Current state
 
-Stage 1 foundation: React/TypeScript Midnight Iris workspace shell, typed FastAPI connection, health/readiness endpoints, bounded PostgreSQL engine configuration, initial Alembic baseline and local Compose configuration. Accounts, real private projects, map extraction and prediction endpoints arrive in later stages. Preview pages explicitly identify unfinished features and do not invent project/model results.
+Stage 2 adds individual accounts: registration/verification/resend, login/logout, password recovery/reset, protected workspace routes, PostgreSQL-backed rate limits and hashed opaque sessions. Argon2id hashes passwords. Verification/reset tokens are hashed at rest, single-use and expire after 60/30 minutes. Sessions expire after the configured lifetime (default 24 hours); resetting a password revokes all sessions. Cookie-authenticated writes require a matching CSRF token and an allowed browser Origin.
+
+Development mail: the default `CASTRAVOLT_MAIL_MODE=file` writes private `.eml` files under `tmp/mailbox`; open them locally to use verification/reset links. No public endpoint exposes the inbox or raw tokens. Keep the ignored tmp directory private. Delivery runs after the HTTP response in a background task; it is best-effort rather than a durable queue, and failed delivery is recorded without recipient/token details. Users can request a new link. Production mail delivery is not verified by local tests.
+
+Production configuration: set `CASTRAVOLT_ENVIRONMENT=production`, HTTPS `CASTRAVOLT_FRONTEND_URL`, `CASTRAVOLT_SECURE_COOKIES=true`, `CASTRAVOLT_MAIL_MODE=smtp`, `CASTRAVOLT_MAIL_FROM`, `CASTRAVOLT_SMTP_HOST`, `CASTRAVOLT_SMTP_PORT`, `CASTRAVOLT_SMTP_STARTTLS=true`, and SMTP credentials if required. Restrict `CASTRAVOLT_CORS_ORIGINS` to actual trusted frontend origins. Production settings reject file capture/insecure cookies/non-TLS SMTP. Configure deliverability, secrets, expiry/retention and durable delivery if operational requirements need it before production release.
+
+Account integration tests use a uniquely named disposable PostgreSQL database, apply actual migrations, then drop only that database. Run `uv run pytest tests/test_accounts.py tests/test_foundation.py tests/test_dev_workflow.py -q` with local PostgreSQL available. The configured local DB role needs permission to create a test database. These tests do not truncate your application database. Frontend DOM tests verify session revocation on focus and protected-content removal.
+
+Stage 1 foundation remains the React/TypeScript shell, typed FastAPI connection, health/readiness endpoints, bounded PostgreSQL engine configuration and Compose setup. Stage 2 now supplies real account access; private project CRUD, map extraction and prediction endpoints arrive in later stages. Unfinished project/model features are clearly labelled.
 
 The supplied model was inspected and the selected tuned pipeline reconstructed with prediction parity. See [Stage 0 handoff](STAGE_0_HANDOFF.md). Original POI extraction compatibility is still pending.
 
