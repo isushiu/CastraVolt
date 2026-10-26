@@ -6,42 +6,28 @@ Built with React, TypeScript, FastAPI and PostgreSQL. Currently under developmen
 
 ## First-time setup
 
-Install Python 3.12+, uv, Node.js 22.12+ and Docker Desktop. Open a terminal in this project folder.
+Install **uv**, **Node.js 22.12+** and **Docker Desktop**. Then run this once from the project folder:
 
 ```powershell
-Copy-Item .env.example .env
-uv sync --locked
-npm.cmd ci --prefix frontend
+.\setup.cmd
 ```
 
-Open `.env`, choose a local database password, and use it in both `POSTGRES_PASSWORD` and `CASTRAVOLT_DATABASE_URL`. URL-encode reserved characters in the connection URL if needed.
+This prepares Python 3.12, installs dependencies and creates `.env` with a random local database password. Existing `.env` settings are kept unchanged.
 
 ## Start the project
 
-Open Docker Desktop and wait for its engine to start.
-
-**Terminal 1 — database and backend:**
+Open Docker Desktop, wait for its engine to start, then run:
 
 ```powershell
-docker compose up -d db --wait
-uv run alembic upgrade head
-uv run castravolt
+.\start.cmd
 ```
 
-**Terminal 2 — frontend** (also from the project folder):
-
-```powershell
-npm.cmd run dev --prefix frontend
-```
-
-Open [CastraVolt](http://127.0.0.1:5173). Backend documentation: [API docs](http://127.0.0.1:8000/docs).
+It starts PostgreSQL, applies migrations, and runs the backend and frontend together. Keep that terminal open and visit [CastraVolt](http://127.0.0.1:5173).
 
 ## Stop
 
-Press `Ctrl+C` in both terminals. To stop the database without deleting its data:
+Press **Ctrl+C** in the same terminal. App services stop and database data is preserved. A database already running before this command is left running.
 
-```powershell
-docker compose down
-```
+If startup fails, follow the terminal message. Service logs are in `tmp/dev-backend.log` and `tmp/dev-frontend.log`. Stop older previews first if ports 8000 or 5173 are already in use.
 
 For tests, model verification and technical details, see [Development notes](docs/DEVELOPMENT.md).

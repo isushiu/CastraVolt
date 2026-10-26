@@ -10,6 +10,8 @@ The supplied model was inspected and the selected tuned pipeline reconstructed w
 
 ## Local setup
 
+Simplified Windows entry points: `setup.cmd` prepares dependencies and generates local credentials when `.env` is absent; `start.cmd` supervises database/migrations/API/frontend in one terminal. Their standard-library implementation is `scripts/dev.py`. The manual commands below remain available for debugging. Existing configuration is never overwritten; Ctrl+C stops only child app services and a database started by that invocation. Startup rejects occupied application ports and reports missing Docker/setup clearly. The Python 3.12 launcher is managed by uv and the frontend install follows package-lock.json.
+
 Requirements: Python 3.12+, uv, Node 22.12+ (or a supported newer Node release), and Docker Desktop with its Linux engine running, or an existing PostgreSQL server.
 
 1. Copy `.env.example` to `.env`. Choose a local PostgreSQL password and update both password fields consistently; URL-encode reserved characters in the connection URL. Never commit `.env`.
