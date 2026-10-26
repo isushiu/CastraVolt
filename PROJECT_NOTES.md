@@ -4,6 +4,8 @@ Updated: 26 October 2026
 
 ## Project purpose
 
+Stage 0/1 implementation update: inspected the uploaded Colab export. Its deployment_candidate used defaults, so the selected tuned RF (600 trees, depth 5, minimum leaf size 10) was reconstructed separately using the saved 611/153 split. All saved test predictions matched to 1.78e-15; nearest-half-up MAE is 2.620915. See docs/STAGE_0_HANDOFF.md and model/verified_rf80_cv5/manifest.json. Stage 0 remains pending original POI extraction parity. Stage 1 foundation is implemented with passing application checks; live PostgreSQL migration awaits an available Docker engine. See IMPLEMENTATION_PLAN.md ledger for scope.
+
 Latest project-note decision: the user selected the adoption-enabled full run as the working model. This supersedes earlier notes selecting the no-adoption run or limiting registrations to dashboard trends only. Use the filtered 2024, 2025, and 2026 registration sources for registration analysis and dashboard trends, and supply the configured state-level registration indicator to the adoption-enabled model automatically. The planner does not enter it.
 
 Important distinction: the current notebook defaults to `ADOPTION_MODE = 'fixed_period_context'` and `ADOPTION_REFERENCE_YEAR = 2025`. With `USE_ADOPTION = True`, it uses one 2025 registration total per state as the additional model feature; it does not automatically learn the complete 2024–2026 growth series. All three sources are loaded for trend analysis (2024 and 2025 full years; 2026 January–September). Using all three years as prediction features would require an explicit feature-definition change and retraining.

@@ -1,2 +1,3 @@
 def main() -> None:
-    print("Hello from castravolt!")
+    import uvicorn
+    uvicorn.run('castravolt.main:app', host='127.0.0.1', port=8000)

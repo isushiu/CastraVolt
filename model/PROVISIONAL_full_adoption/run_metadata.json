@@ -1,0 +1,61 @@
+{
+  "run_mode": "full",
+  "seed": 42,
+  "target": "total_planned_chargers",
+  "target_formula": "number_of_existing_ev_charger_s + number_of_proposed_ev_charger__",
+  "target_assumption": "proposed means outstanding additional chargers; not independently verified",
+  "features": [
+    "nearby_mall_count",
+    "nearby_petrol_count",
+    "nearby_hotel_count",
+    "nearby_office_count",
+    "nearby_transit_count",
+    "nearby_university_count",
+    "nearby_hospital_count",
+    "nearby_parking_count",
+    "state_ev_registrations",
+    "category",
+    "state"
+  ],
+  "use_adoption": true,
+  "adoption_mode": "fixed_period_context",
+  "adoption_reference_year": 2025,
+  "source_hashes": {
+    "mevnet_ev_charging_demand_labelled_dataset.csv": "210953eb9f9bdb1e673b0fdfc968d6f7955faa8365e8b5bd1078a0c81145934a",
+    "ev_registration2024.csv": "af7d74ca5a30aa84bd41f01727e41ee04e2af6b81002e79b30c3bc38aa35c88c",
+    "ev_registration2025.csv": "29dc875544b21a626222682f4c2d06b79d56773a6c71b5d708f31a7335c94dad",
+    "vehicles_2026.csv": "b84a838b10376635fbe1e80b43404b9debc8d1268262f1e8b5799baf343882a2"
+  },
+  "poi_provenance": "unverified supplied counts; exploratory results only",
+  "planned_poi_radius_metres": 1000,
+  "split_method": "random coordinate groups",
+  "minimum_display_count": 1,
+  "rounding": "ceiling",
+  "fixed_random_forest": {
+    "n_estimators": 300,
+    "max_depth": 10,
+    "min_samples_leaf": 2,
+    "max_features": 1.0
+  },
+  "fixed_xgboost": {
+    "n_estimators": 300,
+    "max_depth": 3,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "reg_lambda": 1
+  },
+  "versions": {
+    "python": "3.13.16",
+    "pandas": "2.2.3",
+    "numpy": "2.1.3",
+    "sklearn": "1.6.1",
+    "xgboost": "3.4.1"
+  },
+  "limitations": [
+    "nearby distinct sites may share POIs",
+    "2026 registrations cover Jan-Sep only",
+    "Rakan Niaga excluded",
+    "repeated test inspection is not a fresh final evaluation"
+  ]
+}

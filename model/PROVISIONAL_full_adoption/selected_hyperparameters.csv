@@ -1,0 +1,13 @@
+experiment,model,training_cv_MAE,parameters
+split_cv_50_5,RandomForest,3.0005302097420277,"{""model__n_estimators"": 600, ""model__min_samples_leaf"": 10, ""model__max_features"": 1.0, ""model__max_depth"": 5}"
+split_cv_50_5,XGBoost,2.906439733505249,"{""model__subsample"": 1.0, ""model__reg_lambda"": 5, ""model__n_estimators"": 100, ""model__max_depth"": 2, ""model__learning_rate"": 0.03, ""model__colsample_bytree"": 1.0}"
+split_cv_50_10,RandomForest,2.9962248081810086,"{""model__n_estimators"": 600, ""model__min_samples_leaf"": 10, ""model__max_features"": 1.0, ""model__max_depth"": 5}"
+split_cv_50_10,XGBoost,2.905235195159912,"{""model__subsample"": 1.0, ""model__reg_lambda"": 5, ""model__n_estimators"": 100, ""model__max_depth"": 2, ""model__learning_rate"": 0.03, ""model__colsample_bytree"": 1.0}"
+split_cv_70_5,RandomForest,3.00325725132286,"{""model__n_estimators"": 600, ""model__min_samples_leaf"": 10, ""model__max_features"": 1.0, ""model__max_depth"": 5}"
+split_cv_70_5,XGBoost,2.9442349433898927,"{""model__subsample"": 1.0, ""model__reg_lambda"": 5, ""model__n_estimators"": 100, ""model__max_depth"": 2, ""model__learning_rate"": 0.03, ""model__colsample_bytree"": 1.0}"
+split_cv_70_10,RandomForest,3.018000436735531,"{""model__n_estimators"": 600, ""model__min_samples_leaf"": 10, ""model__max_features"": 1.0, ""model__max_depth"": 5}"
+split_cv_70_10,XGBoost,2.979016423225403,"{""model__subsample"": 1.0, ""model__reg_lambda"": 5, ""model__n_estimators"": 100, ""model__max_depth"": 2, ""model__learning_rate"": 0.03, ""model__colsample_bytree"": 1.0}"
+split_cv_80_5,RandomForest,3.0610495187295177,"{""model__n_estimators"": 600, ""model__min_samples_leaf"": 10, ""model__max_features"": 1.0, ""model__max_depth"": 5}"
+split_cv_80_5,XGBoost,2.9904618740081785,"{""model__subsample"": 1.0, ""model__reg_lambda"": 5, ""model__n_estimators"": 100, ""model__max_depth"": 2, ""model__learning_rate"": 0.03, ""model__colsample_bytree"": 1.0}"
+split_cv_80_10,RandomForest,3.058235356237365,"{""model__n_estimators"": 600, ""model__min_samples_leaf"": 10, ""model__max_features"": 1.0, ""model__max_depth"": 5}"
+split_cv_80_10,XGBoost,2.9882999420166017,"{""model__subsample"": 1.0, ""model__reg_lambda"": 5, ""model__n_estimators"": 100, ""model__max_depth"": 2, ""model__learning_rate"": 0.03, ""model__colsample_bytree"": 1.0}"

@@ -201,7 +201,8 @@ Random Forest, 80/20 split with five-fold training CV:
 - Raw MAE: approximately 2.62219 charging points.
 - RMSE: approximately 3.76716 charging points.
 - R²: approximately 0.41543.
-- Historical ceiling-rounded MAE: approximately 2.7582 charging points. Nearest-half-up rounded MAE has not yet been calculated; do not label the historical metric as its result.
+- Historical ceiling-rounded MAE: approximately 2.7582 charging points.
+- Nearest-half-up rounded MAE: approximately 2.62092 charging points, verified locally against all 153 saved test predictions after reconstructing the selected tuned pipeline. This is not a fresh independent test set.
 
 Re-evaluate the same saved raw predictions under nearest-half-up and ceiling, reporting rounded MAE and underestimation frequency. No retraining is required for this comparison. Raw metrics are unaffected by the display rounding change. The notebook currently implements ceiling and needs to be aligned with this PRD before new application-ready exports.
 
