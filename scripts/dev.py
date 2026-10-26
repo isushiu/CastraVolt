@@ -14,6 +14,8 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
+SETUP_COMMAND = '.\\setup.cmd' if os.name == 'nt' else 'sh setup.sh'
+START_COMMAND = '.\\start.cmd' if os.name == 'nt' else 'sh start.sh'
 
 
 class WorkflowError(Exception):
@@ -58,13 +60,19 @@ def prepare_env(root):
 def setup(root=ROOT):
     npm = 'npm.cmd' if os.name == 'nt' else 'npm'
     require_tools(['uv', npm, 'docker'])
+    # Windows cannot replace binaries used by active preview/API processes.
+    for port in (8000, 5173):
+        ensure_port_available(port)
     print('1/3 Preparing local configuration…', flush=True)
     prepare_env(root)
     print('2/3 Installing locked backend dependencies…', flush=True)
-    run(['uv', 'sync', '--locked'], root)
+    run(['uv', 'sync', '--locked', '--group', 'model-validation'], root)
     print('3/3 Installing locked frontend dependencies…', flush=True)
-    run([npm, 'ci', '--prefix', 'frontend', '--no-audit', '--no-fund'], root)
-    print('\nSetup complete. Open Docker Desktop, then run .\\start.cmd', flush=True)
+    try:
+        run([npm, 'ci', '--prefix', 'frontend', '--no-audit', '--no-fund'], root)
+    except WorkflowError as exc:
+        raise WorkflowError(f'Frontend installation failed. On Windows, an older Vite/esbuild process may hold files open. Stop this project\'s running preview (Ctrl+C), then rerun {SETUP_COMMAND}. Administrator access is normally unnecessary.') from exc
+    print(f'\nSetup complete. Start Docker, then run {START_COMMAND}', flush=True)
 
 
 def ensure_port_available(port):
@@ -178,17 +186,16 @@ def wait_for_service(process, check, label, log_path, timeout=45):
 
 
 def start(root=ROOT):
-    npm = 'npm.cmd' if os.name == 'nt' else 'npm'
     require_tools(['docker', 'node'])
     python = root / '.venv' / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
     if not python.exists() or not (root/'frontend/node_modules').exists() or not (root/'.env').exists():
-        raise WorkflowError('First run .\\setup.cmd to prepare this project.')
+        raise WorkflowError(f'First run {SETUP_COMMAND} to prepare this project.')
     ensure_port_available(8000)
     ensure_port_available(5173)
     try:
         run(['docker','info'],root,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=15)
     except (WorkflowError, subprocess.TimeoutExpired) as exc:
-        raise WorkflowError('Docker Desktop is not ready. Open it, wait for the engine, then run .\\start.cmd again.') from exc
+        raise WorkflowError(f'Docker is not ready. Start its engine, then run {START_COMMAND} again.') from exc
     running = run(['docker','compose','ps','--status','running','--services'],root,capture_output=True,text=True).stdout.splitlines()
     started_database = 'db' not in running
     processes, logs = [], []

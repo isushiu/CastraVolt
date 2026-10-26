@@ -52,10 +52,34 @@ def test_setup_installs_locked_dependencies_in_order(tmp_path, monkeypatch):
     (tmp_path/'.env').write_text('CUSTOM_SETTING=keep\n')
     commands = []
     monkeypatch.setattr(dev,'require_tools',lambda names: None)
+    monkeypatch.setattr(dev,'ensure_port_available',lambda port: None)
     monkeypatch.setattr(dev,'run',lambda command, root: commands.append(command))
     dev.setup(tmp_path)
-    assert commands[0] == ['uv','sync','--locked']
+    assert commands[0] == ['uv','sync','--locked','--group','model-validation']
     assert commands[1][1:5] == ['ci','--prefix','frontend','--no-audit']
+
+
+def test_setup_rejects_active_services_before_touching_dependencies(tmp_path, monkeypatch):
+    import pytest
+    monkeypatch.setattr(dev,'require_tools',lambda names: None)
+    def busy(port): raise dev.WorkflowError('Stop the existing preview')
+    monkeypatch.setattr(dev,'ensure_port_available',busy)
+    monkeypatch.setattr(dev,'run',lambda *a, **k: pytest.fail('Must not install while running'))
+    with pytest.raises(dev.WorkflowError,match='existing preview'):
+        dev.setup(tmp_path)
+
+
+def test_root_follows_relocated_script_with_spaces(tmp_path):
+    import runpy
+    root = tmp_path/'another computer'/'project with spaces'
+    scripts = root/'scripts'
+    scripts.mkdir(parents=True)
+    copied = scripts/'dev.py'
+    copied.write_text(Path('scripts/dev.py').read_text(encoding='utf-8'),encoding='utf-8')
+    loaded = runpy.run_path(str(copied),run_name='portable_import')
+    assert loaded['ROOT'] == root.resolve()
+    loaded['prepare_env'].__globals__['ROOT'] = root
+    assert not (root/'.env').exists()
 
 
 def test_failed_migration_stops_only_database_started_by_this_run(tmp_path, monkeypatch):

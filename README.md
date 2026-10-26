@@ -14,6 +14,8 @@ Install **uv**, **Node.js 22.12+** and **Docker Desktop**. Then run this once fr
 
 This prepares Python 3.12, installs dependencies and creates `.env` with a random local database password. Existing `.env` settings are kept unchanged.
 
+On macOS/Linux, use `sh setup.sh` instead. Docker Engine with Compose is also supported there.
+
 ## Start the project
 
 Open Docker Desktop, wait for its engine to start, then run:
@@ -23,6 +25,14 @@ Open Docker Desktop, wait for its engine to start, then run:
 ```
 
 It starts PostgreSQL, applies migrations, and runs the backend and frontend together. Keep that terminal open and visit [CastraVolt](http://127.0.0.1:5173).
+
+On macOS/Linux, use `sh start.sh` instead.
+
+## On another computer
+
+Clone or copy the project to any folder, install the prerequisites, and run setup there. No personal folder paths are required. Setup creates a new local environment and credentials; do not copy `.venv`, `node_modules` or another person's `.env`.
+
+`127.0.0.1` means the computer running the app, not this developer's machine. The current app uses local ports 8000 and 5173, which must be free. Model `.joblib` files are not committed to Git; transfer the trusted model artifacts separately when they are needed for prediction stages.
 
 ## Stop
 
