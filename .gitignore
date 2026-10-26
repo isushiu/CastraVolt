@@ -11,3 +11,6 @@ wheels/
 
 # temporary files
 tmp
+
+#data files
+data
