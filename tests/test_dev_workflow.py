@@ -52,6 +52,7 @@ def test_setup_installs_locked_dependencies_in_order(tmp_path, monkeypatch):
     (tmp_path/'.env').write_text('CUSTOM_SETTING=keep\n')
     commands = []
     monkeypatch.setattr(dev,'require_tools',lambda names: None)
+    monkeypatch.setattr(dev,'check_prerequisites',lambda *a, **k: True)
     monkeypatch.setattr(dev,'ensure_port_available',lambda port: None)
     monkeypatch.setattr(dev,'run',lambda command, root: commands.append(command))
     dev.setup(tmp_path)
@@ -62,6 +63,7 @@ def test_setup_installs_locked_dependencies_in_order(tmp_path, monkeypatch):
 def test_setup_rejects_active_services_before_touching_dependencies(tmp_path, monkeypatch):
     import pytest
     monkeypatch.setattr(dev,'require_tools',lambda names: None)
+    monkeypatch.setattr(dev,'check_prerequisites',lambda *a, **k: True)
     def busy(port): raise dev.WorkflowError('Stop the existing preview')
     monkeypatch.setattr(dev,'ensure_port_available',busy)
     monkeypatch.setattr(dev,'run',lambda *a, **k: pytest.fail('Must not install while running'))
@@ -90,6 +92,7 @@ def test_failed_migration_stops_only_database_started_by_this_run(tmp_path, monk
     (tmp_path/'frontend/node_modules').mkdir(parents=True)
     (tmp_path/'.env').touch()
     monkeypatch.setattr(dev,'require_tools',lambda names: None)
+    monkeypatch.setattr(dev,'check_prerequisites',lambda *a, **k: True)
     monkeypatch.setattr(dev,'ensure_port_available',lambda port: None)
     stopped = []
     monkeypatch.setattr(dev.subprocess,'run',lambda command, **kw: stopped.append(command))
@@ -97,6 +100,8 @@ def test_failed_migration_stops_only_database_started_by_this_run(tmp_path, monk
         def fake_run(command, root, **kwargs):
             if 'ps' in command:
                 return types.SimpleNamespace(stdout=running)
+            if 'config' in command:
+                return types.SimpleNamespace(stdout='{"services":{"db":{"ports":[{"published":"55432"}]}}}')
             if 'alembic' in command:
                 raise dev.WorkflowError('Migration failed')
             return types.SimpleNamespace()
@@ -136,3 +141,33 @@ def test_windows_cleanup_kills_descendants_after_launcher_exits(tmp_path):
         finally:
             dev.stop_child(process)
             if handle: kernel.CloseHandle(handle)
+
+
+def test_missing_tools_have_install_guidance(monkeypatch):
+    import pytest
+    monkeypatch.setattr(dev.shutil,'which',lambda name: None)
+    with pytest.raises(dev.WorkflowError,match='Docker Desktop: https://'):
+        dev.require_tools(['docker'])
+
+
+def test_prerequisites_distinguish_engine_stopped_from_missing_compose(monkeypatch):
+    import pytest
+    import types
+    monkeypatch.setattr(dev,'require_tools',lambda names: None)
+    def command(args,root,**kwargs):
+        if args[:2]==['node','--version']: return types.SimpleNamespace(stdout='v22.12.0')
+        if args[:2]==['docker','info']: raise dev.WorkflowError('engine stopped')
+        return types.SimpleNamespace()
+    monkeypatch.setattr(dev,'run',command)
+    assert dev.check_prerequisites() is False
+    with pytest.raises(dev.WorkflowError,match='engine is not accessible'):
+        dev.check_prerequisites(engine_required=True)
+
+
+def test_old_node_rejected_before_installation(monkeypatch):
+    import pytest
+    import types
+    monkeypatch.setattr(dev,'require_tools',lambda names: None)
+    monkeypatch.setattr(dev,'run',lambda *a,**k: types.SimpleNamespace(stdout='v18.20.0'))
+    with pytest.raises(dev.WorkflowError,match='22.12'):
+        dev.check_prerequisites()

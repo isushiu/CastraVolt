@@ -32,7 +32,39 @@ def run(command, root, **kwargs):
 def require_tools(names):
     missing = [name for name in names if not shutil.which(name)]
     if missing:
-        raise WorkflowError('Install these tools first: ' + ', '.join(missing))
+        help_links = {'uv':'uv: https://docs.astral.sh/uv/getting-started/installation/',
+                      'node':'Node.js 22.12+: https://nodejs.org/en/download',
+                      'npm':'Node.js (includes npm): https://nodejs.org/en/download',
+                      'npm.cmd':'Node.js (includes npm): https://nodejs.org/en/download',
+                      'docker':'Docker Desktop: https://www.docker.com/products/docker-desktop/'}
+        raise WorkflowError('Missing prerequisites:\n' + '\n'.join(help_links.get(name,name) for name in missing)
+                            + '\nAfter installing, reopen the terminal and retry.')
+
+
+def check_prerequisites(root=ROOT, engine_required=False):
+    npm = 'npm.cmd' if os.name == 'nt' else 'npm'
+    require_tools(['uv','node',npm,'docker'])
+    import re
+    version = run(['node','--version'],root,capture_output=True,text=True).stdout.strip()
+    match = re.fullmatch(r'v?(\d+)\.(\d+)\.(\d+)',version)
+    if not match or tuple(map(int,match.groups())) < (22,12,0):
+        raise WorkflowError('Node.js 22.12 or newer is required. Update from https://nodejs.org/en/download')
+    try:
+        run(['docker','compose','version'],root,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=15)
+    except (WorkflowError,subprocess.TimeoutExpired) as exc:
+        raise WorkflowError('Docker is installed, but Docker Compose is missing/unavailable. Install or update Docker Desktop (or the Compose plugin on Linux).') from exc
+    print(f'Prerequisites found: uv, Node.js {version}, npm and Docker Compose.',flush=True)
+    try:
+        run(['docker','info'],root,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=15)
+    except (WorkflowError,subprocess.TimeoutExpired) as exc:
+        message = ('Docker is installed but its engine is not accessible. Open Docker Desktop and wait until it says the engine is running. '
+                   'If Docker Desktop shows a WSL/virtualisation or permissions error, resolve that message first. '
+                   'On Linux, start Docker Engine and ensure your account can access it.')
+        if engine_required: raise WorkflowError(message) from exc
+        print('Note: '+message+'\nDependency setup can continue; starting the app will require Docker.',flush=True)
+        return False
+    print('Docker engine is ready.',flush=True)
+    return True
 
 
 def prepare_env(root):
@@ -59,7 +91,7 @@ def prepare_env(root):
 
 def setup(root=ROOT):
     npm = 'npm.cmd' if os.name == 'nt' else 'npm'
-    require_tools(['uv', npm, 'docker'])
+    check_prerequisites(root)
     # Windows cannot replace binaries used by active preview/API processes.
     for port in (8000, 5173):
         ensure_port_available(port)
@@ -186,18 +218,22 @@ def wait_for_service(process, check, label, log_path, timeout=45):
 
 
 def start(root=ROOT):
-    require_tools(['docker', 'node'])
+    check_prerequisites(root,engine_required=True)
     python = root / '.venv' / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
     if not python.exists() or not (root/'frontend/node_modules').exists() or not (root/'.env').exists():
         raise WorkflowError(f'First run {SETUP_COMMAND} to prepare this project.')
     ensure_port_available(8000)
     ensure_port_available(5173)
-    try:
-        run(['docker','info'],root,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=15)
-    except (WorkflowError, subprocess.TimeoutExpired) as exc:
-        raise WorkflowError(f'Docker is not ready. Start its engine, then run {START_COMMAND} again.') from exc
+    print('Using project virtual environment: .venv',flush=True)
     running = run(['docker','compose','ps','--status','running','--services'],root,capture_output=True,text=True).stdout.splitlines()
     started_database = 'db' not in running
+    if started_database:
+        config = run(['docker','compose','config','--format','json'],root,capture_output=True,text=True)
+        published = json.loads(config.stdout)['services']['db']['ports'][0]['published']
+        try:
+            ensure_port_available(int(published))
+        except WorkflowError as exc:
+            raise WorkflowError(f'Database port {published} is occupied or blocked. Choose an available POSTGRES_PORT in .env and use the same port in CASTRAVOLT_DATABASE_URL. The PostgreSQL port inside Docker remains 5432.') from exc
     processes, logs = [], []
     try:
         print('1/4 Starting PostgreSQL and waiting for readiness…',flush=True)
@@ -247,10 +283,13 @@ def start(root=ROOT):
 
 def main():
     parser = argparse.ArgumentParser(description='CastraVolt local development')
-    parser.add_argument('action', choices=['setup','start'])
+    parser.add_argument('action', choices=['setup','start','check'])
     args = parser.parse_args()
     try:
-        (setup if args.action == 'setup' else start)()
+        if args.action == 'check':
+            check_prerequisites(engine_required=True)
+        else:
+            (setup if args.action == 'setup' else start)()
     except WorkflowError as exc:
         print(f'\n{exc}',file=sys.stderr)
         return 1
