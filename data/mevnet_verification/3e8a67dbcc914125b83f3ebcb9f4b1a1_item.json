@@ -1,0 +1,62 @@
+{
+  "id": "3e8a67dbcc914125b83f3ebcb9f4b1a1",
+  "owner": "planmusc2",
+  "orgId": "0123456789ABCDEF",
+  "created": 1715254129037,
+  "modified": 1739796441185,
+  "guid": null,
+  "name": null,
+  "title": "EV Station",
+  "type": "Web Map",
+  "typeKeywords": [
+    "ArcGIS API for JavaScript",
+    "ArcGIS Online",
+    "Explorer Web Map",
+    "Map",
+    "Online Map",
+    "Web Map"
+  ],
+  "description": "",
+  "tags": [
+    ""
+  ],
+  "snippet": "",
+  "thumbnail": "thumbnail/ago_downloaded.png",
+  "documentation": null,
+  "extent": [
+    [
+      102.92425507812472,
+      -0.2902466128715906
+    ],
+    [
+      114.50384492187163,
+      9.04330661684837
+    ]
+  ],
+  "categories": [],
+  "spatialReference": null,
+  "accessInformation": null,
+  "licenseInfo": null,
+  "culture": "en-us",
+  "properties": null,
+  "advancedSettings": null,
+  "url": "",
+  "proxyFilter": null,
+  "access": "public",
+  "size": 27406,
+  "subInfo": 0,
+  "appCategories": [],
+  "industries": [],
+  "languages": [],
+  "largeThumbnail": null,
+  "banner": null,
+  "screenshots": [],
+  "listed": false,
+  "commentsEnabled": false,
+  "numComments": 0,
+  "numRatings": 0,
+  "avgRating": 0,
+  "numViews": 26706,
+  "scoreCompleteness": 33,
+  "groupDesignations": null
+}

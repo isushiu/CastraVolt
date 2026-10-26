@@ -1,0 +1,1702 @@
+{
+  "operationalLayers": [
+    {
+      "id": "18fffcf45fc-layer-3",
+      "disablePopup": true,
+      "title": "Sempadan PBT",
+      "url": "https://gisdev.planmalaysia.gov.my/server/rest/services/Hosted/PBT_MALAYSIA/FeatureServer/0",
+      "itemId": "08161cbda4b34f6f9fbb5f0b1b929165",
+      "layerType": "ArcGISFeatureLayer",
+      "showLabels": true,
+      "layerDefinition": {
+        "drawingInfo": {
+          "labelingInfo": [
+            {
+              "labelExpression": "[nama_pbt]",
+              "labelExpressionInfo": {
+                "expression": "$feature[\"nama_pbt\"]"
+              },
+              "labelPlacement": "esriServerPolygonPlacementAlwaysHorizontal",
+              "maxScale": 0,
+              "minScale": 882812.224054,
+              "symbol": {
+                "type": "esriTS",
+                "color": [
+                  43,
+                  43,
+                  43,
+                  255
+                ],
+                "font": {
+                  "family": "Roboto Condensed",
+                  "size": 7.5,
+                  "style": "italic"
+                },
+                "horizontalAlignment": "center",
+                "kerning": true,
+                "haloColor": [
+                  211,
+                  211,
+                  211,
+                  255
+                ],
+                "haloSize": 1.5,
+                "rotated": false,
+                "text": "",
+                "xoffset": 0,
+                "yoffset": 0,
+                "angle": 0
+              }
+            }
+          ],
+          "renderer": {
+            "type": "simple",
+            "symbol": {
+              "type": "esriSFS",
+              "color": null,
+              "outline": {
+                "type": "esriSLS",
+                "color": [
+                  177,
+                  85,
+                  230,
+                  255
+                ],
+                "width": 1.13,
+                "style": "esriSLSSolid"
+              },
+              "style": "esriSFSSolid"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "18fffcf832b-layer-4",
+      "disablePopup": true,
+      "title": "Sempadan Negeri",
+      "url": "https://gisdev.planmalaysia.gov.my/server/rest/services/Hosted/Sempadan_Negeri/FeatureServer/0",
+      "itemId": "027225ba3e4247e7847fb2c325ddc206",
+      "layerType": "ArcGISFeatureLayer",
+      "layerDefinition": {
+        "definitionExpression": null,
+        "drawingInfo": {
+          "renderer": {
+            "type": "simple",
+            "symbol": {
+              "type": "esriSFS",
+              "color": null,
+              "outline": {
+                "type": "esriSLS",
+                "color": [
+                  255,
+                  64,
+                  64,
+                  252
+                ],
+                "width": 0.53,
+                "style": "esriSLSSolid"
+              },
+              "style": "esriSFSSolid"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "EV_Charger_Coverage_Radius__3611__8135",
+      "opacity": 0.5,
+      "disablePopup": true,
+      "title": "EV_Charger_Coverage_Radius_(3611)",
+      "url": "https://gisdev.planmalaysia.gov.my/server/rest/services/Hosted/EV_Charger_Coverage_Radius_(3611)/FeatureServer/0",
+      "visibility": false,
+      "itemId": "e93c10cffc814df2be635e7cec9fac9e",
+      "layerType": "ArcGISFeatureLayer",
+      "layerDefinition": {
+        "definitionExpression": "buff_dist NOT IN (100)",
+        "drawingInfo": {
+          "renderer": {
+            "type": "uniqueValue",
+            "field1": "buff_dist",
+            "fieldDelimiter": ",",
+            "uniqueValueInfos": [
+              {
+                "label": "5",
+                "symbol": {
+                  "type": "esriSFS",
+                  "color": [
+                    255,
+                    0,
+                    197,
+                    255
+                  ],
+                  "style": "esriSFSSolid"
+                },
+                "value": "5"
+              },
+              {
+                "label": "10",
+                "symbol": {
+                  "type": "esriSFS",
+                  "color": [
+                    197,
+                    4,
+                    209,
+                    255
+                  ],
+                  "style": "esriSFSSolid"
+                },
+                "value": "10"
+              },
+              {
+                "label": "25",
+                "symbol": {
+                  "type": "esriSFS",
+                  "color": [
+                    79,
+                    18,
+                    255,
+                    255
+                  ],
+                  "style": "esriSFSSolid"
+                },
+                "value": "25"
+              },
+              {
+                "label": "50",
+                "symbol": {
+                  "type": "esriSFS",
+                  "color": [
+                    20,
+                    158,
+                    206,
+                    255
+                  ],
+                  "style": "esriSFSSolid"
+                },
+                "value": "50"
+              },
+              {
+                "label": "100",
+                "symbol": {
+                  "type": "esriSFS",
+                  "color": [
+                    126,
+                    176,
+                    213,
+                    255
+                  ],
+                  "style": "esriSFSSolid"
+                },
+                "value": "100"
+              }
+            ]
+          }
+        }
+      },
+      "popupInfo": {
+        "popupElements": [
+          {
+            "type": "fields",
+            "description": "",
+            "fieldInfos": [
+              {
+                "fieldName": "orig_fid",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "ORIG_FID",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "buff_dist",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 2
+                },
+                "isEditable": true,
+                "label": "Buffer distance in Kilometers",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "bil",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Bil",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "state_code",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "State Code",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "state",
+                "isEditable": true,
+                "label": "State",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "pbt_code",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "PBT Code",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "pbt",
+                "isEditable": true,
+                "label": "PBT",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "location",
+                "isEditable": true,
+                "label": "Location",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "latitude",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 2
+                },
+                "isEditable": true,
+                "label": "Latitude",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "longitude",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 2
+                },
+                "isEditable": true,
+                "label": "Longitude",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_proposed_ev_charger__",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of Proposed EV Charger (s)",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "data_as",
+                "isEditable": true,
+                "label": "Data as",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_existing_ev_charger_s",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of Existing EV Charger(s)",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_network",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - 1Utama",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_1",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - ABB",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_2",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of EV Charger by Network -  BMW",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_3",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network -  ChargeNGo",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_4",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - chargEV",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_5",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - ChargeSini",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_6",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - ETCM",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_7",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Evwave",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_8",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Exicom",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netwo_9",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Flexi Parking",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_10",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Gentari",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_11",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - GoCar",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_12",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - GoToU",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_13",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Jomcharge",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_14",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Kineta",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_15",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Mini",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_16",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Nichicon",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_17",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - ParkEasy",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_18",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - PEKEMA",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_19",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Pestech",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_20",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Plugit",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_21",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Schneider",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_22",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - ShellRecharge",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_23",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Sunway",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_24",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - TNBX (GoToU)",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_25",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Zap",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_ev_charger_by_netw_26",
+                "isEditable": true,
+                "label": "Number of EV Charger by Network - Others",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "type_ac",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Type AC",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "type_dc",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Type DC",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "category",
+                "isEditable": true,
+                "label": "Category",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "indoor___outdoor",
+                "isEditable": true,
+                "label": "Indoor / Outdoor",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "indoor",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Indoor",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "outdoor",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Outdoor",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "status",
+                "isEditable": true,
+                "label": "Status",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "field46",
+                "isEditable": true,
+                "label": "Field46",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "field47",
+                "isEditable": true,
+                "label": "Field47",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "field48",
+                "isEditable": true,
+                "label": "Field48",
+                "tooltip": "",
+                "visible": true
+              },
+              {
+                "fieldName": "analysisarea",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 2
+                },
+                "isEditable": true,
+                "label": "Area in Square Kilometers",
+                "tooltip": "",
+                "visible": true
+              }
+            ],
+            "title": ""
+          }
+        ],
+        "fieldInfos": [
+          {
+            "fieldName": "objectid",
+            "label": "OBJECTID",
+            "tooltip": "",
+            "visible": false
+          },
+          {
+            "fieldName": "orig_fid",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "ORIG_FID",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "buff_dist",
+            "format": {
+              "digitSeparator": true,
+              "places": 2
+            },
+            "isEditable": true,
+            "label": "Buffer distance in Kilometers",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "bil",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Bil",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "state_code",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "State Code",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "state",
+            "isEditable": true,
+            "label": "State",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "pbt_code",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "PBT Code",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "pbt",
+            "isEditable": true,
+            "label": "PBT",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "location",
+            "isEditable": true,
+            "label": "Location",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "latitude",
+            "format": {
+              "digitSeparator": true,
+              "places": 2
+            },
+            "isEditable": true,
+            "label": "Latitude",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "longitude",
+            "format": {
+              "digitSeparator": true,
+              "places": 2
+            },
+            "isEditable": true,
+            "label": "Longitude",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_proposed_ev_charger__",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of Proposed EV Charger (s)",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "data_as",
+            "isEditable": true,
+            "label": "Data as",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_existing_ev_charger_s",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of Existing EV Charger(s)",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_network",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - 1Utama",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_1",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ABB",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_2",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network -  BMW",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_3",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network -  ChargeNGo",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_4",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - chargEV",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_5",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ChargeSini",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_6",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ETCM",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_7",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Evwave",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_8",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Exicom",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_9",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Flexi Parking",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_10",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Gentari",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_11",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - GoCar",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_12",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - GoToU",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_13",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Jomcharge",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_14",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Kineta",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_15",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Mini",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_16",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Nichicon",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_17",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ParkEasy",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_18",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - PEKEMA",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_19",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Pestech",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_20",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Plugit",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_21",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Schneider",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_22",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ShellRecharge",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_23",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Sunway",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_24",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - TNBX (GoToU)",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_25",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Zap",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_26",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Others",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "type_ac",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Type AC",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "type_dc",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Type DC",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "category",
+            "isEditable": true,
+            "label": "Category",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "indoor___outdoor",
+            "isEditable": true,
+            "label": "Indoor / Outdoor",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "indoor",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Indoor",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "outdoor",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Outdoor",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "status",
+            "isEditable": true,
+            "label": "Status",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "field46",
+            "isEditable": true,
+            "label": "Field46",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "field47",
+            "isEditable": true,
+            "label": "Field47",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "field48",
+            "isEditable": true,
+            "label": "Field48",
+            "tooltip": "",
+            "visible": true
+          },
+          {
+            "fieldName": "analysisarea",
+            "format": {
+              "digitSeparator": true,
+              "places": 2
+            },
+            "isEditable": true,
+            "label": "Area in Square Kilometers",
+            "tooltip": "",
+            "visible": true
+          }
+        ],
+        "title": "EV_Charger_Coverage_Radius_(3611)"
+      }
+    },
+    {
+      "id": "18f6054787e-layer-2",
+      "title": "MEVnet EVCB",
+      "url": "https://gisdev.planmalaysia.gov.my/server/rest/services/Hosted/MEVnet_EVCB/FeatureServer/0",
+      "itemId": "eeb6a13df12248d8873eeb9a96905214",
+      "layerType": "ArcGISFeatureLayer",
+      "layerDefinition": {
+        "definitionExpression": null,
+        "drawingInfo": {
+          "labelingInfo": [
+            {
+              "labelExpression": "[location]",
+              "labelExpressionInfo": {
+                "expression": "$feature[\"location\"]"
+              },
+              "labelPlacement": "esriServerPointLabelPlacementCenterRight",
+              "maxScale": 0,
+              "minScale": 18515.367113,
+              "symbol": {
+                "type": "esriTS",
+                "color": [
+                  43,
+                  43,
+                  43,
+                  255
+                ],
+                "font": {
+                  "family": "Arial Unicode MS",
+                  "size": 6,
+                  "weight": "bold"
+                },
+                "horizontalAlignment": "center",
+                "kerning": true,
+                "haloSize": 1,
+                "rotated": false,
+                "text": "",
+                "xoffset": -5,
+                "yoffset": 0,
+                "angle": 0
+              }
+            }
+          ],
+          "renderer": {
+            "type": "uniqueValue",
+            "field1": "indoor___outdoor",
+            "defaultLabel": "Other",
+            "defaultSymbol": {
+              "type": "esriPMS",
+              "angle": 0,
+              "xoffset": 0,
+              "yoffset": 0,
+              "url": "https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/510fbd28ff3e4f0599e574bfa44d2ed0/data",
+              "height": 13.5,
+              "width": 13.5
+            },
+            "uniqueValueInfos": [
+              {
+                "label": "TM",
+                "symbol": {
+                  "type": "esriPMS",
+                  "angle": 0,
+                  "xoffset": 0,
+                  "yoffset": 0,
+                  "url": "https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/9e948c4dc62144e5be1e88161da99835/data",
+                  "height": 13.5,
+                  "width": 13.5
+                },
+                "value": "TM"
+              },
+              {
+                "label": "Outdoor",
+                "symbol": {
+                  "type": "esriPMS",
+                  "angle": 0,
+                  "xoffset": 0,
+                  "yoffset": 0,
+                  "url": "https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/510fbd28ff3e4f0599e574bfa44d2ed0/data",
+                  "height": 13.5,
+                  "width": 13.5
+                },
+                "value": "Outdoor"
+              },
+              {
+                "label": "Indoor",
+                "symbol": {
+                  "type": "esriPMS",
+                  "angle": 0,
+                  "xoffset": 0,
+                  "yoffset": 0,
+                  "url": "https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/510fbd28ff3e4f0599e574bfa44d2ed0/data",
+                  "height": 13.5,
+                  "width": 13.5
+                },
+                "value": "Indoor"
+              },
+              {
+                "label": "Indoor & Outdoor",
+                "symbol": {
+                  "type": "esriPMS",
+                  "angle": 0,
+                  "xoffset": 0,
+                  "yoffset": 0,
+                  "url": "https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/510fbd28ff3e4f0599e574bfa44d2ed0/data",
+                  "height": 13.5,
+                  "width": 13.5
+                },
+                "value": "Indoor & Outdoor"
+              },
+              {
+                "label": "indoor",
+                "symbol": {
+                  "type": "esriPMS",
+                  "angle": 0,
+                  "xoffset": 0,
+                  "yoffset": 0,
+                  "url": "https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/510fbd28ff3e4f0599e574bfa44d2ed0/data",
+                  "height": 13.5,
+                  "width": 13.5
+                },
+                "value": "indoor"
+              }
+            ]
+          }
+        }
+      },
+      "showLabels": true,
+      "popupInfo": {
+        "popupElements": [
+          {
+            "type": "fields",
+            "description": "",
+            "fieldInfos": [
+              {
+                "fieldName": "number_of_proposed_ev_charger__",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of Proposed EV Charger (s)",
+                "visible": true
+              },
+              {
+                "fieldName": "number_of_existing_ev_charger_s",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "Number of Existing EV Charger(s)",
+                "visible": true
+              },
+              {
+                "fieldName": "type_ac",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "No of AC Charger (s)",
+                "visible": true
+              },
+              {
+                "fieldName": "type_dc",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "No of DC Charger (s)",
+                "visible": true
+              },
+              {
+                "fieldName": "indoor___outdoor",
+                "isEditable": true,
+                "label": "Physicality",
+                "visible": true
+              },
+              {
+                "fieldName": "indoor",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "No of charger located indoor",
+                "visible": true
+              },
+              {
+                "fieldName": "outdoor",
+                "format": {
+                  "digitSeparator": true,
+                  "places": 0
+                },
+                "isEditable": true,
+                "label": "No of charger located outdoor",
+                "visible": true
+              },
+              {
+                "fieldName": "category",
+                "isEditable": true,
+                "label": "Category",
+                "visible": true
+              },
+              {
+                "fieldName": "pbt",
+                "isEditable": true,
+                "label": "Local Authority",
+                "visible": true
+              },
+              {
+                "fieldName": "data_as",
+                "isEditable": true,
+                "label": "Data as",
+                "visible": true
+              }
+            ],
+            "title": "{location} "
+          }
+        ],
+        "fieldInfos": [
+          {
+            "fieldName": "objectid",
+            "label": "OBJECTID",
+            "visible": false
+          },
+          {
+            "fieldName": "bil",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Bil",
+            "visible": false
+          },
+          {
+            "fieldName": "category",
+            "isEditable": true,
+            "label": "Category",
+            "visible": true
+          },
+          {
+            "fieldName": "data_as",
+            "isEditable": true,
+            "label": "Data as",
+            "visible": true
+          },
+          {
+            "fieldName": "indoor",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "No of charger located indoor",
+            "visible": true
+          },
+          {
+            "fieldName": "indoor___outdoor",
+            "isEditable": true,
+            "label": "Physicality",
+            "visible": true
+          },
+          {
+            "fieldName": "latitude",
+            "format": {
+              "digitSeparator": true,
+              "places": 2
+            },
+            "isEditable": true,
+            "label": "Latitude",
+            "visible": false
+          },
+          {
+            "fieldName": "location",
+            "isEditable": true,
+            "label": "Location",
+            "visible": false
+          },
+          {
+            "fieldName": "longitude",
+            "format": {
+              "digitSeparator": true,
+              "places": 2
+            },
+            "isEditable": true,
+            "label": "Longitude",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_2",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network -  BMW",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_3",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network -  ChargeNGo",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_network",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - 1Utama",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_1",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ABB",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_5",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ChargeSini",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_4",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - chargEV",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_6",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ETCM",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_7",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Evwave",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_8",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Exicom",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netwo_9",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Flexi Parking",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_10",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Gentari",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_11",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - GoCar",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_12",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - GoToU",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_13",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Jomcharge",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_14",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Kineta",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_15",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Mini",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_16",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Nichicon",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_26",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Others",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_17",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ParkEasy",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_18",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - PEKEMA",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_19",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Pestech",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_20",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Plugit",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_21",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Schneider",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_22",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - ShellRecharge",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_23",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Sunway",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_24",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - TNBX (GoToU)",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_ev_charger_by_netw_25",
+            "isEditable": true,
+            "label": "Number of EV Charger by Network - Zap",
+            "visible": false
+          },
+          {
+            "fieldName": "number_of_existing_ev_charger_s",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of Existing EV Charger(s)",
+            "visible": true
+          },
+          {
+            "fieldName": "number_of_proposed_ev_charger__",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "Number of Proposed EV Charger (s)",
+            "visible": true
+          },
+          {
+            "fieldName": "outdoor",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "No of charger located outdoor",
+            "visible": true
+          },
+          {
+            "fieldName": "pbt",
+            "isEditable": true,
+            "label": "Local Authority",
+            "visible": true
+          },
+          {
+            "fieldName": "pbt_code",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "PBT Code",
+            "visible": false
+          },
+          {
+            "fieldName": "state",
+            "isEditable": true,
+            "label": "State",
+            "visible": false
+          },
+          {
+            "fieldName": "state_code",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "State Code",
+            "visible": false
+          },
+          {
+            "fieldName": "status",
+            "isEditable": true,
+            "label": "Status",
+            "visible": false
+          },
+          {
+            "fieldName": "type_ac",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "No of AC Charger (s)",
+            "visible": true
+          },
+          {
+            "fieldName": "type_dc",
+            "format": {
+              "digitSeparator": true,
+              "places": 0
+            },
+            "isEditable": true,
+            "label": "No of DC Charger (s)",
+            "visible": true
+          },
+          {
+            "fieldName": "field46",
+            "label": "Field46",
+            "visible": false
+          },
+          {
+            "fieldName": "field47",
+            "label": "Field47",
+            "visible": false
+          },
+          {
+            "fieldName": "field48",
+            "label": "Field48",
+            "visible": false
+          }
+        ],
+        "title": "{location}, {state}"
+      }
+    }
+  ],
+  "baseMap": {
+    "baseMapLayers": [
+      {
+        "id": "World_Hillshade_3805",
+        "title": "World Hillshade",
+        "url": "https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer",
+        "layerType": "ArcGISTiledMapServiceLayer"
+      },
+      {
+        "id": "VectorTile_2333",
+        "title": "World Topographic Map",
+        "layerType": "VectorTileLayer",
+        "styleUrl": "https://cdn.arcgis.com/sharing/rest/content/items/7dc6cea0b1764a1f9af2e679f642f0f5/resources/styles/root.json"
+      }
+    ],
+    "title": "Topographic"
+  },
+  "authoringApp": "ArcGISMapViewer",
+  "authoringAppVersion": "9.2",
+  "initialState": {
+    "viewpoint": {
+      "targetGeometry": {
+        "spatialReference": {
+          "latestWkid": 3857,
+          "wkid": 102100
+        },
+        "xmin": 11457475.665573845,
+        "ymin": -32310.243340084795,
+        "xmax": 12746509.710574714,
+        "ymax": 1010902.3186957234
+      }
+    }
+  },
+  "spatialReference": {
+    "latestWkid": 3857,
+    "wkid": 102100
+  },
+  "version": "2.21"
+}

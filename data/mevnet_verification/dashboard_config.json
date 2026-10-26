@@ -1,0 +1,1862 @@
+{
+  "version": 45,
+  "authoringApp": "ArcGIS Dashboards",
+  "authoringAppVersion": "4.20.0+6a30f555e0",
+  "headerPanel": {
+    "selectors": [
+      {
+        "id": "50cb0bfc-6127-4a41-bff3-a03ca33ed37c",
+        "name": "Selector State",
+        "caption": "State",
+        "showLastUpdate": false,
+        "noDataState": {
+          "verticalAlignment": "middle",
+          "showCaption": true,
+          "showDescription": true
+        },
+        "noFilterState": {
+          "verticalAlignment": "middle",
+          "showCaption": true,
+          "showDescription": true
+        },
+        "events": [
+          {
+            "type": "selectionChanged",
+            "actions": [
+              {
+                "targets": [
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#18fffcf832b-layer-4",
+                    "by": "whereClause",
+                    "requiresSelection": false
+                  },
+                  {
+                    "targetId": "5ed1057e-ed68-4a06-98f0-da49f199af60#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "3ff40908-7c6f-4d32-9aee-5037c8d3d429#main",
+                    "by": "whereClause",
+                    "requiresSelection": true,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "negeri"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "aba1adb5-5016-46b1-b3fb-24d52683ec64#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "4524bb1e-c2cd-433e-ba0f-6b9f2680817b#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "48300aa0-262f-49de-ab12-ede77ac7f28d#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "9a5c9405-696c-42ae-9a92-61468edcf187#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "9bb8fddc-19f2-402b-b2f6-99f5c5fc164a#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "041f8f85-666f-4113-87ae-978d4aa45ac9#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "02b7ac8e-840c-4c62-86c2-efea837e1b7c#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "f68ab88b-2a7e-449c-a38d-737c757a2fa5#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "negeri"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#Buffer_of_MEVnet_EVCB__Radius__1_4399",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#1913a702349-layer-5",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#18f6054787e-layer-2",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#Buffer_of_MEVnet_EVCB__All_point__9956",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#191501c2571-layer-8",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#EVCharger_Coverage_Radius__V2__8300",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#193bdedf39b-layer-6",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama",
+                        "targetName": "state"
+                      }
+                    ]
+                  }
+                ],
+                "type": "filter"
+              },
+              {
+                "targets": [
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+                    "by": "geometry",
+                    "requiresSelection": false
+                  }
+                ],
+                "type": "flashGeometry"
+              },
+              {
+                "targets": [
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+                    "by": "geometry",
+                    "requiresSelection": false
+                  }
+                ],
+                "type": "zoom"
+              }
+            ]
+          }
+        ],
+        "presentationMode": "dropdown",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 16 16\"><path d=\"M7.5 9.798L3 5.298v1.414l4.5 4.5 4.5-4.5V5.298z\"/><path d=\"M7.5 0C3.366 0 0 3.364 0 7.5S3.365 15 7.5 15c4.136 0 7.5-3.364 7.5-7.5S11.636 0 7.5 0zm.001 14C3.916 14 1 11.084 1 7.5S3.916 1 7.501 1C11.085 1 14 3.916 14 7.5S11.085 14 7.501 14z\"/></svg>",
+        "showActionButtons": true,
+        "datasets": [
+          {
+            "type": "serviceDataset",
+            "name": "main",
+            "dataSource": {
+              "type": "layerDataSource",
+              "layerId": "18fffcf832b-layer-4",
+              "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+            },
+            "groupByFields": [],
+            "orderByFields": [
+              "kod_negeri ASC"
+            ],
+            "statisticDefinitions": [],
+            "maxFeatures": 50,
+            "clientSideStatistics": false,
+            "returnDistinctValues": false
+          }
+        ],
+        "type": "categorySelectorWidget",
+        "category": {
+          "type": "features",
+          "itemText": "{nama}"
+        },
+        "selection": {
+          "operator": "equal",
+          "allowNone": true,
+          "noneLabel": "All",
+          "noneLabelPlacement": "first",
+          "type": "single",
+          "defaultSelection": "first"
+        },
+        "displayType": "list",
+        "showFilter": false,
+        "maxSize": "compact"
+      },
+      {
+        "id": "3ff40908-7c6f-4d32-9aee-5037c8d3d429",
+        "name": "PBT",
+        "caption": "PBT",
+        "showLastUpdate": false,
+        "noDataState": {
+          "text": "",
+          "verticalAlignment": "middle",
+          "showCaption": true,
+          "showDescription": true
+        },
+        "noFilterState": {
+          "text": "Select a State",
+          "verticalAlignment": "middle",
+          "showCaption": true,
+          "showDescription": true
+        },
+        "events": [
+          {
+            "type": "selectionChanged",
+            "actions": [
+              {
+                "targets": [
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#18fffcf45fc-layer-3",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "nama_pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#18f6054787e-layer-2",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "5ed1057e-ed68-4a06-98f0-da49f199af60#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "9bb8fddc-19f2-402b-b2f6-99f5c5fc164a#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "aba1adb5-5016-46b1-b3fb-24d52683ec64#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "4524bb1e-c2cd-433e-ba0f-6b9f2680817b#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "041f8f85-666f-4113-87ae-978d4aa45ac9#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "02b7ac8e-840c-4c62-86c2-efea837e1b7c#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "48300aa0-262f-49de-ab12-ede77ac7f28d#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "9a5c9405-696c-42ae-9a92-61468edcf187#main",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#191501c2571-layer-8",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#EVCharger_Coverage_Radius__V2__8300",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#193bdedf39b-layer-6",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "nama_pbt",
+                        "targetName": "pbt"
+                      }
+                    ]
+                  }
+                ],
+                "type": "filter"
+              },
+              {
+                "targets": [
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+                    "by": "geometry",
+                    "requiresSelection": false
+                  }
+                ],
+                "type": "flashGeometry"
+              },
+              {
+                "targets": [
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+                    "by": "geometry",
+                    "requiresSelection": false
+                  }
+                ],
+                "type": "zoom"
+              }
+            ]
+          }
+        ],
+        "presentationMode": "dropdown",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 16 16\"><path d=\"M7.5 9.798L3 5.298v1.414l4.5 4.5 4.5-4.5V5.298z\"/><path d=\"M7.5 0C3.366 0 0 3.364 0 7.5S3.365 15 7.5 15c4.136 0 7.5-3.364 7.5-7.5S11.636 0 7.5 0zm.001 14C3.916 14 1 11.084 1 7.5S3.916 1 7.501 1C11.085 1 14 3.916 14 7.5S11.085 14 7.501 14z\"/></svg>",
+        "showActionButtons": true,
+        "datasets": [
+          {
+            "type": "serviceDataset",
+            "name": "main",
+            "dataSource": {
+              "type": "itemDataSource",
+              "itemId": "08161cbda4b34f6f9fbb5f0b1b929165",
+              "layerId": 0
+            },
+            "groupByFields": [],
+            "orderByFields": [
+              "kod_ddsa ASC"
+            ],
+            "statisticDefinitions": [],
+            "maxFeatures": 50,
+            "clientSideStatistics": false,
+            "returnDistinctValues": false
+          }
+        ],
+        "type": "categorySelectorWidget",
+        "category": {
+          "type": "features",
+          "itemText": "{nama_pbt}"
+        },
+        "selection": {
+          "operator": "equal",
+          "allowNone": true,
+          "noneLabel": "Select PBT",
+          "noneLabelPlacement": "first",
+          "type": "single",
+          "defaultSelection": "first"
+        },
+        "displayType": "list",
+        "showFilter": false,
+        "maxSize": "compact"
+      },
+      {
+        "id": "33e929e9-65c3-49d2-ba8f-b2495e052988",
+        "name": "Category selector (3)",
+        "caption": "Filter by :",
+        "showLastUpdate": false,
+        "noDataState": {
+          "verticalAlignment": "middle",
+          "showCaption": true,
+          "showDescription": true
+        },
+        "noFilterState": {
+          "text": "Select category",
+          "verticalAlignment": "middle",
+          "showCaption": true,
+          "showDescription": true
+        },
+        "events": [
+          {
+            "type": "selectionChanged",
+            "actions": [
+              {
+                "targets": [
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#18f6054787e-layer-2",
+                    "by": "whereClause",
+                    "requiresSelection": false
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#191501c2571-layer-8",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "indoor___outdoor",
+                        "targetName": "indoor___outdoor"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "02b7ac8e-840c-4c62-86c2-efea837e1b7c#main",
+                    "by": "whereClause",
+                    "requiresSelection": false
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#EVCharger_Coverage_Radius__V2__8300",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "indoor___outdoor",
+                        "targetName": "indoor___outdoor"
+                      }
+                    ]
+                  },
+                  {
+                    "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34#193bdedf39b-layer-6",
+                    "by": "whereClause",
+                    "requiresSelection": false,
+                    "fieldMap": [
+                      {
+                        "sourceName": "indoor___outdoor",
+                        "targetName": "indoor___outdoor"
+                      }
+                    ]
+                  }
+                ],
+                "type": "filter"
+              }
+            ]
+          }
+        ],
+        "presentationMode": "dropdown",
+        "placeholderText": "Select category",
+        "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 16 16\"><path d=\"M13.984 0H2v2l4 4v1l1 8h3l1-8V6l4-4V0h-1.016zM9.117 14H7.883l-.75-6h2.734l-.75 6zM10 6.938L9.992 7H7.008L7 6.938V6h3v.938zM10.586 5H6.414l-2-2h8.172l-2 2zM14 1.586L13.586 2H3.414L3 1.586V1h11v.586z\"/></svg>",
+        "showActionButtons": true,
+        "datasets": [
+          {
+            "type": "serviceDataset",
+            "name": "main",
+            "dataSource": {
+              "type": "layerDataSource",
+              "layerId": "18f6054787e-layer-2",
+              "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+            },
+            "groupByFields": [
+              "indoor___outdoor"
+            ],
+            "orderByFields": [
+              "indoor___outdoor ASC"
+            ],
+            "statisticDefinitions": [
+              {
+                "onStatisticField": "indoor___outdoor",
+                "outStatisticFieldName": "count_result",
+                "statisticType": "count"
+              }
+            ],
+            "maxFeatures": 50,
+            "clientSideStatistics": false,
+            "returnDistinctValues": false
+          }
+        ],
+        "type": "categorySelectorWidget",
+        "category": {
+          "type": "groupByValues",
+          "labelOverrides": [
+            {
+              "key": "Indoor",
+              "label": "Existing (Indoor)"
+            },
+            {
+              "key": "Indoor & Outdoor",
+              "label": "Existing (Indoor & Outdoor)"
+            },
+            {
+              "key": "Outdoor",
+              "label": "Existing (Outdoor)"
+            },
+            {
+              "key": "indoor",
+              "label": "indoor"
+            },
+            {
+              "key": "TM",
+              "label": "Newly Proposed"
+            }
+          ]
+        },
+        "selection": {
+          "operator": "is_in",
+          "allowNone": true,
+          "noneLabelPlacement": "first",
+          "type": "multiple"
+        },
+        "displayType": "list",
+        "showFilter": false,
+        "maxSize": "compact"
+      }
+    ],
+    "type": "headerPanel",
+    "title": " ",
+    "subtitlePlacement": "sameLine",
+    "logoSize": "small",
+    "showMargin": false,
+    "backgroundImageURL": "https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/f3d53d614156425ba27b71e2e60a4f4e/data",
+    "backgroundImageSizing": "fit-height",
+    "normalBackgroundImagePlacement": "left",
+    "horizontalBackgroundImagePlacement": "middle",
+    "showSignOutMenu": false,
+    "menuLinks": []
+  },
+  "leftPanel": {
+    "selectors": [],
+    "type": "leftPanel",
+    "title": "<p style=\"text-align:center\"><span style=\"font-size:18px\"><strong>10,000 EV CHARGERS<br />\nBY 2025</strong></span><br />\n&nbsp;</p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<p style=\"text-align:center\"><img alt=\"\" src=\"https://portaldev.planmalaysia.gov.my/portal/sharing/rest/content/items/6c19795084ba41158673b0a94f0a2031/data\" style=\"height:212px; width:150px\" /></p>\n\n<p style=\"text-align:center\">&nbsp;</p>\n\n<p style=\"text-align:center\"><span style=\"font-size:18px\"><strong>&ldquo;To establish a national target of 9000 AC charging points and 1000 DC charging&nbsp;points by 2025.&quot;</strong></span><br />\n<br />\n<span style=\"font-size:14px\"><strong><em>-&nbsp;Low Carbon Mobility Blueprint-</em></strong></span></p>\n",
+    "description": "",
+    "allowSliding": true
+  },
+  "widgets": [
+    {
+      "id": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+      "name": "EV Station",
+      "caption": "<p style=\"text-align:center\"><span style=\"color:#ffffff\"><strong><span style=\"font-size:16px\">TABULATION EVCB LOCATION</span></strong></span></p>\n",
+      "description": "<p style=\"text-align:right\"><em><strong>as per 31 March&nbsp;2025</strong></em></p>\n",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "type": "mapWidget",
+      "flashRepeats": 3,
+      "itemId": "3e8a67dbcc914125b83f3ebcb9f4b1a1",
+      "mapTools": [
+        {
+          "type": "searchTool"
+        },
+        {
+          "type": "bookmarksTool"
+        },
+        {
+          "type": "mapContentsTool"
+        }
+      ],
+      "showNavigation": true,
+      "showPopup": true,
+      "scalebarStyle": "none"
+    },
+    {
+      "id": "041f8f85-666f-4113-87ae-978d4aa45ac9",
+      "name": "Proposed EVCB Location",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "objectid",
+              "outStatisticFieldName": "value",
+              "statisticType": "count"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "textColor": "#e6e600",
+        "topSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": "PROPOSED EVCB LOCATION"
+          }
+        },
+        "middleSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": "{value}"
+          },
+          "iconInfo": {
+            "align": "left",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 21 21\"><path d=\"M10.5 1.998a5.4 5.4 0 0 0-5.4 5.4c0 2.982 3.9 6.6 5.4 11.6 1.521-4.98 5.4-8.618 5.4-11.6a5.4 5.4 0 0 0-5.4-5.4zm0 7.8a2.3 2.3 0 1 1 0-4.599 2.3 2.3 0 0 1 0 4.599z\"/></svg>"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": ""
+          }
+        }
+      },
+      "comparison": "none",
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "9bb8fddc-19f2-402b-b2f6-99f5c5fc164a",
+      "name": "Existing EVCB Location",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "filter": {
+            "type": "filterGroup",
+            "condition": "OR",
+            "rules": [
+              {
+                "type": "filterGroup",
+                "condition": "AND",
+                "rules": [
+                  {
+                    "type": "filterRule",
+                    "field": {
+                      "name": "status",
+                      "type": "string"
+                    },
+                    "operator": "equal",
+                    "constraint": {
+                      "type": "value",
+                      "value": "Existing"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "objectid",
+              "outStatisticFieldName": "value",
+              "statisticType": "count"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "textColor": "#00e6a9",
+        "topSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": "EXISTING EVCB LOCATION"
+          }
+        },
+        "middleSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": "{value}"
+          },
+          "iconInfo": {
+            "align": "left",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 21 21\"><path d=\"M10.5 1.998a5.4 5.4 0 0 0-5.4 5.4c0 2.982 3.9 6.6 5.4 11.6 1.521-4.98 5.4-8.618 5.4-11.6a5.4 5.4 0 0 0-5.4-5.4zm0 7.8a2.3 2.3 0 1 1 0-4.599 2.3 2.3 0 0 1 0 4.599z\"/></svg>"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": ""
+          }
+        }
+      },
+      "comparison": "none",
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "5ed1057e-ed68-4a06-98f0-da49f199af60",
+      "name": "Existing EVCB",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "number_of_existing_ev_charger_s",
+              "outStatisticFieldName": "value",
+              "statisticType": "sum"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "textColor": "#00e6a9",
+        "topSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": "EXISTING EVCB"
+          }
+        },
+        "middleSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": "{value}"
+          },
+          "iconInfo": {
+            "align": "left",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 21 21\"><path d=\"M17.941 10.498a7.491 7.491 0 0 0-11.247-6.49 1.76 1.76 0 0 1 .493.631 6.69 6.69 0 0 1 8.552 9.943l-1.226-.895v3.429l3.227-1.084-1.363-.972a7.442 7.442 0 0 0 1.564-4.562zm-5.472 6.39a6.69 6.69 0 0 1-8.206-8.974l1.224.893.101-3.429L2.26 6.462l1.354.965a7.486 7.486 0 0 0 8.962 10.258 1.747 1.747 0 0 1-.107-.57zm-2.864-9.89H12l-2.302 3H13l-4 5 1.403-4H8z\"/></svg>"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": ""
+          }
+        }
+      },
+      "comparison": "none",
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "48300aa0-262f-49de-ab12-ede77ac7f28d",
+      "name": "Type AC",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "type_ac",
+              "outStatisticFieldName": "value",
+              "statisticType": "sum"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "textColor": "#00e6a9",
+        "topSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": "TYPE AC"
+          }
+        },
+        "middleSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": "{value}"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": ""
+          }
+        }
+      },
+      "comparison": "none",
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "9a5c9405-696c-42ae-9a92-61468edcf187",
+      "name": "Type DC",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "type_dc",
+              "outStatisticFieldName": "value",
+              "statisticType": "sum"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "textColor": "#00e6a9",
+        "topSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": "TYPE DC"
+          }
+        },
+        "middleSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": "{value}"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 80,
+          "textInfo": {}
+        }
+      },
+      "comparison": "none",
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "aba1adb5-5016-46b1-b3fb-24d52683ec64",
+      "name": "Indoor",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "indoor",
+              "outStatisticFieldName": "value",
+              "statisticType": "sum"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "textColor": "#00e6a9",
+        "topSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": ""
+          }
+        },
+        "middleSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": "{value}"
+          },
+          "iconInfo": {
+            "align": "left",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 21 21\">\n<path d=\"M17,15V6h-5v9h-1V3H4v12H3v1h15v-1H17z M5,4h2v2H5V4z M5,7h2v2H5V7z M5,10h2v2H5V10z M9,15H6v-2h3V15z M10,12H8v-2h2V12z&#10;&#9; M10,9H8V7h2V9z M10,6H8V4h2V6z M14,14h-1V7h1V14z M16,14h-1V7h1V14z\"/>\n</svg>"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": "EVCB LOCATED INDOOR"
+          }
+        }
+      },
+      "comparison": "none",
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "4524bb1e-c2cd-433e-ba0f-6b9f2680817b",
+      "name": "Outdoor",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "outdoor",
+              "outStatisticFieldName": "value",
+              "statisticType": "sum"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "textColor": "#00e6a9",
+        "topSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": ""
+          }
+        },
+        "middleSection": {
+          "fontSize": 80,
+          "textInfo": {
+            "text": "{value}"
+          },
+          "iconInfo": {
+            "align": "left",
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 21 21\">\n<path d=\"M15,6h-3l4,5h-3l4,5h-6v3h-1v-3H4l4-5H5l4-5H6l4.5-4L15,6z\"/>\n</svg>"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 20,
+          "textInfo": {
+            "text": "EVCB LOCATED OUTDOOR"
+          }
+        }
+      },
+      "comparison": "none",
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "02b7ac8e-840c-4c62-86c2-efea837e1b7c",
+      "name": "Senarai",
+      "caption": "<p style=\"text-align:center\"><span style=\"font-size:16px\"><strong>LIST OF EVCB LOCATION</strong></span></p>\n",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [],
+          "maxFeatures": 1000,
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "events": [
+        {
+          "type": "selectionChanged",
+          "actions": [
+            {
+              "targets": [
+                {
+                  "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+                  "by": "geometry",
+                  "requiresSelection": false
+                }
+              ],
+              "type": "flashGeometry"
+            },
+            {
+              "targets": [
+                {
+                  "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+                  "by": "geometry",
+                  "requiresSelection": false
+                }
+              ],
+              "type": "identify"
+            },
+            {
+              "targets": [
+                {
+                  "targetId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34",
+                  "by": "geometry",
+                  "requiresSelection": false
+                }
+              ],
+              "type": "zoom"
+            }
+          ]
+        }
+      ],
+      "type": "listWidget",
+      "selectionMode": "single",
+      "iconType": "symbol",
+      "text": "<p><span style=\"font-size:12px\">{location}</span></p>\n"
+    },
+    {
+      "id": "22fbc4e9-218b-41bf-bca5-7f6e4823780b",
+      "name": "Where are we ?",
+      "caption": "<p style=\"text-align:center\"><strong>WHERE ARE WE ?</strong></p>\n",
+      "description": "<p style=\"text-align:center\"><em>*towards&nbsp;<strong>10,000</strong>&nbsp;EV Charging Points by 2025</em></p>\n",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "staticDataset",
+          "name": "min",
+          "data": 0
+        },
+        {
+          "type": "staticDataset",
+          "name": "max",
+          "data": 10000
+        },
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "layerDataSource",
+            "layerId": "18f6054787e-layer-2",
+            "ownerId": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "number_of_existing_ev_charger_s",
+              "outStatisticFieldName": "value",
+              "statisticType": "sum"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "type": "gaugeWidget",
+      "valueType": "statistic",
+      "style": "progress",
+      "displayAsPercentage": true,
+      "valueFormat": {
+        "name": "value",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "arrows": [],
+      "axes": [
+        {
+          "id": "main",
+          "style": "progress",
+          "startAngle": -90,
+          "endAngle": 90,
+          "startValue": 0,
+          "endValue": 1,
+          "labelsEnabled": false,
+          "labelOffset": 0,
+          "color": null,
+          "inside": true,
+          "gridInside": true,
+          "axisAlpha": 0,
+          "axisColor": null,
+          "axisThickness": 0,
+          "tickAlpha": 0,
+          "tickColor": null,
+          "tickLength": 0,
+          "tickThickness": 0,
+          "minorTickLength": 0,
+          "radius": "100%",
+          "bottomText": "",
+          "bands": [
+            {
+              "id": "background",
+              "alpha": 1,
+              "color": "#ffffff",
+              "startValue": 0,
+              "endValue": 1,
+              "radius": "100%",
+              "innerRadius": "75%",
+              "colorThresholds": []
+            },
+            {
+              "id": "value",
+              "alpha": 1,
+              "color": "#00e6a9",
+              "startValue": 0,
+              "endValue": 0.5,
+              "radius": "100%",
+              "innerRadius": "75%",
+              "colorThresholds": []
+            }
+          ]
+        }
+      ],
+      "labels": [
+        {
+          "id": "value",
+          "align": "center",
+          "color": null,
+          "size": 12,
+          "y": "40%"
+        }
+      ],
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      }
+    },
+    {
+      "id": "f68ab88b-2a7e-449c-a38d-737c757a2fa5",
+      "name": "National target",
+      "showLastUpdate": false,
+      "noDataState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "noFilterState": {
+        "text": "",
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "datasets": [
+        {
+          "type": "serviceDataset",
+          "name": "main",
+          "dataSource": {
+            "type": "itemDataSource",
+            "itemId": "c1eb596726d64fe2a955a37b157a0042",
+            "layerId": 0
+          },
+          "groupByFields": [],
+          "orderByFields": [],
+          "statisticDefinitions": [
+            {
+              "onStatisticField": "sasaran",
+              "outStatisticFieldName": "value",
+              "statisticType": "sum"
+            }
+          ],
+          "clientSideStatistics": false,
+          "returnDistinctValues": false
+        }
+      ],
+      "arcadeEnabled": true,
+      "expression": "\n\nreturn {\n    textColor:'#d6d6d6',\n    //backgroundColor:'',\n    topText: 'TARGET EVCB',\n    topTextColor: '',\n    topTextOutlineColor: '',\n    topTextMaxSize: 'x-small',\n    middleText: $datapoint[\"sum_sasaran\"],\n    middleTextColor: '',\n    middleTextOutlineColor: '',\n    middleTextMaxSize: 'medium',\n    //bottomText: '',\n    //bottomTextColor: '',\n    //bottomTextOutlineColor: '',\n    //bottomTextMaxSize: 'medium',\n    iconName:'icon1',\n    iconAlign:'left',\n    iconColor:'',\n    iconOutlineColor:''\n    //noValue:false,\n    //attributes: {\n      // attribute1: '',\n      // attribute2: ''\n    // }\n  }\n",
+      "type": "indicatorWidget",
+      "defaultSettings": {
+        "topSection": {
+          "fontSize": 80,
+          "textInfo": {}
+        },
+        "middleSection": {
+          "fontSize": 160,
+          "textInfo": {
+            "text": "{value}"
+          }
+        },
+        "bottomSection": {
+          "fontSize": 80,
+          "textInfo": {}
+        }
+      },
+      "comparison": "none",
+      "valueField": "objectid",
+      "valueFormat": {
+        "name": "value",
+        "prefix": true,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 1
+      },
+      "percentageFormat": {
+        "name": "percentage",
+        "prefix": false,
+        "style": "percent",
+        "useGrouping": true
+      },
+      "ratioFormat": {
+        "name": "ratio",
+        "prefix": false,
+        "style": "decimal",
+        "useGrouping": true,
+        "maximumFractionDigits": 2
+      },
+      "valueType": "statistic",
+      "noValueState": {
+        "verticalAlignment": "middle",
+        "showCaption": true,
+        "showDescription": true
+      },
+      "iconInfos": [
+        {
+          "name": "icon1",
+          "align": "left",
+          "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"icon\" role=\"button\" viewBox=\"0 0 21 21\"><path d=\"M17.941 10.498a7.491 7.491 0 0 0-11.247-6.49 1.76 1.76 0 0 1 .493.631 6.69 6.69 0 0 1 8.552 9.943l-1.226-.895v3.429l3.227-1.084-1.363-.972a7.442 7.442 0 0 0 1.564-4.562zm-5.472 6.39a6.69 6.69 0 0 1-8.206-8.974l1.224.893.101-3.429L2.26 6.462l1.354.965a7.486 7.486 0 0 0 8.962 10.258 1.747 1.747 0 0 1-.107-.57zm-2.864-9.89H12l-2.302 3H13l-4 5 1.403-4H8z\"/></svg>"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "maxPaginationRecords": 50000,
+    "allowElementResizing": false,
+    "allowElementExpansion": false
+  },
+  "mapOverrides": {
+    "highlightColor": "#ff00ff",
+    "trackedFeatureRadius": 60
+  },
+  "theme": "dark",
+  "themeOverrides": {
+    "dashboardBackgroundColor": "#222",
+    "textColor": "#d6d6d6"
+  },
+  "numberPrefixOverrides": [
+    {
+      "key": "yotta",
+      "symbol": "Y",
+      "enabled": true
+    },
+    {
+      "key": "zeta",
+      "symbol": "Z",
+      "enabled": true
+    },
+    {
+      "key": "exa",
+      "symbol": "E",
+      "enabled": true
+    },
+    {
+      "key": "peta",
+      "symbol": "P",
+      "enabled": true
+    },
+    {
+      "key": "tera",
+      "symbol": "T",
+      "enabled": true
+    },
+    {
+      "key": "giga",
+      "symbol": "G",
+      "enabled": true
+    },
+    {
+      "key": "mega",
+      "symbol": "M",
+      "enabled": true
+    },
+    {
+      "key": "kilo",
+      "symbol": "k",
+      "enabled": true
+    },
+    {
+      "key": "base",
+      "symbol": "",
+      "enabled": true
+    },
+    {
+      "key": "deci",
+      "symbol": "d",
+      "enabled": false
+    },
+    {
+      "key": "centi",
+      "symbol": "c",
+      "enabled": false
+    },
+    {
+      "key": "milli",
+      "symbol": "m",
+      "enabled": false
+    },
+    {
+      "key": "micro",
+      "symbol": "\u00b5",
+      "enabled": false
+    },
+    {
+      "key": "nano",
+      "symbol": "n",
+      "enabled": false
+    }
+  ],
+  "layout": {
+    "rootElement": {
+      "width": 1,
+      "height": 1,
+      "elements": [
+        {
+          "width": 0.17482097864950297,
+          "height": 1,
+          "elements": [
+            {
+              "width": 1,
+              "height": 0.39321608040201006,
+              "type": "itemLayoutElement",
+              "id": "22fbc4e9-218b-41bf-bca5-7f6e4823780b"
+            },
+            {
+              "width": 1,
+              "height": 0.6067839195979898,
+              "type": "itemLayoutElement",
+              "id": "02b7ac8e-840c-4c62-86c2-efea837e1b7c"
+            }
+          ],
+          "type": "stackLayoutElement",
+          "orientation": "row"
+        },
+        {
+          "width": 0.8251790213504964,
+          "height": 1,
+          "elements": [
+            {
+              "width": 1,
+              "height": 0.24999999999999975,
+              "elements": [
+                {
+                  "width": 0.2499655478981295,
+                  "height": 1,
+                  "type": "itemLayoutElement",
+                  "id": "f68ab88b-2a7e-449c-a38d-737c757a2fa5"
+                },
+                {
+                  "width": 0.2499655478981283,
+                  "height": 1,
+                  "tabName": "Location",
+                  "type": "itemLayoutElement",
+                  "id": "041f8f85-666f-4113-87ae-978d4aa45ac9"
+                },
+                {
+                  "width": 0.24963649497215246,
+                  "height": 1,
+                  "elements": [
+                    {
+                      "width": 1,
+                      "height": 1,
+                      "tabName": "EVCB",
+                      "type": "itemLayoutElement",
+                      "id": "5ed1057e-ed68-4a06-98f0-da49f199af60"
+                    },
+                    {
+                      "width": 1,
+                      "height": 1,
+                      "tabName": "Location",
+                      "type": "itemLayoutElement",
+                      "id": "9bb8fddc-19f2-402b-b2f6-99f5c5fc164a"
+                    }
+                  ],
+                  "type": "tabsLayoutElement"
+                },
+                {
+                  "width": 0.2504324092315872,
+                  "height": 1,
+                  "elements": [
+                    {
+                      "width": 1,
+                      "height": 0.5,
+                      "elements": [
+                        {
+                          "width": 0.5,
+                          "height": 1,
+                          "type": "itemLayoutElement",
+                          "id": "48300aa0-262f-49de-ab12-ede77ac7f28d"
+                        },
+                        {
+                          "width": 0.5,
+                          "height": 1,
+                          "type": "itemLayoutElement",
+                          "id": "aba1adb5-5016-46b1-b3fb-24d52683ec64"
+                        }
+                      ],
+                      "type": "stackLayoutElement",
+                      "orientation": "col"
+                    },
+                    {
+                      "width": 1,
+                      "height": 0.5,
+                      "elements": [
+                        {
+                          "width": 0.5,
+                          "height": 1,
+                          "type": "itemLayoutElement",
+                          "id": "9a5c9405-696c-42ae-9a92-61468edcf187"
+                        },
+                        {
+                          "width": 0.5,
+                          "height": 1,
+                          "type": "itemLayoutElement",
+                          "id": "4524bb1e-c2cd-433e-ba0f-6b9f2680817b"
+                        }
+                      ],
+                      "type": "stackLayoutElement",
+                      "orientation": "col"
+                    }
+                  ],
+                  "type": "stackLayoutElement",
+                  "orientation": "row"
+                }
+              ],
+              "type": "stackLayoutElement",
+              "orientation": "col"
+            },
+            {
+              "width": 1,
+              "height": 0.75,
+              "type": "itemLayoutElement",
+              "id": "eb4311cf-d263-4a85-8d96-ef82d5d8bf34"
+            }
+          ],
+          "type": "stackLayoutElement",
+          "orientation": "row"
+        }
+      ],
+      "type": "stackLayoutElement",
+      "orientation": "col"
+    }
+  }
+}

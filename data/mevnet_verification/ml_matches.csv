@@ -1,0 +1,765 @@
+﻿objectid,location,match,differences,local_existing,official_existing
+1099,SUBANG JAYA CITY COUNCIL,False,data_as;type_dc,2,2
+1103,SUNWAY MEDICAL CENTRE,False,data_as;type_dc,2,2
+1121,SHELL LDP PUCHONG SOUTH,False,data_as,4,4
+211,1 MONT KIARA,False,data_as;type_dc,2,2
+837,SETIA ECO TEMPLER SALES GALLERY,False,data_as;type_dc,1,1
+867,ATIVO PLAZA,False,data_as;type_dc,2,2
+878,JAYA SHOPPING CENTRE,False,data_as;type_dc,3,3
+882,3 DAMANSARA,False,data_as;type_dc,2,2
+898,SUNWAY GIZA MALL,False,data_as;type_dc,2,2
+910,KUALA LUMPUR INTERNATIONAL AIRPORT 1 (KLIA1),False,data_as;type_dc,3,3
+918,SEPANG MUNICIPAL COUNCIL ,False,data_as;type_dc,1,1
+925,STARBUCKS RESERVE ECO MAJESTIC DT,False,data_as;type_dc,2,2
+932,KIPMALL BANGI,False,data_as;type_dc,3,3
+938,CHERAS LEISUREMALL,False,data_as;type_dc,2,2
+953,THE MINES SHOPPING MALL,False,data_as;type_dc,1,1
+963,SETIA CITY MALL,False,data_as;type_dc,2,2
+964,SETIA CITY CONVENTION CENTRE,False,data_as;type_dc,2,2
+967,PLAZA SHAH ALAM,False,data_as;type_dc,3,3
+968,SACC MALL,False,data_as;type_dc,2,2
+969,SHAH ALAM CITY COUNCIL,False,data_as;type_dc,1,1
+992,KL ECO CITY MALL,False,data_as;type_dc,2,2
+1003,MALAYSIA INTERNATIONAL TRADE AND EXHIBITION CENTRE,False,data_as;type_dc,3,3
+1006,PLAZA ARKADIA,False,data_as;type_dc,3,3
+1008,THE WATERFRONT @ PARKCITY,False,data_as;type_dc,2,2
+1009,DAMANSARA CITY MALL (DC MALL),False,data_as;type_dc,3,3
+1018,WANGSA WALK MALL,False,data_as;type_dc,2,2
+1027,KLGCC - KUALA LUMPUR GOLF & COUNTRY CLUB,False,data_as,8,8
+1031,LOTUS'S CHERAS,False,data_as;type_dc,2,2
+1045,Saujana Golf & Country Club,False,data_as;type_dc,2,2
+1056,DECATHLON SHAH ALAM,False,data_as;type_dc,1,1
+1064,RAJA TUN UDA LIBRARY,False,data_as;type_dc,1,1
+1127,MAIN PLACE MALL USJ,False,data_as;type_dc,2,2
+1148,MAJLIS PERBANDARAN KUALA LANGAT,False,data_as;type_dc,1,1
+1149,GOLD COAST MORIB RESORT,False,data_as;type_dc,1,1
+1165,BMW MALAYSIA SDN. BHD.,False,data_as;type_dc,9,9
+1170,SETIA ECO GLADES LIFESTYLE GALLERY,False,data_as;type_dc,1,1
+1238,ONE SOUTH STREET MALL,False,data_as;type_ac,3,3
+1517,SUK SELANGOR,False,data_as;type_dc,1,1
+1527,SUBANG JAYA MEDICAL CENTER,False,data_as;type_dc,4,4
+1529,SUBANG PARADE,False,data_as;type_dc,3,3
+1551,SHERATON PETALING JAYA HOTEL,False,data_as;type_dc,8,8
+1556,PETALING JAYA CITY COUNCIL,False,data_as;type_dc,1,1
+1577,SULTAN SALAHUDDIN ABDUL AZIZ MOSQUE,False,data_as;type_dc,1,1
+1646,MALAYSIAN GREEN TECHNOLOGY AND CLIMATE CHANGE CORPORATION,False,data_as;type_dc,1,1
+1700,SABAK BERNAM DISTRICT COUNCIL,False,data_as;type_dc,1,1
+1823,STARBUCKS JADE HILLS DT,False,data_as;type_dc,2,2
+1833,STARBUCKS CONEZION PUTRAJAYA DT,False,data_as;type_dc,1,1
+1924,AUTO BAVARIA KUALA LUMPUR,False,data_as,6,6
+1952,PANTAI HOSPITAL KUALA LUMPUR,False,data_as;type_dc,2,2
+1977,PEARL POINT SHOPPING MALL,False,data_as;type_dc,3,3
+3525,QUAYSIDE MALL,False,data_as;type_dc,2,2
+3528,THOMSON HOSPITAL KOTA DAMANSARA,False,data_as;type_dc,3,3
+986,DA SQUARE (THE BREW HOUSE+),False,data_as;type_dc,2,2
+1014,DATARAN MAYBANK B1- ETIQA,False,data_as;type_dc,2,2
+1602,DATARAN MAYBANK G - MAYBANK ISLAMIC,False,data_as;type_dc,2,2
+3314,ABB HQ SUBANG,False,data_as;type_ac,2,2
+3331,BMW AUTO BAVARIA SUNGAI BESI,False,data_as,5,5
+3336,BMW MILLENNIUM WELT KL NORTH,False,data_as,3,3
+3344,BMW WHEELCORP PREMIUM SETIA ALAM 4S CENTRE,False,data_as,5,5
+3352,ALLO TECHNOLOGY SDN BHD,False,data_as;type_dc,1,1
+3354,ARCORIS MONT KIARA,False,data_as;type_dc,2,2
+3357,BINJAI ON THE PARK CONDOMINIUM,False,data_as;type_dc,2,2
+3361,CYBERVIEW RESORT AND SPA,False,data_as;type_dc,2,2
+3362,DASH BOX HOTEL,False,data_as;type_dc,1,1
+3363,DATARAN PHB SAUJANA SUBANG,False,data_as;type_dc,1,1
+3373,FOUR SEASON HOTEL KUALA LUMPUR,False,data_as;type_dc,2,2
+3374,GRAVIT8,False,data_as;type_dc,2,2
+3375,KELAB KOMUNITI TAMAN TASIK CYBERJAYA,False,data_as;type_dc,1,1
+3376,KIARA BAY SALES GALLERY,False,data_as;type_dc,10,10
+3378,KOMPLEKS 3C MPSJ,False,data_as;type_dc,1,1
+3381,LAMAN PKNS,False,data_as;type_dc,2,2
+3385,MAJLIS PERBANDARAN AMPANG JAYA,False,data_as;type_dc,1,1
+3386,MANDARIN ORIENTAL KUALA LUMPUR,False,data_as;type_dc,4,4
+3387,"MASJID AL-AZIM, AMPANG JAYA",False,data_as;type_dc,1,1
+3388,MBSA PEJABAT CAWANGAN SETIA ALAM,False,data_as;type_dc,1,1
+3389,"MBSA, CAWANGAN KOTA KEMUNING",False,data_as;type_dc,1,1
+3390,MCMC TOWER,False,data_as;type_dc,2,2
+3391,MENARA CITIBANK MALAYSIA,False,data_as;type_dc,2,2
+3393,MENARA ETIQA,False,data_as;type_dc,2,2
+3395,MENARA MAYBANK,False,data_as;type_dc,2,2
+3402,PERTUBUHAN ARKITEK MALAYSIA,False,data_as;type_dc,1,1
+3426,PUSAT AKUATIK DARUL EHSAN,False,data_as;type_dc,1,1
+3427,MARRIOTT HOTEL PUTRAJAYA,False,data_as;type_dc,2,2
+3433,REKASCAPE ,False,data_as,6,6
+3436,SAVILLE @ THE PARK BANGSAR ,False,data_as;type_dc,2,2
+3438,SETIA ALAM WELCOME CENTRE,False,data_as;type_dc,1,1
+3442,SME TECHNOPRENEUR CENTRE,False,data_as;type_dc,2,2
+3443,SP SETIA CORPORATE HQ,False,data_as;type_dc,1,1
+3451,SUNGEI WANG PLAZA ,False,data_as;type_dc,2,2
+3454,THE ROBERTSON ,False,data_as;type_dc,2,2
+3457,VIVA SHOPPING MALL,False,data_as;type_dc,2,2
+3460,EDARAN TAN CHONG MOTOR GLENMARIE 4S,False,data_as;type_dc,1,1
+3462,EDARAN TAN CHONG MOTOR JALAN RAJA LAUT,False,data_as;type_dc,1,1
+3465,EDARAN TAN CHONG MOTOR KLANG SG. RASAH 3S,False,data_as;type_dc,1,1
+3468,EDARAN TAN CHONG MOTOR PETALING JAYA 3S,False,data_as;type_dc,1,1
+3471,TAN CHONG EKSPRES AUTO SERVIS BATU CAVES,False,data_as;type_dc,1,1
+3472,TAN CHONG EKSPRES AUTO SERVIS SETAPAK,False,data_as;type_dc,1,1
+3473,TCEAS KOTA DAMANSARA,False,data_as;type_dc,1,1
+3476,EXICOM SHAH ALAM,False,data_as,2,2
+3478,LOKE YEW TOLL,False,data_as;type_dc,2,2
+3480,KLCC CONVENTION CENTRE,False,data_as;type_dc,6,6
+3487,SETIA SKY RESIDENCE TOWER CD,False,data_as;type_dc,3,3
+3488,ASTORIA AMPANG,False,data_as;type_dc,2,2
+3495,MENARA OCBC,False,data_as;type_dc,2,2
+3499,PARK RESIDENCES,False,data_as;type_dc,2,2
+3504,SUNWAY NEXIS,False,data_as;type_dc,2,2
+3507,NICHICON HQ BANGI,False,data_as;type_ac,1,1
+3509,AURORA PLACE BUKIT JALIL,False,data_as;type_dc,6,6
+3515,HILTON KUALA LUMPUR,False,data_as;type_dc,3,3
+3521,FABER TOWERS ,False,data_as;type_dc,2,2
+3523,KLGCC - KUALA LUMPUR GOLF & COUNTRY CLUB (MEMBER ONLY),False,data_as;type_dc,4,4
+3524,LINC KUALA LUMPUR (B.I.G.+),False,data_as;type_dc,2,2
+3526,ST REGIS KUALA LUMPUR - B3 HOTEL PARKING,False,data_as;type_dc,2,2
+3541,VISION MOTORSPORTS SG KAYU ARA,False,data_as;type_ac,2,2
+3545,163 RETAIL PARK,False,data_as;type_dc,3,3
+3546,ANCOM NYLEX PJ HQ,False,data_as;type_dc,1,1
+3547,IOI PFCC TOWE 5 (VISTA)+,False,data_as;type_dc,2,2
+3548,LOT 10 ,False,data_as;type_dc,2,2
+3549,SHELL - MINT HOTEL EV CHARGING ,False,data_as;type_dc,2,2
+3554,VSQ PJ KFC,False,data_as;type_dc,2,2
+3557,HYUNDAI ARA DAMANSARA,False,data_as;type_ac,2,2
+3563,"ARVORE RESIDENCE, KELANA JAYA",False,data_as;type_dc,2,2
+3564,"DEWAN MBSA, SEKSYEN 4",False,data_as;type_dc,1,1
+3566,LIFESTYLE HUB (SETIA ECO PARK),False,data_as;type_dc,1,1
+3568,RADIA RESIDENCE,False,data_as;type_dc,1,1
+3569,SOUTHVIEW APARTMENTS,False,data_as;type_dc,2,2
+3570,THE ESTATE - BANGSAR SOUTH ,False,data_as;type_dc,10,10
+3573,VERDANA NORTH KIARA,False,data_as;type_dc,3,3
+819,PETRONAS LATAR 1 KUNDANG BARAT,False,data_as;type_ac,1,1
+978,SETIAWALK MALL,False,data_as;type_dc,2,2
+999,BERJAYA TIMES SQUARE,False,data_as,10,10
+1001,HARTAMAS SHOPPING CENTRE,False,data_as;type_dc,3,3
+1002,PUBLIKA SHOPPING GALLERY,False,data_as,4,4
+1017,WORLD TRADE CENTRE KUALA LUMPUR,False,data_as;type_dc,2,2
+1112,PETRONAS KESAS WESTBOUND KLANG,False,data_as;type_ac,1,1
+1276,STARBUCKS ECO GRANDEUR,False,data_as;type_ac,2,2
+1372,MAJLIS BANDARAYA DIRAJA KLANG,False,data_as;type_dc,1,1
+1398,STARBUCKS UKAY PERDANA DT,False,data_as;type_ac,2,2
+1444,PETRONAS GRAND SAGA 3,False,data_as;type_dc,1,1
+1594,ECO ARDENCE SALES GALLERY,False,data_as,10,10
+1838,STARBUCKS SETIA ALAM DT,False,data_as;type_dc,2,2
+3392,MENARA DION ,False,data_as;type_dc,2,2
+3396,MENARA MERCU UEM,False,data_as;type_dc,1,1
+3444,STARBUCKS RIMBAYU,False,data_as;type_dc,1,1
+3447,STARBUCKS KOTA KEMUNING,False,data_as;type_ac,2,2
+3542,WESTSTAR JALAN TUN ABDUL RAZAK,False,data_as;type_ac,2,2
+3565,G TOWER,False,data_as;type_dc,3,3
+3578,BMW WHEELCORP PREMIUM BUKIT TINGGI KLANG,False,data_as;type_ac,2,2
+3591,MENARA AIA,False,data_as;type_dc,4,4
+3592,MENARA SIME DARBY,False,data_as;type_dc,2,2
+3596,PARKROYAL COLLECTION KUALA LUMPUR,False,data_as;type_dc,6,6
+3599,PRINCE COURT MEDICAL CENTRE ,False,data_as;type_dc,2,2
+3613,AMD MAGIC CYBERJAYA,False,data_as;type_dc,1,1
+3614,DESA DAMANSARA,False,data_as;type_dc,2,2
+770,KL EAST MALL,False,data_as;type_dc,4,4
+854,KSL ESPLANADE MALL,False,data_as;type_dc,2,2
+884,IPC SHOPPING CENTRE,False,data_as;type_dc,4,4
+1046,AUTO BAVARIA - BMW ARA DAMANSARA,False,data_as,12,12
+1052,SHAH ALAM EXTREME PARK - SECTION 13 ,False,data_as;type_dc,2,2
+1169,PETRONAS PERSIARAN APEC,False,data_as;type_ac,1,1
+1224,PETRONAS GRAND SAGA 2 (NORTHBOUND),False,data_as;type_ac,1,1
+1480,SIERRA FRESCO,False,data_as,12,12
+1587,PETRONAS BATU 3 FEDERAL HIGHWAY,False,data_as;type_ac,1,1
+1641,"MEGAH RISE MALL, PJ",False,data_as;type_dc,3,3
+1954,PETRONAS PENCHALA LINK ARAH DAMANSARA,False,data_as;type_ac,1,1
+1972,PETRONAS AWAN BESAR R&R,False,data_as;type_ac,1,1
+1992,PETRONAS - PENCHALA LINK ARAH KL,False,data_as;type_ac,1,1
+3582,"EDOTCO - DATARAN PHB, LOT 186",False,data_as;type_dc,1,1
+3616,BYD TREC SHOWROOM KUALA LUMPUR,False,data_as;type_ac,2,2
+3617,SIME DARBY AUTO SELECTION,False,data_as;type_ac,1,1
+3618,BYD ARA DAMANSARA,False,data_as;type_ac,2,2
+3619,"JAGUAR LAND ROVER, ARA DAMANSARA",False,data_as;type_ac,2,2
+3624,MENARA UOA BANGSAR,False,data_as;type_dc,2,2
+3628,PEJABAT POS BESAR SHAH ALAM,False,data_as;type_ac,2,2
+3636,PETRONAS KLIA 1,False,data_as;type_ac,1,1
+3637,PETRONAS SKVE (VISI TUAH),False,data_as;type_ac,1,1
+3639,MALAYSIAN INDUSTRY-GOVERNMENT GROUP FOR HIGH TECHNOLOGY,False,data_as;type_dc,1,1
+3640,KPJ DAMANSARA SPECIALIST HOSPITAL 2,False,data_as;type_dc,4,4
+3641,THE STORIES OF TAMAN TUNKU,False,data_as;type_dc,1,1
+3643,ECO SKY,False,data_as;type_dc,3,3
+3647,W KUALA LUMPUR HOTEL,False,data_as;type_dc,2,2
+3664,MENARA OLYMPIA,False,data_as;type_dc,3,3
+889,SUNWAY PYRAMID,False,data_as,18,18
+892,TROPICANA GARDENS MALL,False,data_as;type_dc,4,4
+920,METRO POINT COMPLEX ,False,data_as;type_dc,2,2
+944,AMPANG POINT SHOPPING CENTRE,False,data_as;type_dc,2,2
+966,CENTRAL I-CITY,False,data_as;type_dc,4,4
+983,LOTUS'S AMPANG,False,data_as;type_dc,3,3
+997,PAVILION KUALA LUMPUR,False,data_as,11,11
+1277,ECOWORLD GALLERY @ ECO GRANDEUR,False,data_as,4,4
+1453,PETRONAS JALAN KOLAM AYER LAMA,False,data_as;type_ac,2,2
+1657,MID POINT SHOPPING CENTRE,False,data_as;type_dc,2,2
+3631,STARBUCKS AMPANG DT ,False,data_as;type_ac,2,2
+3666,SSU KELAB AMAN,False,data_as;type_dc,1,1
+3670,THE WESTIN KL ,False,data_as;type_dc,3,3
+3671,SAVILLE D'LAKE PUCHONG,False,data_as;type_dc,2,2
+3679,PARC HUB TAMAN SUBANG RIA,False,data_as;type_ac,2,2
+3680,MENARA SOUTHPOINT BASEMENT PARKING B1,False,data_as;type_dc,3,3
+3684,PERDANA HOTEL KUALA LUMPUR,False,data_as;type_dc,3,3
+3685,MENARA NAZA KUALA LUMPUR,False,data_as;type_dc,4,4
+1093,MYDIN SUBANG JAYA HYPERMARKET,False,data_as;type_dc,2,2
+1262,PETRONAS NKVE DAMANSARA,False,data_as;type_ac,3,3
+3709,PARKEASY @ IOI CONEZION,False,data_as;type_dc,3,3
+3710,STELLAR SUITES,False,data_as;type_dc,2,2
+3726,PROTON CENTRE OF EXCELLENCE,False,data_as;type_ac,2,2
+3729,STARBUCKS BAMBOO HILL,False,data_as;type_dc,2,2
+772,LOTUS'S RAWANG,False,data_as,4,4
+842,LOTUS'S BUKIT BERUNTUNG,False,data_as;type_ac,2,2
+874,PARADIGM MALL,False,data_as;type_dc,12,12
+1508,KELAB GOLF PERKHIDMATAN AWAM,False,data_as;type_dc,3,3
+1780,PETRONAS ULU BERNAM R&R (SB),False,data_as;type_ac,3,3
+1832,PETRONAS SOLARIS PUTRA,False,data_as;type_ac,3,3
+1950,THE SPHERE BANGSAR SOUTH,False,data_as;type_ac,6,6
+3482,SETIA CITY CONVENTION CENTRE - BALLROOM ,False,data_as;type_ac,2,2
+3510,BHP KAYU ARA ,False,data_as,2,2
+3698,THE HORIZON BANGSAR SOUTH,False,data_as;type_ac,2,2
+3738,SETIA SKY RESIDENCE TOWER AB,False,data_as;type_dc,3,3
+3749,INSPIRASI MONT KIARA,False,data_as;type_dc,2,2
+3750,SELANGOR SHOOTING ASSOCIATION,False,data_as;type_dc,2,2
+3757,JADE HILLS EXPERIENCE GALLERY,False,data_as;type_dc,2,2
+3758,HYUNDAI OLD KLANG ROAD KL,False,data_as;type_dc,1,1
+3759,GRAND HYATT KUALA LUMPUR,False,data_as;type_dc,2,2
+3765,PLAZA OSK KL,False,data_as;type_dc,2,2
+3766,WISMA MCA KL ,False,data_as;type_ac,3,3
+3767,UOA BUSINESS PARK GLENMARIE,False,data_as;type_ac,4,4
+3768,LE QUADRI HOTEL,False,data_as;type_dc,1,1
+3769,MAJESTIC MAXIM CHERAS,False,data_as;type_dc,4,4
+3775,"ESPIRA KINRARA, PUCHONG SELANGOR",False,data_as;type_dc,3,3
+3776,"CIMB HUB, KUALA LUMPUR",False,data_as;type_dc,6,6
+3777,MENARA UMW,False,data_as;type_dc,5,5
+3778,PLAZA KELANA JAYA,False,data_as;type_dc,2,2
+1872,GEO BUKIT RIMAU CONDOMINIUM,False,data_as;type_dc,6,6
+3325,SMILE HOTEL SHAH ALAM,False,data_as;type_dc,2,2
+3785,MASJID AL-HASANAH BANGI,False,data_as;type_dc,2,2
+818,PETRONAS LATAR 1 KUNDANG TIMUR,False,data_as;type_ac,3,3
+919,PLAZA METRO KAJANG,False,data_as;type_dc,2,2
+1019,AEON BIG WANGSA MAJU,False,data_as;type_ac,2,2
+1096,DA MEN MALL ,False,data_as;type_dc,2,2
+1636,CARSOME PJ AUTOMALL,False,data_as,6,6
+3875,VILLEA MORIB,False,data_as;type_dc,2,2
+3879,INTRACO,False,data_as;type_dc,1,1
+3880,MENARA HAP SENG,False,data_as;type_dc,2,2
+3881,MKH BOULEVARD 2,False,data_as;type_dc,15,15
+3886,MENARA CIMB,False,data_as;type_dc,2,2
+3887,"CAPRI BY FRASER, BUKIT BINTANG",False,data_as;type_ac,2,2
+3897,FAST LAP GARAGE SDN. BHD.,False,data_as;type_dc,1,1
+3904,SEJATI LAKESIDE,False,data_as;type_dc,1,1
+3905,CEVA LOGISTICS,False,data_as;type_ac,2,2
+879,1 UTAMA SHOPPING CENTRE,False,data_as;type_dc,11,11
+883,ATRIA SHOPPING GALLERY,False,data_as;type_dc,3,3
+1023,AEON SUPERMARKET WANGSA MAJU,False,data_as;type_dc,2,2
+1886,MCDONALD'S SETIA ALAM DT,False,data_as;type_ac,2,2
+1953,BANGSAR SHOPPING CENTRE,False,data_as;type_dc,6,6
+3517,PANTAI BHARU HOLDINGS SDN BHD,False,data_as;type_ac,1,1
+3534,IZUWAN AUTOMOBILE SDN BHD,False,data_as;type_ac,1,1
+3543,"ZAIBAR AUTOMOBILE (HICOM INDUSTRIAL ESTATE, SHAH ALAM)",False,data_as;type_ac,1,1
+3575,AGILE MONT KIARA,False,data_as;type_dc,5,5
+3783,CENTREPOINT BANDAR UTAMA,False,data_as;type_dc,4,4
+3911,PLAZA TOL BUKIT TERATAI SUKE,False,data_as;type_dc,2,2
+3913,LE GARDENZ CAFE,False,data_as;type_dc,2,2
+3914,SCUDO AUTO DETAILING,False,data_as;type_dc,1,1
+3915,SERI PACIFIC HOTEL,False,data_as;type_dc,2,2
+3916,ACACIA FABRICS SDN. BHD.,False,data_as;type_dc,1,1
+3917,THE ZIZZ @ DAMANSARA NORTH ,False,data_as;type_dc,6,6
+3919,FAIRY PARK HERITAGE CITY,False,data_as;type_dc,2,2
+3920,THE MEWS KLCC,False,data_as;type_dc,2,2
+3922,IMAZIUM,False,data_as;type_dc,2,2
+3923,"MENARA PNB, KUALA LUMPUR",False,data_as;type_dc,3,3
+3924,"PNB PERDANA COMMERCIAL CENTRE, KUALA LUMPUR",False,data_as;type_dc,3,3
+3925,WCE E32 ASSAM JAWA TOLL PLAZA,False,data_as;type_ac,2,2
+3932,ALOFT SENTRAL,False,data_as;type_dc,2,2
+3934,COHIBA ATMOSPHERE KUALA LUMPUR,False,data_as;type_dc,1,1
+3935,EV HYBRID SDN BHD,False,data_as;type_dc,1,1
+3939,MELAWATI MALL OUTDOOR CAR PARK,False,data_as;type_dc,2,2
+3940,MENARA KEN TTDI ,False,data_as;type_dc,2,2
+3942,MERG CAFE,False,data_as;type_dc,1,1
+3946,TRADERS HOTEL KL,False,data_as;type_dc,1,1
+3947,TSLAW TOWER (LEVEL 5),False,data_as;type_dc,3,3
+3948,VOLVO SUNGAI BESI (SISMA AUTO),False,data_as;type_ac,2,2
+782,GAMUDA GARDENS,False,data_as;type_ac,4,4
+909,KUALA LUMPUR INTERNATIONAL  AIRPORT  2,False,data_as;type_dc,18,18
+913,DPULZE SHOPPING CENTRE,False,data_as;type_dc,5,5
+930,IOI CITY MALL,False,data_as,26,26
+954,LOTUS'S KAJANG,False,data_as;type_ac,1,1
+976,IOI MALL PUCHONG,False,data_as,5,5
+1417,LOTUS'S BANDAR PUTERI BANGI ,False,data_as;type_ac,1,1
+1526,DORSETT GRAND SUBANG,False,data_as;type_dc,2,2
+1650,TNB ILSAS BANGI,False,data_as;type_dc,1,1
+1909,"THE EXCHANGE MALL, TRX",False,data_as;type_dc,13,13
+3333,BMW INGRESS AUTO DAMANSARA,False,data_as,7,7
+3359,BUKIT BINTANG CITY CENTRE SALES GALLERY ,False,data_as;type_dc,4,4
+3522,IOI CITY MALL PHASE 2,False,data_as;type_dc,4,4
+3949,THE RUMA KL HOTEL ,False,data_as;type_dc,3,3
+3955,PALM GARDEN PUTRAJAYA,False,data_as;type_dc,2,2
+3960,THE GOODWOOD RESIDENCE,False,data_as;type_dc,2,2
+3967,1 SHAMELIN MALL,False,data_as;type_dc,2,2
+3968,UNITAR INTERNATIONAL UNIVERSITY,False,data_as;type_dc,2,2
+3969,ORIENTAL CRYSTAL HOTEL,False,data_as;type_dc,1,1
+3971,IMPERIAL LEXIS KL,False,data_as;type_dc,3,3
+3976,IMPERIAL REGENCY SUITES & HOTEL BANGSAR,False,data_as;type_dc,1,1
+3979,MATAHARI EV SOLUTION,False,data_as;type_dc,1,1
+3980,KIARA 9 RESIDENCY,False,data_as;type_dc,3,3
+3983,PULLMAN HOTEL KLCC,False,data_as;type_ac,1,1
+3984,PLAZA 33,False,data_as,4,4
+3988,NIRVANA 2,False,data_as;type_dc,1,1
+3990,MG MOTOR,False,data_as;type_ac,2,2
+3997,REGINA CONDOMINIUM,False,data_as;type_dc,2,2
+4000,SENTUL POINT APARMENT,False,data_as;type_dc,2,2
+4001,SUNWAY UNIVERSITY,False,data_as;type_dc,3,3
+4008,FL GROUP OF COMPANIES,False,data_as;type_dc,1,1
+4009,MENARA MBF,False,data_as;type_dc,3,3
+4010,SWICPOWER TECHNOLOGY,False,data_as;type_dc,1,1
+4014,ARTE MONT KIARA,False,data_as;type_dc,4,4
+4015,GMBB MALL,False,data_as;type_dc,2,2
+4016,BURGER KING SHAH ALAM EXTREME PARK SEKSYEN 13,False,data_as;type_dc,2,2
+1221,KPJ KAJANG SPECIALIST HOSPITAL,False,data_as;type_dc,1,1
+4018,VOLVO ARA DAMANSARA,False,data_as;type_ac,2,2
+4019,KPJ SELANGOR SPECIALIST HOSPITAL,False,data_as;type_dc,5,5
+988,PAVILION BUKIT JALIL,False,data_as,12,12
+1183,MRANTI MULTI STOREY CAR PARK,False,data_as;type_dc,3,3
+1991,Malaysia External Trade Development Corporation (MATRADE),False,data_as;type_ac,4,4
+3441,SHERATON IMPERIAL KUALA LUMPUR HOTEL,False,data_as;type_dc,4,4
+3497,ONE SOUTH STREET MALL (KURO EV),False,data_as;type_dc,1,1
+3513,D ONE MOTORSPORTS SDN BHD,False,data_as;type_ac,2,2
+3702,WISMA NICSMANN DAMANSARA PERDANA,False,data_as;type_dc,2,2
+3708,ÈÙÍ CHIANG LIVE HOUSE SS2,False,data_as;type_dc,1,1
+3906,BYD SISMA AUTO GLENMARIE,False,data_as,4,4
+3964,RHB BANK HQ KL TUN RAZAK,False,data_as;type_dc,2,2
+3970,CROWNE PLAZA,False,data_as;type_dc,4,4
+4006,THE SAUJANA HOTEL,False,data_as;type_dc,4,4
+4024,FOUR POINTS PUCHONG,False,data_as;type_dc,2,2
+4025,PUSAT PERDAGANGAN UMNO SHAH ALAM,False,data_as;type_dc,2,2
+4030,DORSETT KL,False,data_as;type_dc,2,2
+4042,XIAO MING KOPITIAM (PARKLAND KLANG),False,data_as;type_dc,2,2
+4043,GEMS RESIDENCES (PUTRAJAYA),False,data_as;type_dc,2,2
+4052,R&R ELMINA NORTHBOUND,False,data_as;type_ac,2,2
+4083,WISMA DATAPATH,False,data_as;type_ac,2,2
+4084,YOU CITY III,False,data_as;type_ac,2,2
+4085,SAPURA@MINES,False,data_as;type_ac,2,2
+4087,"BYD SHOWROOM, BALAKONG",False,data_as;type_ac,2,2
+4088,KIP HOTEL KUALA LUMPUR,False,data_as;type_dc,2,2
+4093,MEGAH RISE RESIDENSI,False,data_as;type_dc,3,3
+4094,RESIDENSI SEFINA MONT' KIARA,False,data_as;type_dc,3,3
+4095,ARA SENTRAL,False,data_as;type_dc,2,2
+4098,CHERAS PLAZA,False,data_as;type_dc,3,3
+4099,AURORA RESIDENCE,False,data_as;type_dc,2,2
+4100,1120 PARK AVENUE,False,data_as;type_dc,2,2
+4101,THE LEGACY OUG,False,data_as;type_dc,3,3
+4102,POWERED BY RISE OFFICE,False,data_as;type_dc,1,1
+928,AEON MALL CHERAS SELATAN,False,data_as,4,4
+1916,MITSUI LALAPORT BUKIT BINTANG CITY CENTRE,False,data_as;type_dc,6,6
+4104,MALAYSIA GRAND BAZAAR,False,data_as;type_dc,4,4
+4106,MERCURE KUALA LUMPUR TRION,False,data_as;type_dc,4,4
+4107,WRAPXPERT IOI PUCHONG,False,data_as;type_dc,1,1
+4109,ZETA DESKYE RESIDENCE,False,data_as;type_dc,2,2
+816,SELAYANG CAPITOL KOMPLEKS,False,data_as;type_ac,2,2
+887,SEVENTEEN MALL,False,data_as;type_ac,2,2
+894,THE CURVE MALL,False,data_as,18,18
+941,BMC MALL,False,data_as;type_ac,2,2
+985,MYTOWN SHOPPING CENTRE,False,data_as,9,9
+1074,COLUMBIA ASIA HOSPITAL - BUKIT RIMAU,False,data_as,4,4
+1079,ECONSAVE PANDAMARAN,False,data_as;type_ac,2,2
+1094,THE SUMMIT USJ,False,data_as;type_ac,4,4
+1147,ECONSAVE BANTING,False,data_as;type_ac,2,2
+1441,AMERIN MALL,False,data_as;type_dc,2,2
+1530,EMPIRE SHOPPING GALLERY,False,data_as,6,6
+1545,MANAGEMENT & SCIENCE UNIVERSITY (MSU),False,data_as;type_dc,2,2
+1629,COLUMBIA ASIA HOSPITAL - PETALING JAYA,False,data_as,4,4
+1975,IKON CONNAUGHT,False,data_as;type_ac,2,2
+2016,GURNEY MALL,False,data_as,4,4
+3315,CHARGESINI RAYTECH KAJANG CHARGING STATION,False,data_as;type_dc,2,2
+3316,CHARGESINI RAYTECH SERDANG CHARGING STATION,False,data_as;type_dc,2,2
+3319,RAYTECH BANGI,False,data_as;type_dc,2,2
+3320,RAYTECH MALURI,False,data_as;type_dc,1,1
+3322,RAYTECH PUCHONG,False,data_as;type_dc,1,1
+3323,RAYTECH SEKAMAT KAJANG,False,data_as;type_dc,2,2
+3326,SMILE HOTEL SUBANG USJ 3,False,data_as;type_dc,2,2
+3574,SERINGIN RESIDENCE,False,data_as;type_dc,8,8
+3579,CHINT MALAYSIA,False,data_as;type_ac,4,4
+3598,PLAZA BERJAYA,False,data_as;type_dc,3,3
+3600,PUSAT DAGANGAN NZX,False,data_as;type_dc,2,2
+3603,"SHAFTSBURY SQUARE, CYBERJAYA",False,data_as;type_dc,4,4
+3642,VINA RESIDENCY ,False,data_as;type_dc,2,2
+3644,PARKLAND RESIDENCES,False,data_as;type_dc,2,2
+3645,SURIA RESIDENCES,False,data_as;type_dc,3,3
+3646,LAKEVILLE RESIDENCE’S RETAIL SHOP LOT PARKING,False,data_as,4,4
+3648,INTERCONTINENTAL HOTEL KL,False,data_as;type_ac,2,2
+3649,JOURNAL HOTEL,False,data_as;type_dc,4,4
+3650,SPHERE DAMANSARA,False,data_as;type_dc,2,2
+3651,SMILE HOTEL WANGSA MAJU,False,data_as;type_dc,2,2
+3653,PALMYRA RESIDENCE,False,data_as;type_dc,2,2
+3654,HOLIDAY INN SEPANG,False,data_as;type_dc,4,4
+3683,LIM TAYAR TTDI,False,data_as;type_ac,2,2
+3688,KOI SUITES CONDOMINIUM ,False,data_as,3,3
+3690,KUCHAI BREM PARK CONDO 1 ,False,data_as;type_dc,4,4
+3691,DAMANSARA FORESTA,False,data_as;type_dc,5,5
+3694,SUASANA SENTRAL LOFT,False,data_as;type_dc,4,4
+3695,SUTERA PINES,False,data_as;type_dc,3,3
+3756,CANVAS HOTEL,False,data_as;type_dc,4,4
+3784,CONCORDE HOTEL KL,False,data_as;type_dc,4,4
+3787,ZENOPY RESIDENCES,False,data_as;type_dc,4,4
+3788,YOU CITY-YOU VISTA,False,data_as;type_dc,5,5
+3790,WIDURI IMPIAN,False,data_as;type_dc,2,2
+3791,WEDGEWOOD RESIDENCE,False,data_as;type_dc,2,2
+3792,WALTZ RESIDENCE ,False,data_as;type_dc,3,3
+3793,VILLA ORKID,False,data_as;type_dc,3,3
+3795,THE SANDERSON,False,data_as;type_dc,4,4
+3796,THE REACH TITIWANGSA,False,data_as,4,4
+3797,THE HOLMES 2,False,data_as;type_dc,2,2
+3798,THE GREEN RESIDENCE,False,data_as;type_dc,6,6
+3799,THE FENNEL SENTUL,False,data_as;type_dc,6,6
+3801,TASIK RESIDENCY,False,data_as;type_dc,4,4
+3805,SUNWAY OPAL DAMANSARA,False,data_as;type_dc,2,2
+3811,REGENCY TOWER ,False,data_as;type_dc,2,2
+3812,"RAINTREE BATU CAVES,SELANGOR",False,data_as;type_dc,3,3
+3814,PRIMA U1,False,data_as;type_dc,3,3
+3816,PKNS COMPLEX BANGI,False,data_as,3,3
+3818,PARK VILLA CONDOMINIUM,False,data_as;type_dc,6,6
+3819,PARAGON 3 CONDOMINIUM,False,data_as;type_dc,6,6
+3821,PANGSAPURI SAUJANA PERMAI 2,False,data_as;type_dc,4,4
+3822,PANGSAPURI PUNCAK SAUJANA,False,data_as;type_dc,4,4
+3823,PANDANMAS RESIDENCES 2,False,data_as;type_dc,8,8
+3824,ONE SOHO,False,data_as;type_dc,2,2
+3825,NADAYU 63,False,data_as;type_dc,4,4
+3827,MERCU MUSTAPHA KAMAL,False,data_as;type_dc,3,3
+3828,MENARA MUSTAPHA KAMAL,False,data_as;type_dc,4,4
+3830,LANAI KIARA CONDOMINIUM,False,data_as;type_dc,4,4
+3831,LAMAN SURIA,False,data_as;type_dc,4,4
+3832,KIARAMAS SUTERA CONDO,False,data_as;type_dc,4,4
+3833,KIARA DESIGNERS SUITES,False,data_as;type_dc,3,3
+3834,KELANA D'PUTERA,False,data_as;type_dc,5,5
+3835,IOI RIO CITY,False,data_as;type_dc,4,4
+3837,IMPIAN HEIGHT CONDOMINIUM,False,data_as;type_dc,4,4
+3838,IMPERIAL RESIDENCE,False,data_as;type_dc,2,2
+3839,ICON RESIDENCE ,False,data_as;type_dc,3,3
+3840,HJ SEAFOOD TREASURE,False,data_as;type_ac,2,2
+3841,HERITAGE CONDOMINIUM,False,data_as;type_dc,4,4
+3842,GREENFIELD RESIDENCE ,False,data_as;type_dc,7,7
+3843,FLORA MURNI,False,data_as;type_dc,2,2
+3844,DUA MENJALARA,False,data_as;type_dc,2,2
+3845,D'SURIA CONDOMINIUM,False,data_as;type_dc,4,4
+3847,D'AMAN RESIDENCES,False,data_as;type_dc,2,2
+3849,CHYMES GURNEY RESIDENCE,False,data_as;type_dc,2,2
+3851,CASA GREEN,False,data_as;type_dc,6,6
+3852,CASA DESA CONDOMINIUM,False,data_as;type_dc,6,6
+3855,ANJALI NORTH KIARA,False,data_as;type_dc,3,3
+3856,ALTITUDE 236,False,data_as;type_dc,2,2
+3857,ALMYRA RESIDENCE ,False,data_as;type_dc,3,3
+3859,ABADI RIA,False,data_as;type_dc,2,2
+3860,10 SEMANTAN,False,data_as,6,6
+3861,1 SENTUL CONDOMINIUM,False,data_as;type_dc,2,2
+3865,NADI BANGSAR SERVICED RESIDENCE,False,data_as;type_ac,2,2
+3866,OPUS RESIDENCES,False,data_as;type_dc,4,4
+3867,THE MANOR KL,False,data_as;type_dc,4,4
+3868,BUKIT PALMA 1,False,data_as;type_dc,4,4
+3869,BUKIT PALMA 2,False,data_as;type_dc,4,4
+3870,202 DESA CAHAYA,False,data_as;type_dc,3,3
+3871,BSP SKYPARK,False,data_as;type_dc,3,3
+3872,PANGSAPURI ONE JELATEK,False,data_as;type_dc,3,3
+3874,PERTAMA COMPLEX,False,data_as;type_dc,2,2
+3884,SURIA PUTRA RESIDENCE,False,data_as;type_dc,6,6
+3921,SINCHOIWAH RESTAURANT,False,data_as,8,8
+3931,MENARA TH1 SENTRAL,False,data_as;type_dc,2,2
+4004,RIVERVILLE RESIDENCES,False,data_as;type_dc,4,4
+4005,UTROPOLIS SUITES,False,data_as;type_dc,3,3
+4007,"THE FOOD MERCHANT, WCITY OUG SALES GALLERY",False,data_as,4,4
+4011,ALAM SANJUNG,False,data_as;type_dc,4,4
+4012,ARTE CHERAS (CHERAS HEIGHTS),False,data_as;type_dc,4,4
+4013,PARK INN RADISSON PUTRAJAYA,False,data_as;type_dc,3,3
+4053,BENNINGTON RESIDENCES,False,data_as;type_dc,6,6
+4054,JADITE SUITES,False,data_as;type_dc,2,2
+4055,CASA INDAH 2,False,data_as;type_dc,2,2
+4056,NADAYU 62,False,data_as;type_ac,2,2
+4057,PARC 3 RESIDENCE,False,data_as;type_dc,6,6
+4059,SETIA SKY  SEPUTEH,False,data_as,4,4
+4060,LEXA RESIDENCE,False,data_as;type_dc,4,4
+4061,KIARA RESIDENCE 2,False,data_as;type_dc,6,6
+4064,KL PALACE COURT,False,data_as;type_dc,4,4
+4065,IRIS RESIDENCES,False,data_as;type_dc,3,3
+4066,USJ ONE RESIDENCE,False,data_as;type_ac,2,2
+4067,MILLENNIUM SQUARE,False,data_as;type_ac,2,2
+4068,X2 RESIDENCY,False,data_as,6,6
+4069,SAVANNA BUKIT JALIL,False,data_as,4,4
+4070,CONDOMINIUM UNIVERSAL 360,False,data_as;type_dc,3,3
+4073,EXPRESSIONZ PROFESSIONAL SUITES,False,data_as,4,4
+4074,MELIA HOTEL,False,data_as;type_dc,4,4
+4076,ARAGREENS RESIDENCES,False,data_as;type_dc,3,3
+4078,SMART GLENMARIE (EON),False,data_as,3,3
+4115,CASA KIARA 2,False,data_as;type_dc,5,5
+4116,CHERAS HEIGHTS CONDOMINIUM,False,data_as;type_dc,4,4
+4117,CITIZEN 2,False,data_as;type_dc,2,2
+4118,CLOUD TREE RESIDENCE,False,data_as;type_dc,7,7
+4119,CONCERTO NORTH KIARA CONDOMINIUM,False,data_as;type_dc,7,7
+4120,CONCORDE HOTEL SHAH ALAM,False,data_as;type_dc,4,4
+4121,DAMAI SURIA CONDOMINIUM,False,data_as;type_dc,2,2
+4123,DANAU PERMAI CONDOMINIUM,False,data_as;type_dc,3,3
+4124,DESARIA VILLA CONDOMINIUM,False,data_as;type_dc,4,4
+4126,EMERALD RESIDENCES,False,data_as;type_dc,4,4
+4127,FERA RESIDENCE,False,data_as;type_dc,6,6
+4128,ICON CITY,False,data_as,4,4
+4129,KEN RIMBA CONDOMINIUM 1,False,data_as;type_dc,6,6
+4130,LAKEFRONT HOMES @ CYBERJAYA,False,data_as;type_dc,3,3
+4131,LAKEFRONT HOMES @ CYBERJAYA (PR1MA),False,data_as;type_dc,3,3
+4132,LUCENTIA RESIDENCE,False,data_as;type_dc,2,2
+4133,MENARA TAKAFUL,False,data_as,4,4
+4134,MENARA TOKIO MARINE,False,data_as;type_dc,3,3
+4135,MH PLATINUM RESIDENCE,False,data_as;type_dc,2,2
+4138,PINNACLE SRI PETALING,False,data_as,3,3
+4140,PUNCAK HIJAUAN CONDOMINIUM,False,data_as;type_dc,4,4
+4141,REGENCY KLANG,False,data_as;type_dc,2,2
+4142,RESIDENSI 22 MONT KIARA,False,data_as;type_dc,6,6
+4143,RESIDENSI HARMONI 2,False,data_as;type_dc,3,3
+4144,RESIDENSI SUNGAI LONG,False,data_as;type_dc,2,2
+4145,SENTRIO PANDAN CONDOMINIUM,False,data_as;type_dc,4,4
+4146,SHOPPES AT FOUR SEASONS PLACE,False,data_as;type_dc,2,2
+4148,SURIA JELUTONG,False,data_as;type_dc,4,4
+4150,THE HORIZON RESIDENCES,False,data_as;type_dc,3,3
+4151,TWIN ARKZ,False,data_as;type_dc,3,3
+4152,UNITED POINT RESIDENCES,False,data_as;type_dc,4,4
+783,AEON MALL AU2 Setiawangsa,False,data_as,4,4
+906,KIPMall Kota Warisan,False,data_as;type_dc,3,3
+916,Tamarind Square,False,data_as;type_dc,5,5
+924,ECO MAJESTIC,False,data_as,7,7
+1054,Lotus's Shah Alam,False,data_as;type_ac,1,1
+1172,GAMUDA COVE EXPERIENCE GALLERY & (DISCOVERY CENTER),False,data_as,32,32
+1280,Lotus's Puncak Alam,False,data_as;type_ac,3,3
+1454,KPJ AMPANG PUTERI SPECIALIST HOSPITAL,False,data_as;type_dc,4,4
+1626,TAYLOR'S UNIVERSITY LAKESIDE CAMPUS,False,data_as;type_dc,2,2
+1639,QUILL 9,False,data_as,4,4
+1912,SOGO KL,False,data_as;type_ac,2,2
+1958,THE BEAT AT KIARA BAY,False,data_as;type_dc,12,12
+3368,EQUATORIAL PLAZA ,False,data_as;type_dc,6,6
+3428,R&R DENGKIL SOUTHBOUND,False,data_as;type_ac,2,2
+3455,THE TROIKA,False,data_as;type_dc,2,2
+3484,SURIA KLCC,False,data_as;type_ac,47,47
+3511,BHPETROL SUNGAI BESI  ,False,data_as;type_ac,1,1
+3682,MERCU MAYBANK,False,data_as,8,8
+3961,SIME DARBY AUTO CSL,False,data_as,3,3
+4195,VILA VISTA CHERAS CONDO,False,data_as;type_dc,1,1
+4198,WISMA CHUANG,False,data_as;type_dc,3,3
+4200,FLEXUS SIGNATURE SUITES,False,data_as;type_dc,2,2
+4202,MENARA AFFIN @ TRX,False,data_as,9,9
+4207,PETRONAS KLIA 2,False,data_as;type_ac,4,4
+4209,TRIANGLE FARM COTTAGE HOUSE,False,data_as;type_dc,2,2
+4210,SYOPZ MALL,False,data_as;type_dc,2,2
+4217,10 STONOR KLCC,False,data_as;type_dc,2,2
+4218,"REIZZ RESIDENCE, KL",False,data_as;type_dc,2,2
+4219,M-SUITE,False,data_as;type_dc,2,2
+4221,AMIGO CLUBHOUSE @ 16 SIERRA,False,data_as,3,3
+4222,AUTO BAVARIA BALAKONG,False,data_as;type_dc,4,4
+4223,KPJ KLANG SPECIALIST HOSPITAL,False,data_as;type_dc,4,4
+4224,MENARA PRUDENTIAL TRX,False,data_as;type_dc,6,6
+4225,REGAL VALET,False,data_as;type_ac,2,2
+4226,MPAJ BUKIT ANTARABANGSA PANORAMA,False,data_as;type_dc,2,2
+4228,SURAU AL-HUDA,False,data_as;type_dc,2,2
+4229,FAKULTI KEJURUTERAAN UPM ,False,data_as;type_dc,2,2
+4231,KIA MAZDA BALAKONG,False,data_as;type_dc,1,1
+768,Lotus's Selayang,False,data_as,3,3
+858,AEON MALL BUKIT TINGGI SHOPPING CENTRE,False,data_as;type_dc,10,10
+863,AEON MALL BUKIT RAJA,False,data_as,4,4
+866,SANCTUARY MALL,False,data_as;type_ac,3,3
+891,THE STARLING MALL,False,data_as;type_ac,5,5
+905,Mitsui Outlet Park KLIA Sepang,False,data_as;type_dc,2,2
+917,MMU CYBERJAYA,False,data_as;type_dc,1,1
+948,GREAT EASTERN MALL,False,data_as;type_ac,2,2
+965,AEON MALL SHAH ALAM,False,data_as,8,8
+977,HeroMarket Bandar Puteri Puchong,False,data_as;type_dc,1,1
+980,AEON TAMAN EQUINE SHOPPING CENTRE,False,data_as,4,4
+984,AEON MALL TAMAN MALURI,False,data_as,4,4
+1013,United Point Mall,False,data_as;type_ac,2,2
+1067,Kota Permai Golf & Country Club,False,data_as;type_dc,2,2
+1132,ONE CITY USJ,False,data_as,14,14
+1432,Starbucks Bangi Avenue DT,False,data_as;type_ac,2,2
+1498,"KELAB GOLF UNIPUTRA, UPM",False,data_as;type_dc,2,2
+1560,STARBUCKS PETRONAS SG BESI PUCHONG DT,False,data_as;type_ac,1,1
+1616,PETRONAS ELITE LAYBY-BUKIT JELUTONG,False,data_as;type_ac,1,1
+1711,PETRONAS SG BULOH LAYBY,False,data_as;type_ac,2,2
+3355,AVENUE K SHOPPING MALL,False,data_as;type_dc,11,11
+3372,"Four Points By Sheraton Kuala Lumpur, Chinatown",False,data_as;type_dc,5,5
+3477,FLEXI PARKING OFFICE,False,data_as;type_dc,2,2
+3512,BHPETROL TAMAN TUN DR ISMAIL ,False,data_as;type_ac,1,1
+3527,SUNWAY VELOCITY MALL,False,data_as;type_dc,12,12
+3665,HILTON GARDEN INN PUCHONG,False,data_as;type_dc,2,2
+3728,BAMBOO HILLS DUKE BY DC HANDAL,False,data_as;type_ac,9,9
+3764,WISMA UOA DAMANSARA II,False,data_as;type_ac,8,8
+3878,HIGHLANDS HOTEL GENTING ,False,data_as,10,10
+3918,LUMI TROPICANA,False,data_as;type_dc,6,6
+4086,DIRECT CAR IMPORT SDN BHD,False,data_as;type_ac,2,2
+4196,HARTAMAS REGENCY 2,False,data_as;type_ac,2,2
+4233,BHP GENTING KLANG,False,data_as;type_ac,2,2
+4234,COURTYARD MARRIOT SETIA ALAM,False,data_as;type_dc,2,2
+4236,MASJID AL-MUKHLISIN,False,data_as;type_dc,1,1
+4239,POH KIN MOTOR WORKS SDN. BHD.,False,data_as;type_dc,1,1
+4240,PROTON E.MAS CHERAS,False,data_as;type_ac,2,2
+4243,VILLA TAKUN AC,False,data_as;type_dc,1,1
+4245,BOTANIC RESORT CLUB,False,data_as;type_ac,2,2
+4248,GAMUDA LUGE,False,data_as;type_dc,3,3
+4249,INTEGRA TOWER,False,data_as;type_dc,4,4
+4251,NETA AUTO MALAYSIA GLENMARIE,False,data_as;type_ac,2,2
+4254,R&R ELMINA SOUTHBOUND,False,data_as;type_ac,2,2
+4255,ROYAL LAKE CLUB,False,data_as;type_dc,1,1
+4256,SMART SETIA ALAM,False,data_as;type_ac,2,2
+4257,TUAH 1895 @ BUKIT BINTANG CITY CENTRE,False,data_as;type_dc,2,2
+4258,UMW TOYOTA MOTOR HQ,False,data_as,5,5
+4259,THE ICON,False,data_as;type_dc,2,2
+4260,STARBUCKS BANDAR PUTERI DT,False,data_as;type_dc,2,2
+4262,STARBUCKS PRIMA 5 DT,False,data_as;type_ac,2,2
+4268,HOLIDAY INN EXPRESS KL,False,data_as;type_dc,2,2
+4270,IJM ICE GALLERY @ PANTAI SENTRAL PARK,False,data_as;type_ac,2,2
+4272,MASJID AR RAHAH,False,data_as;type_dc,2,2
+4274,SCARLETZ SUITES,False,data_as;type_dc,2,2
+4280,PETRONAS TTDI,False,data_as,3,3
+4283,SIME DARBY VOLVO SETIA ALAM,False,data_as;type_ac,2,2
+4284,WCE E32 SAE TOLL PLAZA,False,data_as;type_ac,2,2
+4285,"SHANGRI-LA KUALA LUMPUR, KUALA LUMPUR",False,data_as;type_dc,2,2
+4287,CUBIC BOTANICAL,False,data_as,3,3
+4288,SERDANG PERDANA CONDOMINIUM,False,data_as;type_dc,2,2
+4289,THE HAMSTEAD ,False,data_as;type_dc,2,2
+4290,VISTA DAMAI CONDOMINIUM @ KLCC,False,data_as;type_dc,2,2
+4291,BLOOMSVALE SHOPPING GALLERY,False,data_as,7,7
+4296,(TRIAL PHASE) ELMINA LAKESIDE MALL,False,data_as;type_ac,16,16
+4477,PETRONAS SG BESI PUCHONG BYPASS,False,data_as;type_ac,1,1
+776,TASIK PUTERI GOLD AND COUNTRY CLUB,False,data_as;type_dc,2,2
+990,MID VALLEY MEGAMALL,False,data_as,5,5
+991,THE GARDENS MALL,False,data_as,16,16
+994,SPORTS ARENA SENTOSA,False,data_as,3,3
+998,PLAZA LOW YAT,False,data_as,7,7
+1005,LOTUS'S KEPONG,False,data_as;type_ac,4,4
+1016,SUNWAY PUTRA MALL,False,data_as;type_dc,9,9
+1394,KELAB RAHMAN PUTRA MALAYSIA,False,data_as,3,3
+1405,KPJ RAWANG MEDICAL CENTRE ,False,data_as;type_dc,2,2
+1439,BANGI GOLF RESORT,False,data_as,11,11
+3358,BMW INGRESS AUTO PUCHONG,False,data_as,3,3
+3481,MENARA KLK,False,data_as;type_dc,3,3
+3483,SETIA CITY CONVENTION CENTRE - HALL 1,False,data_as,6,6
+3485,XPARK SUNWAY SERENE,False,data_as,8,8
+3503,SETIA WARISAN TROPIKA RESIDENZ CLUBHOUSE,False,data_as;type_dc,1,1
+3520,TENAGA SWITCH GEAR SDN BHD,False,data_as;type_ac,4,4
+3533,NIZRA GROUP,False,data_as,3,3
+3571,THE PEARL CONDOMINIUM,False,data_as;type_dc,4,4
+3635,RENAULT PETALING JAYA,False,data_as,3,3
+3669,RENAISSANCE KL HOTEL,False,data_as;type_dc,3,3
+3699,THE VERTICAL BANGSAR SOUTH,False,data_as;type_ac,2,2
+3725,GWM USJ,False,data_as,6,6
+3926,MCDONALD’S PANTAI SENTRAL PARK DT,False,data_as;type_ac,2,2
+3950,OASIS DAMANSARA,False,data_as,4,4
+3966,SENTRAL VISTA,False,data_as;type_dc,2,2
+4031,THE RITZ CARLTON RESIDENCE KL,False,data_as;type_dc,2,2
+4038,H2O COAT - ULGO CAR COATING GLENMARIE,False,data_as;type_dc,2,2
+4080,AUDI SETIA ALAM,False,data_as;type_ac,4,4
+4081,"VOLVO SHOWROOM FEDERAL AUTO CAR, KUALA LUMPUR",False,data_as;type_ac,2,2
+4091,ASIA SCHOOL OF BUSINESS,False,data_as;type_dc,2,2
+4269,IBIS HOTEL,False,data_as;type_dc,2,2
+4276,VOLVO FEDERAL AUTO GLENMARIE,False,data_as;type_ac,2,2
+4297,11 MONT KIARA (RESIDENTS ONLY),False,data_as;type_dc,3,3
+4298,168 PARK MALL SELAYANG,False,data_as,3,3
+4299,28 MON'T KIARA (FOR RESIDENTS ONLY),False,data_as;type_dc,8,8
+4300,AC HOTEL BY MARRIOTT KUALA LUMPUR,False,data_as;type_dc,2,2
+4304,ALMASPURI CONDOMINIUM (RESIDENCE USE ONLY),False,data_as;type_dc,2,2
+4306,AMBANK JALAN RAJA CHULAN,False,data_as;type_dc,2,2
+4308,ASCENDA RESIDENCE (RESIDENTS ONLY),False,data_as;type_dc,2,2
+4309,ASTER RESIDENCE (RESIDENTS USE ONLY),False,data_as,4,4
+4310,ASTETICA RESIDENCES,False,data_as,5,5
+4311,ATMOSFERA CONDOMINIUM (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4312,ATWATER COMMERCIAL,False,data_as;type_ac,2,2
+4315,BLOOMSVALE RESIDENCE (RESIDENT ONLY),False,data_as;type_dc,6,6
+4316,BOULEVARD SUBANG JAYA,False,data_as;type_ac,2,2
+4318,CANTARA RESIDENCES (RESIDENTS ONLY),False,data_as;type_dc,7,7
+4319,CEYLONZ SUITS,False,data_as;type_dc,2,2
+4320,CIMB PLAZA DAMANSARA,False,data_as;type_dc,1,1
+4322,CLIO 2 RESIDENCE (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4325,CYBER EVENT HALL,False,data_as,3,3
+4326,DANCOMECH ENGINEERING SDN BHD ,False,data_as;type_dc,2,2
+4327,DC RESIDENSI,False,data_as;type_dc,4,4
+4329,DUTA PARK RESIDENCES,False,data_as;type_dc,4,4
+4332,EPIC RESIDENCE (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4335,GAYA APARTMENT,False,data_as;type_ac,2,2
+4336,GCB COURT CONDOMINIUM,False,data_as;type_ac,2,2
+4339,HAMPSHIRE RESIDENCE (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4341,INSTANT SCAFFOLDS & MACHINERY,False,data_as;type_dc,1,1
+4342,IOI MALL DAMANSARA,False,data_as;type_dc,4,4
+4343,I-ZEN KIARA 2,False,data_as;type_dc,4,4
+4344,JW MARRIOT KUALA LUMPUR,False,data_as;type_dc,2,2
+4347,KM1 EAST CONDOMINIUM (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4348,KM1 WEST (RESIDENTS USES ONLY),False,data_as;type_dc,2,2
+4349,KYM TOWER,False,data_as;type_dc,2,2
+4350,LAGOON VIEW RESORT CONDOMINIUM (RESIDENT USE ONLY),False,data_as;type_dc,2,2
+4352,"LAMAN BAIDURI CONDO, LEVEL CP1 (RESIDENTS USE ONLY)",False,data_as;type_dc,3,3
+4353,"LAVILE, KUALA LUMPUR",False,data_as;type_dc,6,6
+4354,LEXUS MALAYSIA MUTIARA DAMANSARA,False,data_as;type_ac,2,2
+4357,M ADORA,False,data_as;type_dc,2,2
+4367,MENARA AMBANK YAP KWAN SENG,False,data_as;type_dc,2,2
+4368,MENARA BINJAI,False,data_as;type_dc,1,1
+4369,MENARA IMPIAN (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4372,MONT KIARA PALMA (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4374,NOVO AMPANG,False,data_as;type_dc,3,3
+4375,OCBC BANGSAR,False,data_as;type_dc,2,2
+4376,OCR BOULEVARD RESIDENCE (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4377,ONE COCHRANE RESIDENCE (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4378,ONE MENERUNG CONDOMINIUM (RESIDENTS USE ONLY),False,data_as;type_dc,4,4
+4379,ONE WORLD HOTEL,False,data_as;type_ac,2,2
+4380,PANORAMA RESIDENCES (RESIDENTS USE ONLY),False,data_as;type_dc,5,5
+4381,PAPILLON DESAHILL CONDOMINIUM,False,data_as,4,4
+4382,PARK REGENT @ DESA PARK CITY,False,data_as;type_dc,4,4
+4384,PERMATA RESIDENCE,False,data_as,3,3
+4386,PETALZ RESIDENCES,False,data_as,4,4
+4390,Proton e.MAS Balakong Jawira,False,data_as;type_ac,2,2
+4393,Proton e.MAS Kajang Proauto Drive (EV) ,False,data_as;type_ac,2,2
+4400,Proton e.MAS Petaling Jaya Regal Motors EV,False,data_as;type_ac,2,2
+4402,Proton e.MAS Segambut Cahaya Technology ,False,data_as;type_ac,2,2
+4403,Proton e.MAS Setia Alam Wheelcorp,False,data_as;type_ac,2,2
+4404,Proton e.MAS Shah Alam SG Car,False,data_as;type_ac,2,2
+4407,PROTON EMAS SUNGAI LONG,False,data_as;type_ac,2,2
+4409,PV15 PLATINUM LAKE CONDO,False,data_as;type_dc,2,2
+4410,PV16 PLATINUM LAKE CONDOMINIUM (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4411,Q SENTRAL,False,data_as,3,3
+4413,QUICKSAVE AUTO BOUTIQUE,False,data_as;type_dc,2,2
+4414,RESIDENSI SENTUL BARAT (THE BIRCH) - (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4415,RESIDENSI SETIAWANGSA KALEIDOSCOPE,False,data_as;type_dc,2,2
+4416,"RESIDENSI THE ADDRESS, TAMAN DESA",False,data_as;type_dc,2,2
+4417,RIANA SOUTH CONDOMINIUM,False,data_as;type_ac,2,2
+4418,RYAN MIHO RESIDENCE (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4421,SEMUA HOUSE,False,data_as;type_dc,2,2
+4422,SENSATA TECHNOLOGIES MALAYSIA SDN BHD,False,data_as;type_dc,4,4
+4423,SERAI BUKIT BANDARAYA (RESIDENTS USE ONLY),False,data_as;type_ac,3,3
+4424,SERENE KIARA 3 (RESIDENTS ONLY),False,data_as;type_dc,2,2
+4425,SETIA MARINA 3,False,data_as;type_dc,3,3
+4426,SHAMELIN STAR RESIDENCE,False,data_as;type_ac,2,2
+4427,"SHELL HPC CENTRAL BUKIT JALIL, KL",False,data_as;type_ac,2,2
+4428,SIME DARBY CONVENTION CENTRE,False,data_as;type_dc,3,3
+4429,SRI PENAGA CONDOMINIUM (FOR RESIDENTS USE ONLY),False,data_as;type_dc,4,4
+4431,SKYLUXE ON THE PARK (RESIDENTS USE ONLY),False,data_as;type_dc,5,5
+4432,SKYMERIDIEN RESIDENCE SENTUL (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4435,SUNWAY GEOLAKE CONDO - (RESIDENCE USE ONLY),False,data_as;type_dc,3,3
+4436,STERLING CONDOMINIUM (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4437,SUNWAY SERENE,False,data_as;type_dc,4,4
+4438,SUNWAY VELOCITY TWO,False,data_as,17,17
+4439,SUNWAY VIVALDI (RESIDENTS USE ONLY),False,data_as;type_dc,4,4
+4440,SURIAN TOWER ,False,data_as;type_ac,2,2
+4441,SYMPHONY SQUARE,False,data_as;type_dc,2,2
+4447,THE ADDRESS II (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4448,THE AVARE (RESIDENTS ONLY),False,data_as;type_dc,2,2
+4449,THE BOUSTEADOR,False,data_as;type_dc,4,4
+4450,THE CAPERS SENTUL EAST (RESIDENTS ONLY),False,data_as;type_dc,3,3
+4452,THE GREENS (RESIDENSI HIJAUAN),False,data_as,4,4
+4453,THE HAVRE BUKIT JALIL,False,data_as,3,3
+4454,THE MAJESTIC HOTEL KUALA LUMPUR,False,data_as;type_dc,2,2
+4455,THE MAPLE RESIDENCE (RESIDENTS ONLY),False,data_as;type_dc,4,4
+4456,THE NETIZEN,False,data_as;type_ac,2,2
+4457,THE PARQUE RESIDENCES (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4459,THE ZEST @ KINRARA 9,False,data_as,4,4
+4460,TRINITY AQUATA CONDOMINIUM (RESIDENTS ONLY),False,data_as;type_dc,2,2
+4461,TWY MONT KIARA (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4462,UKAY BAYU (RESIDENTS USE ONLY),False,data_as;type_dc,2,2
+4463,UNO SUNGAI BESI (RESIDENTS USE ONLY),False,data_as;type_dc,1,1
+4464,USJ ONE AVENUE CONDOMINIUM (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4465,U-THANT RESIDENCE - (RESIDENTS USE ONLY),False,data_as;type_dc,3,3
+4466,V RESIDENCE 2 (RESIDENT USE ONLY),False,data_as;type_dc,3,3
+4467,VIVO RESIDENCE @ 9 SEPUTEH,False,data_as;type_dc,3,3
+4469,ZEBRA SQUARE,False,data_as;type_ac,2,2
+4473,SRI EMAS CONDO,False,data_as;type_dc,2,2
+4474,SPRING VILLA (RESIDENTS USE ONLY),False,data_as;type_dc,1,1
+4475,RICA RESIDENCE SENTUL (RESIDENTS ONLY),False,data_as;type_dc,3,3
+4476,KINRARA GOLF CLUB,False,data_as;type_ac,2,2

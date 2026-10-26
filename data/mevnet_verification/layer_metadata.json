@@ -1,0 +1,753 @@
+{
+  "isCoGoEnabled": false,
+  "extent": {
+    "ymin": 112478.3898999989,
+    "xmin": 11095400.508299999,
+    "ymax": 771180.680300001,
+    "xmax": 13206403.230300002,
+    "spatialReference": {
+      "falseM": -100000,
+      "xyTolerance": 0.001,
+      "mUnits": 10000,
+      "zUnits": 10000,
+      "latestWkid": 3857,
+      "zTolerance": 0.001,
+      "wkid": 102100,
+      "xyUnits": 10000,
+      "mTolerance": 0.001,
+      "falseX": -20037700,
+      "falseY": -30241100,
+      "falseZ": -100000
+    }
+  },
+  "isDataBranchVersioned": false,
+  "supportsApplyEditsWithGlobalIds": false,
+  "maxRecordCount": 1000,
+  "infoInEstimates": [
+    "extent",
+    "count"
+  ],
+  "datesInUnknownTimezone": false,
+  "type": "Feature Layer",
+  "onlyAllowTrueCurveUpdatesByTrueCurveClients": true,
+  "supportsAttachmentsByUploadId": true,
+  "relationships": [],
+  "supportsAttachmentsResizing": true,
+  "cimVersion": "2.9.0",
+  "isDataArchived": false,
+  "id": 0,
+  "supportsStatistics": true,
+  "supportedExportFormats": "sqlite,filegdb",
+  "standardMaxRecordCount": 16000,
+  "isDataVersioned": false,
+  "templates": [
+    {
+      "name": "New Feature",
+      "description": "",
+      "drawingTool": "esriFeatureEditToolPoint",
+      "prototype": {
+        "attributes": {
+          "type_ac": null,
+          "data_as": null,
+          "type_dc": null,
+          "pbt": null,
+          "bil": null,
+          "latitude": null,
+          "pbt_code": null,
+          "outdoor": null,
+          "indoor": null,
+          "location": null,
+          "state": null,
+          "state_code": null,
+          "category": null,
+          "indoor___outdoor": null,
+          "longitude": null,
+          "status": null
+        }
+      }
+    }
+  ],
+  "hasGeometryProperties": true,
+  "supportsAdvancedQueries": true,
+  "parentLayer": null,
+  "currentVersion": 10.91,
+  "canScaleSymbols": false,
+  "hasZ": false,
+  "advancedEditingCapabilities": {
+    "supportsAsyncApplyEdits": false,
+    "supportedSqlFormatsInCalculate": [
+      "standard"
+    ]
+  },
+  "objectIdField": "objectid",
+  "supportsQuantizationEditMode": true,
+  "name": "MEVnet_EVCB",
+  "allowTrueCurvesUpdates": false,
+  "displayField": "bil",
+  "supportsCalculate": true,
+  "fields": [
+    {
+      "nullable": false,
+      "defaultValue": null,
+      "editable": false,
+      "length": 4,
+      "type": "esriFieldTypeOID",
+      "modelName": "objectid",
+      "domain": null,
+      "name": "objectid",
+      "alias": "OBJECTID"
+    },
+    {
+      "modelName": "bil",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "bil",
+      "alias": "Bil",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "state_code",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "state_code",
+      "alias": "State Code",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "state",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "state",
+      "length": 8000,
+      "alias": "State",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "pbt_code",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "pbt_code",
+      "alias": "PBT Code",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "pbt",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "pbt",
+      "length": 8000,
+      "alias": "PBT",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "location",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "location",
+      "length": 8000,
+      "alias": "Location",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "latitude",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "latitude",
+      "alias": "Latitude",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "modelName": "longitude",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "longitude",
+      "alias": "Longitude",
+      "type": "esriFieldTypeDouble"
+    },
+    {
+      "modelName": "number_of_proposed_ev_charger__",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_proposed_ev_charger__",
+      "alias": "Number of Proposed EV Charger (s)",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "data_as",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "data_as",
+      "length": 8000,
+      "alias": "Data as",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_existing_ev_charger_s",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_existing_ev_charger_s",
+      "alias": "Number of Existing EV Charger(s)",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_network",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_network",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - 1Utama",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_1",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_1",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - ABB",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_2",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_2",
+      "alias": "Number of EV Charger by Network -  BMW",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_3",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_3",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network -  ChargeNGo",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_4",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_4",
+      "alias": "Number of EV Charger by Network - chargEV",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_5",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_5",
+      "alias": "Number of EV Charger by Network - ChargeSini",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_6",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_6",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - ETCM",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_7",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_7",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Evwave",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_8",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_8",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Exicom",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netwo_9",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netwo_9",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Flexi Parking",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_10",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_10",
+      "alias": "Number of EV Charger by Network - Gentari",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_11",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_11",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - GoCar",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_12",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_12",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - GoToU",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_13",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_13",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Jomcharge",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_14",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_14",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Kineta",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_15",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_15",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Mini",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_16",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_16",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Nichicon",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_17",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_17",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - ParkEasy",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_18",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_18",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - PEKEMA",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_19",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_19",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Pestech",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_20",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_20",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Plugit",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_21",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_21",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Schneider",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_22",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_22",
+      "alias": "Number of EV Charger by Network - ShellRecharge",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_23",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_23",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Sunway",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_24",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_24",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - TNBX (GoToU)",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_25",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_25",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Zap",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "number_of_ev_charger_by_netw_26",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "number_of_ev_charger_by_netw_26",
+      "length": 8000,
+      "alias": "Number of EV Charger by Network - Others",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "type_ac",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "type_ac",
+      "alias": "Type AC",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "type_dc",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "type_dc",
+      "alias": "Type DC",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "category",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "category",
+      "length": 8000,
+      "alias": "Category",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "indoor___outdoor",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "indoor___outdoor",
+      "length": 8000,
+      "alias": "Indoor / Outdoor",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "indoor",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "indoor",
+      "alias": "Indoor",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "outdoor",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "outdoor",
+      "alias": "Outdoor",
+      "type": "esriFieldTypeInteger"
+    },
+    {
+      "modelName": "status",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "status",
+      "length": 8000,
+      "alias": "Status",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "field46",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "field46",
+      "length": 8000,
+      "alias": "Field46",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "field47",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "field47",
+      "length": 8000,
+      "alias": "Field47",
+      "type": "esriFieldTypeString"
+    },
+    {
+      "modelName": "field48",
+      "nullable": true,
+      "editable": true,
+      "defaultValue": null,
+      "domain": null,
+      "name": "field48",
+      "length": 8000,
+      "alias": "Field48",
+      "type": "esriFieldTypeString"
+    }
+  ],
+  "maxRecordCountFactor": 1,
+  "dateFieldsTimeReference": {
+    "respectsDaylightSaving": false,
+    "timeZone": "UTC"
+  },
+  "supportsFieldDescriptionProperty": true,
+  "hasM": false,
+  "allowGeometryUpdates": true,
+  "useStandardizedQueries": true,
+  "globalIdField": null,
+  "description": "",
+  "syncCanReturnChanges": true,
+  "supportsAsyncDelete": true,
+  "supportedSpatialRelationships": [
+    "esriSpatialRelIntersects",
+    "esriSpatialRelContains",
+    "esriSpatialRelCrosses",
+    "esriSpatialRelEnvelopeIntersects",
+    "esriSpatialRelOverlaps",
+    "esriSpatialRelTouches",
+    "esriSpatialRelWithin"
+  ],
+  "supportsRollbackOnFailureParameter": true,
+  "isDataReplicaTracked": false,
+  "standardMaxRecordCountNoGeometry": 16000,
+  "indexes": [
+    {
+      "name": "r2947_sde_rowid_uk",
+      "isUnique": true,
+      "description": "",
+      "fields": "objectid",
+      "isAscending": true
+    },
+    {
+      "name": "a1924_ix1",
+      "isUnique": true,
+      "description": "",
+      "fields": "shape",
+      "isAscending": true
+    }
+  ],
+  "editFieldsInfo": null,
+  "htmlPopupType": "esriServerHTMLPopupTypeNone",
+  "minScale": 18489298,
+  "hasAttachments": false,
+  "advancedQueryCapabilities": {
+    "supportsSqlExpression": true,
+    "supportsQueryWithResultType": true,
+    "supportsQueryWithCacheHint": false,
+    "supportsQueryWithDatumTransformation": true,
+    "supportsQueryAttachmentsWithReturnUrl": true,
+    "supportsQueryDateBins": false,
+    "supportsQueryWithLodSR": true,
+    "supportsPaginationOnAggregatedQueries": true,
+    "supportsPagination": true,
+    "supportsMaxRecordCountFactor": true,
+    "supportsStatistics": true,
+    "supportsOrderBy": true,
+    "supportsQueryWithDistance": true,
+    "supportsLod": true,
+    "supportsCountDistinct": true,
+    "supportsQueryAttachments": true,
+    "supportsReturningQueryExtent": true,
+    "supportsQueryAttachmentsCountOnly": true,
+    "supportsOrderByOnlyOnLayerFields": false,
+    "supportsOutFieldSqlExpression": true,
+    "supportsTopFeaturesQuery": true,
+    "supportsDistinct": true,
+    "supportsReturningGeometryCentroid": false,
+    "supportsQueryAnalytic": true,
+    "supportsPercentileStatistics": true,
+    "supportsHavingClause": true
+  },
+  "supportsValidateSQL": true,
+  "enableZDefaults": true,
+  "serviceItemId": "eeb6a13df12248d8873eeb9a96905214",
+  "allowUpdateWithoutMValues": true,
+  "supportsCoordinatesQuantization": true,
+  "types": [],
+  "capabilities": "Query",
+  "maxScale": 0,
+  "supportsAppend": true,
+  "supportsExceedsLimitStatistics": true,
+  "defaultVisibility": true,
+  "advancedQueryAnalyticCapabilities": {
+    "supportsAsync": false,
+    "supportsLinearRegression": true,
+    "supportsPercentileAnalytic": false
+  },
+  "hasMetadata": true,
+  "supportedAppendFormats": "shapefile,geojson,csv,featureCollection,excel",
+  "tileMaxRecordCount": 4000,
+  "typeIdField": "",
+  "supportsASyncCalculate": true,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "sqlParserVersion": "PG_10.9.1",
+  "drawingInfo": {
+    "renderer": {
+      "symbol": {
+        "outline": {
+          "color": [
+            0,
+            0,
+            0,
+            255
+          ],
+          "width": 1
+        },
+        "color": [
+          171,
+          63,
+          0,
+          255
+        ],
+        "size": 4,
+        "yoffset": 0,
+        "xoffset": 0,
+        "angle": 0,
+        "style": "esriSMSCircle",
+        "type": "esriSMS"
+      },
+      "type": "simple"
+    },
+    "scaleSymbols": true,
+    "transparency": 0,
+    "labelingInfo": null
+  },
+  "geometryField": {
+    "modelName": "shape",
+    "nullable": false,
+    "editable": true,
+    "defaultValue": null,
+    "domain": null,
+    "name": "shape",
+    "alias": "Shape",
+    "type": "esriFieldTypeGeometry"
+  },
+  "copyrightText": "",
+  "zDefault": 0,
+  "geometryType": "esriGeometryPoint"
+}
