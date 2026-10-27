@@ -69,3 +69,26 @@ test('late address search cannot overwrite the map selection',async()=>{
   finish!(new Response('[{"name":"Stale result","latitude":3.1,"longitude":101.7,"state":"W.P. KUALA LUMPUR"}]'));
   await waitFor(()=>expect(screen.queryByText('Stale result')).toBeNull());
 });
+
+test('moving the pin clears the old name and fills the new place name',async()=>{
+  setup(path=>path.includes('/locations/address')&&path.includes('3.0738')?Promise.resolve(new Response(JSON.stringify({name:'Shah Alam Library',address:'Shah Alam, Selangor'}))):undefined);
+  await screen.findByRole('heading',{name:'Site estimator'});
+  fireEvent.click(screen.getByText('Choose KL pin'));
+  await screen.findByDisplayValue('KLCC',{}, {timeout:3000});
+  fireEvent.click(screen.getByText('Choose Selangor pin'));
+  expect((screen.getByLabelText('Site name') as HTMLInputElement).value).toBe('');
+  await screen.findByDisplayValue('Shah Alam Library',{}, {timeout:3000});
+});
+
+test('an unnamed new pin clears the previous name and asks for a manual name',async()=>{
+  setup(path=>path.includes('/locations/address')&&path.includes('3.0738')?Promise.resolve(new Response(JSON.stringify({name:'',address:'Unnamed road, Selangor'}))):undefined);
+  await screen.findByRole('heading',{name:'Site estimator'});
+  fireEvent.click(screen.getByText('Choose KL pin'));
+  await screen.findByDisplayValue('KLCC',{}, {timeout:3000});
+  fireEvent.click(screen.getByText('Choose Selangor pin'));
+  await screen.findByText('No place name found for this spot. Please enter a site name.',{}, {timeout:3000});
+  expect((screen.getByLabelText('Site name') as HTMLInputElement).value).toBe('');
+  expect((screen.getByRole('button',{name:'Save proposed site'}) as HTMLButtonElement).disabled).toBe(true);
+  fireEvent.change(screen.getByLabelText('Site name'),{target:{value:'My planned site'}});
+  expect(screen.queryByText('No place name found for this spot. Please enter a site name.')).toBeNull();
+});

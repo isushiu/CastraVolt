@@ -24,6 +24,7 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
   const [loading,setLoading]=useState(true),[initialError,setInitialError]=useState(''),[attempt,setAttempt]=useState(0);
   const [point,setPoint]=useState<Point|null>(null);
   const [name,setName]=useState(''),[address,setAddress]=useState(''),[category,setCategory]=useState('Unknown'),[confirmed,setConfirmed]=useState(false);
+  const [nameUnavailable,setNameUnavailable]=useState(false);
   const [validation,setValidation]=useState<Location|null>(null),[validating,setValidating]=useState(false),[locationError,setLocationError]=useState('');
   const [query,setQuery]=useState(''),[results,setResults]=useState<SearchResult[]>([]),[searching,setSearching]=useState(false),[searched,setSearched]=useState(false),[searchError,setSearchError]=useState('');
   const [saving,setSaving]=useState(false),[saveError,setSaveError]=useState(''),[saved,setSaved]=useState<Site|null>(null);
@@ -43,7 +44,8 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
     searchAbort.current?.abort();searchGeneration.current++;setSearching(false);setResults([]);setSearched(false);
     validationAbort.current?.abort();invalidate();setValidation(null);setLocationError('');setPoint(next);setAddress(selected?.address??'');
     setConfirmed(false);
-    if(selected&&!name.trim())setName(selected.name);
+    // A name belongs to one pin; never carry it across to another location.
+    setName(selected?.name.trim()??'');setNameUnavailable(!!selected&&!selected.name.trim());
   }
   useEffect(()=>{
     if(!point)return;const controller=new AbortController();validationAbort.current?.abort();validationAbort.current=controller;
@@ -61,8 +63,8 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
     // Resolve only the final pin, after interaction settles; share the provider's global quota.
     const timer=window.setTimeout(()=>{
       projectApi<SearchResult>(`/locations/address?latitude=${point.latitude}&longitude=${point.longitude}`,'GET',undefined,controller.signal)
-        .then(result=>{if(!controller.signal.aborted&&currentPin===pinGeneration.current){setAddress(result.address);setName(current=>current.trim()?current:result.name);}})
-        .catch(err=>{if(!controller.signal.aborted)setAddressError(errorMessage(err));})
+        .then(result=>{if(!controller.signal.aborted&&currentPin===pinGeneration.current){setAddress(result.address);setName(current=>current.trim()?current:result.name.trim());setNameUnavailable(!result.name.trim());}})
+        .catch(err=>{if(!controller.signal.aborted&&currentPin===pinGeneration.current){setAddressError(errorMessage(err));setNameUnavailable(true);}})
         .finally(()=>{if(!controller.signal.aborted)setAddressLoading(false);});
     },1200);
     return()=>{window.clearTimeout(timer);controller.abort();};
@@ -94,7 +96,8 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
       <form onSubmit={save} className="workspace-form"><fieldset disabled={saving} className="site-fieldset"><dl className="coordinate-summary"><div><dt>Latitude</dt><dd>{point?point.latitude.toFixed(6):'—'}</dd></div><div><dt>Longitude</dt><dd>{point?point.longitude.toFixed(6):'—'}</dd></div></dl>
         {validating&&<p role="status">Checking study-state boundary…</p>}{locationError&&<div role="alert" className="auth-error">{locationError}{point&&<button type="button" className="text-button" onClick={()=>setPoint({...point})}>Retry location check</button>}</div>}
         {validation&&<div className="location-summary"><Check size={16}/><div><strong>{validation.state}</strong><span>Inside the supported state boundary</span></div></div>}
-        <label>Site name<input required maxLength={100} value={name} onChange={e=>{invalidate();setName(e.target.value);}} placeholder="Name this proposed site"/></label>
+        <label>Site name<input required maxLength={100} value={name} onChange={e=>{invalidate();setName(e.target.value);}} placeholder="Name this proposed site" aria-describedby={point&&nameUnavailable&&!name.trim()?'site-name-hint':undefined}/></label>
+        {point&&nameUnavailable&&!name.trim()&&<small id="site-name-hint" className="site-name-hint" role="status">No place name found for this spot. Please enter a site name.</small>}
         <div className="derived-address"><span>Address from pin</span><p>{addressLoading?'Looking up this location…':address||'No address available yet'}</p>{addressError&&<div role="status">{addressError}<button type="button" className="text-button" onClick={()=>setAddressAttempt(value=>value+1)}>Retry address</button></div>}</div>
         <label>Host-site category<select aria-label="Host-site category" aria-describedby="host-category-help" value={category} onChange={e=>{invalidate();setCategory(e.target.value);setConfirmed(false);}}>{categories.map(item=><option key={item}>{item}</option>)}</select><small id="host-category-help">The place hosting the chargers, rather than nearby facilities.</small></label>
         <label className="category-confirm"><input type="checkbox" checked={confirmed} onChange={e=>{invalidate();setConfirmed(e.target.checked);}}/>I confirm the host-site category.</label>
