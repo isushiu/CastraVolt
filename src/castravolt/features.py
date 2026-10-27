@@ -189,7 +189,6 @@ def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user
     site=owned_site(db,user,site_id)
     snapshot={'latitude':site.latitude,'longitude':site.longitude,'category':site.category,'updated_at':site.updated_at}
     state=resolve_state(site.latitude,site.longitude)
-    throttle(request,db,'features',str(user.id))
     settings=request.app.state.settings
     local=None
     if settings.poi_source=='local':
@@ -203,10 +202,21 @@ def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user
     else:
         if local is not None:
             from castravolt.local_pois import query_snapshot
+            # Local calculations need only a brief per-planner cooldown. Cached
+            # context bypasses this guard and never consumes the login quota.
+            local_key=digest('local-poi:'+str(user.id))
+            reservation=insert(AuthRateLimit).values(key=local_key,count=1,expires_at=func.clock_timestamp()+timedelta(seconds=5))
+            reservation=reservation.on_conflict_do_update(index_elements=['key'],set_={'count':1,'expires_at':func.clock_timestamp()+timedelta(seconds=5)},where=AuthRateLimit.expires_at<=func.clock_timestamp()).returning(AuthRateLimit.key)
+            reserved=db.scalar(reservation);db.commit()
+            if not reserved:
+                remaining=db.scalar(select(func.extract('epoch',AuthRateLimit.expires_at-func.clock_timestamp())).where(AuthRateLimit.key==local_key))
+                delay=max(1,min(5,math.ceil(remaining or 1)));db.commit()
+                raise HTTPException(429,f'Please wait {delay} seconds before preparing another uncached area.',headers={'Retry-After':str(delay)})
             db.commit()
             data=query_snapshot(local,snapshot['latitude'],snapshot['longitude'])
             counts=extract_counts(data,snapshot['latitude'],snapshot['longitude'])
         else:
+            throttle(request,db,'features',str(user.id))
             token=secrets.randbelow(2**30)+1
             reservation=insert(AuthRateLimit).values(key=digest('overpass:global'),count=token,expires_at=func.clock_timestamp()+timedelta(seconds=35))
             reservation=reservation.on_conflict_do_update(index_elements=['key'],set_={'count':token,'expires_at':func.clock_timestamp()+timedelta(seconds=35)},where=AuthRateLimit.expires_at<=func.clock_timestamp()).returning(AuthRateLimit.key)

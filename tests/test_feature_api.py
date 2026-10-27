@@ -124,3 +124,32 @@ def test_local_context_uses_genuine_snapshot_without_remote_calls(client,account
         assert data['provenance']['source_snapshot_sha256']
         assert data['inference_eligible'] is True
         assert write(local,'POST',f'/sites/{sid}/features').json()['cache_hit'] is True
+
+
+def test_local_context_has_short_fresh_limit_and_unlimited_cached_reuse(client,account_settings):
+    from sqlalchemy import delete,update
+    from sqlalchemy.orm import Session
+    from castravolt.feature_models import PoiCache
+    from castravolt.account_models import AuthRateLimit
+    from castravolt.auth import now
+    from datetime import timedelta
+    sid=make_site(client,account_settings)
+    account_settings.poi_source='local'
+    previous=account_settings.auth_rate_limit
+    account_settings.auth_rate_limit=1
+    try:
+        assert write(client,'POST',f'/sites/{sid}/features').status_code==200
+        for _ in range(3):
+            cached=write(client,'POST',f'/sites/{sid}/features')
+            assert cached.status_code==200,cached.text
+            assert cached.json()['cache_hit'] is True
+        with Session(client.app.state.engine) as db:
+            db.execute(delete(PoiCache));db.commit()
+        limited=write(client,'POST',f'/sites/{sid}/features')
+        assert limited.status_code==429
+        assert 1<=int(limited.headers['retry-after'])<=5
+        with Session(client.app.state.engine) as db:
+            db.execute(update(AuthRateLimit).values(expires_at=now()-timedelta(seconds=1)));db.commit()
+        assert write(client,'POST',f'/sites/{sid}/features').status_code==200
+    finally:
+        account_settings.auth_rate_limit=previous
