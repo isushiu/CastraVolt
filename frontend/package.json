@@ -11,6 +11,7 @@
     "generate:api": "openapi-typescript http://127.0.0.1:8000/openapi.json -o src/api/schema.d.ts"
   },
   "dependencies": {
+    "chart.js": "4.6.1",
     "leaflet": "1.9.4",
     "lucide-react": "0.554.0",
     "react": "19.2.0",

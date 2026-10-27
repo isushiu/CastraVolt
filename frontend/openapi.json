@@ -1099,6 +1099,158 @@
         }
       }
     },
+    "/api/v1/trends": {
+      "get": {
+        "tags": [
+          "Registration trends"
+        ],
+        "summary": "Dashboard",
+        "operationId": "dashboard_api_v1_trends_get",
+        "parameters": [
+          {
+            "name": "states",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "SELANGOR,W.P. KUALA LUMPUR",
+              "title": "States"
+            }
+          },
+          {
+            "name": "years",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "2024,2025,2026",
+              "title": "Years"
+            }
+          },
+          {
+            "name": "comparison_mode",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "timeline",
+              "title": "Comparison Mode"
+            }
+          },
+          {
+            "name": "start_month",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Start Month"
+            }
+          },
+          {
+            "name": "end_month",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "End Month"
+            }
+          },
+          {
+            "name": "calendar_month_start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1,
+              "title": "Calendar Month Start"
+            }
+          },
+          {
+            "name": "calendar_month_end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 12,
+              "title": "Calendar Month End"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/trends/summary": {
+      "post": {
+        "tags": [
+          "Registration explanations"
+        ],
+        "summary": "Summarise",
+        "operationId": "summarise_api_v1_trends_summary_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SummaryInput"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/health/live": {
       "get": {
         "summary": "Live",
@@ -2070,6 +2222,25 @@
         ],
         "title": "SiteResult"
       },
+      "SummaryInput": {
+        "properties": {
+          "filters": {
+            "$ref": "#/components/schemas/TrendFilters"
+          },
+          "source_version": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "title": "Source Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "filters",
+          "source_version"
+        ],
+        "title": "SummaryInput"
+      },
       "SystemInfo": {
         "properties": {
           "name": {
@@ -2118,6 +2289,76 @@
           "token"
         ],
         "title": "TokenInput"
+      },
+      "TrendFilters": {
+        "properties": {
+          "states": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 2,
+            "minItems": 1,
+            "title": "States"
+          },
+          "years": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 1,
+            "title": "Years"
+          },
+          "comparison_mode": {
+            "type": "string",
+            "enum": [
+              "timeline",
+              "year_over_year"
+            ],
+            "title": "Comparison Mode",
+            "default": "timeline"
+          },
+          "start_month": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Start Month"
+          },
+          "end_month": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End Month"
+          },
+          "calendar_month_start": {
+            "type": "integer",
+            "maximum": 12.0,
+            "minimum": 1.0,
+            "title": "Calendar Month Start",
+            "default": 1
+          },
+          "calendar_month_end": {
+            "type": "integer",
+            "maximum": 12.0,
+            "minimum": 1.0,
+            "title": "Calendar Month End",
+            "default": 12
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "TrendFilters"
       },
       "ValidationError": {
         "properties": {

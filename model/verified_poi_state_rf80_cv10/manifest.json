@@ -1,0 +1,59 @@
+{
+  "status": "prediction_parity_verified",
+  "features": [
+    "nearby_mall_count",
+    "nearby_petrol_count",
+    "nearby_hotel_count",
+    "nearby_office_count",
+    "nearby_transit_count",
+    "nearby_university_count",
+    "nearby_hospital_count",
+    "nearby_parking_count",
+    "category",
+    "state"
+  ],
+  "use_adoption": false,
+  "poi_radius_metres": 1000,
+  "selected_experiment": "split_cv_80_10",
+  "selected_model": "RandomForest",
+  "selected_parameters": {
+    "model__n_estimators": 600,
+    "model__max_depth": 5,
+    "model__min_samples_leaf": 10,
+    "model__max_features": 1.0
+  },
+  "selection_basis": "selected evaluated RF using training CV; reconstructed from original export and verified on all saved holdout predictions",
+  "runtime": {
+    "sklearn": "1.6.1",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3"
+  },
+  "model_sha256": "1b7bb19365f925c02f59c1287c31c9fc6c96c422da0339aa6f63fa64e5582464",
+  "poi_rule_sha256": "47df51e25751ad656cbdb495db37f8b6dde7eb38ebe600bd29a3512fd773be89",
+  "poi_snapshot_sha256": "d56e00cebd86a4f9d6b24158f43f84c8e5af07afd508cb9162c215e4a5f9bdb6",
+  "training_dataset_sha256": "d7bb8091af92f416ca212d35772a75f0e98c088a26ca02b56a0616bf39ea9458",
+  "train_sites": 1522,
+  "test_sites": 380,
+  "maximum_prediction_difference": 1.7763568394002505e-15,
+  "source_archive_sha256": "3eba32fe5d27b4dbf71505dad256742fd59d5526e80e782a75d5e266bf1e9519",
+  "source_hashes": {
+    "candidate_model.joblib": "e63a9ef9493a8767c79c3bdd94a72f1a38606b1e70b1919998078869fe85b972",
+    "prepared_sites.csv": "f88412d627e7569ae5ab93b7a07e84913283adc2bca09eff517951c62ca257f3",
+    "holdout_assignments.csv": "fa1578476d75b465cc161421c132d4bff8a99052ace793c14685af1e44c9091b",
+    "holdout_predictions.csv": "e16000b5c92c932c893d5003428484f4f1d120dad9838313fa205091e4d65d70",
+    "selected_hyperparameters.csv": "0e9569a76cc6959f4fc023e50c3452a53b0e7a7b8e4c565f76575b95106440ea",
+    "run_metadata.json": "4549d38641562bff6ee5ba9bb267d307ed3a3041560d1b7ce62b37869352c974"
+  },
+  "metrics": {
+    "MAE": 2.012392212095907,
+    "RMSE": 3.9926365770015573,
+    "R2": 0.23809275305869937,
+    "rounded_MAE": 1.9789473684210526
+  },
+  "limitations": [
+    "research prototype; category-dominated predictions",
+    "larger sites have higher errors",
+    "many inferred site categories",
+    "no independent final test; previously inspected experiments"
+  ]
+}

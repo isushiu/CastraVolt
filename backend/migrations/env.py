@@ -5,6 +5,7 @@ import castravolt.account_models  # Register account metadata for autogeneration
 import castravolt.project_models
 import castravolt.location_models
 import castravolt.feature_models
+import castravolt.trend_models
 
 config = context.config
 settings = Settings()

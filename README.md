@@ -2,7 +2,7 @@
 
 CastraVolt helps planners estimate the total EV charging points for a proposed site in Kuala Lumpur or Selangor. It also displays monthly EV registration trends.
 
-Built with React, TypeScript, FastAPI and PostgreSQL. Internal login, projects, map/address selection and saved sites are available. Research model estimates and saved history are available; the trends dashboard is under development.
+Built with React, TypeScript, FastAPI and PostgreSQL. Internal login, projects, map/address selection and saved sites are available. Research model estimates and saved history are available; the monthly trends dashboard is available.
 
 ## Requirements
 
@@ -58,7 +58,7 @@ Use `sh check.sh`, `sh setup.sh`, and `sh start.sh` instead of the Windows comma
 
 Clone or copy the project into any folder, install the requirements, and follow the steps above. No personal directory paths are required. Do not copy `.venv`, `node_modules`, or someone else's `.env`; setup prepares them locally.
 
-The app uses local ports **8000** and **5173**, and PostgreSQL uses host port **55432** by default. These ports must be free. If you change the database port, update both `POSTGRES_PORT` and the port in `CASTRAVOLT_DATABASE_URL` in `.env`. The container's internal database port stays 5432. Model `.joblib` files are excluded from Git and must be transferred separately from a trusted source when needed for prediction features.
+The app uses local ports **8000** and **5173**, and PostgreSQL uses host port **55432** by default. These ports must be free. If you change the database port, update both `POSTGRES_PORT` and the port in `CASTRAVOLT_DATABASE_URL` in `.env`. The container's internal database port stays 5432. Keep the complete `model/verified_poi_state_rf80_cv10` directory when committing or copying the project; its selected model binary is explicitly allowed by Git. Other training exports remain ignored.
 
 Python runs inside the project's `.venv` automatically. You do not need to activate it or see `(.venv)` in the terminal prompt; `(base)` can remain visible.
 
@@ -101,8 +101,14 @@ After updating, stop the app with Ctrl+C and run `.\start.cmd` once. The compact
 
 Save the site → **Prepare site context** → **Generate experimental estimate**. The output appears below the map and is saved to site history. It shows the total planned charging points. Editing the pin or inputs clears the current result; past snapshots stay in history.
 
-Estimates remain **experimental** because live POI counting rules are not yet verified against training. The original model is checked against saved test outputs. To update, restart with start.cmd (applies migration 0006). Setup installs the required model dependencies. On another computer, separately copy the trusted evaluated_pipeline.joblib into model/verified_rf80_cv5; model binaries are excluded from Git. Never replace it with the default deployment candidate.
+The estimator serves the selected 1 km RF using eight POI counts, site category and state. Its restored artifact matches all 380 saved held-out predictions. Estimates remain research guidance because capacity accuracy is limited, especially for larger sites. Setup installs the locked model dependencies; startup loads the verified model directory and applies pending migrations. Keep all three serving files (joblib, manifest and fixtures) together. Do not substitute the notebook’s fixed default candidate.
 
 ## Current estimator
 
 Uses the verified 1 km Random Forest with eight nearby-facility counts, host category and state. EV registrations are reserved for the trends dashboard. Estimates are research guidance. See [results](RESULTS.md) and [backlog](BACKLOG.md).
+
+## Optional AI trend summaries
+
+In your local `.env`, paste the key after `CASTRAVOLT_GROQ_API_KEY=` and restart with `start.cmd`. Never paste it into frontend files or commit it. `CASTRAVOLT_GROQ_MODEL` defaults to `openai/gpt-oss-20b` and can be changed to a model available on your Groq account.
+
+Open **EV adoption trends**, choose filters, then click **Generate summary**. Only aggregate figures are sent to Groq. Identical filters/data/model/prompt reuse a saved PostgreSQL summary. Charts and calculated metrics work without the key. After pulling this update on another computer, run setup before start to install Chart.js.

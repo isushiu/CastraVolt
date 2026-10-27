@@ -351,6 +351,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/trends": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Dashboard */
+        get: operations["dashboard_api_v1_trends_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/trends/summary": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Summarise */
+        post: operations["summarise_api_v1_trends_summary_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/health/live": {
         parameters: {
             query?: never;
@@ -826,6 +860,12 @@ export interface components {
              */
             updated_at: string;
         };
+        /** SummaryInput */
+        SummaryInput: {
+            filters: components["schemas"]["TrendFilters"];
+            /** Source Version */
+            source_version: string;
+        };
         /** SystemInfo */
         SystemInfo: {
             /**
@@ -860,6 +900,33 @@ export interface components {
         TokenInput: {
             /** Token */
             token: string;
+        };
+        /** TrendFilters */
+        TrendFilters: {
+            /** States */
+            states?: string[];
+            /** Years */
+            years?: number[];
+            /**
+             * Comparison Mode
+             * @default timeline
+             * @enum {string}
+             */
+            comparison_mode: "timeline" | "year_over_year";
+            /** Start Month */
+            start_month?: string | null;
+            /** End Month */
+            end_month?: string | null;
+            /**
+             * Calendar Month Start
+             * @default 1
+             */
+            calendar_month_start: number;
+            /**
+             * Calendar Month End
+             * @default 12
+             */
+            calendar_month_end: number;
         };
         /** ValidationError */
         ValidationError: {
@@ -1680,6 +1747,76 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PreparedContext"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    dashboard_api_v1_trends_get: {
+        parameters: {
+            query?: {
+                states?: string;
+                years?: string;
+                comparison_mode?: string;
+                start_month?: string | null;
+                end_month?: string | null;
+                calendar_month_start?: number;
+                calendar_month_end?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    summarise_api_v1_trends_summary_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SummaryInput"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
             /** @description Validation Error */

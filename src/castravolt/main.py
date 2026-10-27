@@ -21,6 +21,8 @@ from castravolt.locations import router as locations_router
 from castravolt.features import router as features_router
 from castravolt.predictions import router as predictions_router
 from castravolt.inference import load_model
+from castravolt.trends import router as trends_router
+from castravolt.trend_summaries import router as summary_router
 
 logger = logging.getLogger('castravolt')
 
@@ -65,6 +67,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(locations_router)
     app.include_router(features_router)
     app.include_router(predictions_router)
+    app.include_router(trends_router)
+    app.include_router(summary_router)
     app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins,
                        allow_credentials=True, allow_methods=['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
                        allow_headers=['Content-Type', 'X-CSRF-Token'], expose_headers=['X-Request-ID','Retry-After'])

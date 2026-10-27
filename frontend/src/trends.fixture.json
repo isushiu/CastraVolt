@@ -1,0 +1,539 @@
+{
+  "source_version": "b028c5d4e5621e75cf4f6b263e5094e34976ad35b0e3c5a749badbe056f8531d",
+  "scope": {
+    "fuel": "electric",
+    "type": "motokar",
+    "states": [
+      "SELANGOR",
+      "W.P. KUALA LUMPUR"
+    ],
+    "excluded": "Rakan Niaga and all other states/types/fuels; this is new registrations, not fleet ownership"
+  },
+  "sources": [
+    {
+      "filename": "ev_registration2024.csv",
+      "sha256": "af7d74ca5a30aa84bd41f01727e41ee04e2af6b81002e79b30c3bc38aa35c88c",
+      "accepted": 2688,
+      "excluded": 0
+    },
+    {
+      "filename": "ev_registration2025.csv",
+      "sha256": "29dc875544b21a626222682f4c2d06b79d56773a6c71b5d708f31a7335c94dad",
+      "accepted": 1797,
+      "excluded": 0
+    },
+    {
+      "filename": "vehicles_2026.csv",
+      "sha256": "b84a838b10376635fbe1e80b43404b9debc8d1268262f1e8b5799baf343882a2",
+      "accepted": 1916,
+      "excluded": 0
+    }
+  ],
+  "coverage": [
+    {
+      "state": "SELANGOR",
+      "year": 2024,
+      "start_month": "2024-01",
+      "end_month": "2024-12"
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "year": 2024,
+      "start_month": "2024-01",
+      "end_month": "2024-12"
+    },
+    {
+      "state": "SELANGOR",
+      "year": 2025,
+      "start_month": "2025-01",
+      "end_month": "2025-12"
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "year": 2025,
+      "start_month": "2025-01",
+      "end_month": "2025-12"
+    },
+    {
+      "state": "SELANGOR",
+      "year": 2026,
+      "start_month": "2026-01",
+      "end_month": "2026-09"
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "year": 2026,
+      "start_month": "2026-01",
+      "end_month": "2026-09"
+    }
+  ],
+  "filters": {
+    "states": [
+      "SELANGOR",
+      "W.P. KUALA LUMPUR"
+    ],
+    "years": [
+      2024,
+      2025,
+      2026
+    ],
+    "comparison_mode": "timeline",
+    "start_month": null,
+    "end_month": null,
+    "calendar_month_start": 1,
+    "calendar_month_end": 12
+  },
+  "months": [
+    {
+      "state": "SELANGOR",
+      "month": "2024-01",
+      "count": 69
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-01",
+      "count": 138
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-02",
+      "count": 47
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-02",
+      "count": 85
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-03",
+      "count": 108
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-03",
+      "count": 192
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-04",
+      "count": 82
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-04",
+      "count": 168
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-05",
+      "count": 106
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-05",
+      "count": 226
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-06",
+      "count": 73
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-06",
+      "count": 200
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-07",
+      "count": 54
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-07",
+      "count": 214
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-08",
+      "count": 64
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-08",
+      "count": 185
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-09",
+      "count": 61
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-09",
+      "count": 135
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-10",
+      "count": 51
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-10",
+      "count": 131
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-11",
+      "count": 39
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-11",
+      "count": 96
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2024-12",
+      "count": 38
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2024-12",
+      "count": 126
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-01",
+      "count": 20
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-01",
+      "count": 56
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-02",
+      "count": 37
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-02",
+      "count": 70
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-03",
+      "count": 23
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-03",
+      "count": 72
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-04",
+      "count": 20
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-04",
+      "count": 62
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-05",
+      "count": 63
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-05",
+      "count": 141
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-06",
+      "count": 64
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-06",
+      "count": 114
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-07",
+      "count": 38
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-07",
+      "count": 75
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-08",
+      "count": 32
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-08",
+      "count": 95
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-09",
+      "count": 47
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-09",
+      "count": 86
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-10",
+      "count": 29
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-10",
+      "count": 82
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-11",
+      "count": 70
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-11",
+      "count": 139
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2025-12",
+      "count": 117
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2025-12",
+      "count": 245
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-01",
+      "count": 111
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-01",
+      "count": 180
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-02",
+      "count": 43
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-02",
+      "count": 84
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-03",
+      "count": 54
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-03",
+      "count": 109
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-04",
+      "count": 49
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-04",
+      "count": 147
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-05",
+      "count": 30
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-05",
+      "count": 81
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-06",
+      "count": 56
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-06",
+      "count": 174
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-07",
+      "count": 84
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-07",
+      "count": 170
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-08",
+      "count": 112
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-08",
+      "count": 210
+    },
+    {
+      "state": "SELANGOR",
+      "month": "2026-09",
+      "count": 67
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "month": "2026-09",
+      "count": 155
+    }
+  ],
+  "total": 6401,
+  "covered_months": 33,
+  "average_per_month": 193.96969696969697,
+  "period_start": "2024-01",
+  "period_end": "2026-09",
+  "common_month_window": [
+    1,
+    9
+  ],
+  "metrics": [
+    {
+      "state": "SELANGOR",
+      "year": 2024,
+      "start_month": "2024-01",
+      "end_month": "2024-12",
+      "covered_months": 12,
+      "total": 792,
+      "average_per_month": 66.0,
+      "growth": {
+        "available": false,
+        "percent": null,
+        "previous_total": null,
+        "previous_start": "2023-01",
+        "previous_end": "2023-12",
+        "reason": "Previous-year coverage is unavailable or incomplete."
+      }
+    },
+    {
+      "state": "SELANGOR",
+      "year": 2025,
+      "start_month": "2025-01",
+      "end_month": "2025-12",
+      "covered_months": 12,
+      "total": 560,
+      "average_per_month": 46.666666666666664,
+      "growth": {
+        "available": true,
+        "percent": -29.292929292929294,
+        "previous_total": 792,
+        "previous_start": "2024-01",
+        "previous_end": "2024-12",
+        "reason": null
+      }
+    },
+    {
+      "state": "SELANGOR",
+      "year": 2026,
+      "start_month": "2026-01",
+      "end_month": "2026-09",
+      "covered_months": 9,
+      "total": 606,
+      "average_per_month": 67.33333333333333,
+      "growth": {
+        "available": true,
+        "percent": 76.16279069767442,
+        "previous_total": 344,
+        "previous_start": "2025-01",
+        "previous_end": "2025-09",
+        "reason": null
+      }
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "year": 2024,
+      "start_month": "2024-01",
+      "end_month": "2024-12",
+      "covered_months": 12,
+      "total": 1896,
+      "average_per_month": 158.0,
+      "growth": {
+        "available": false,
+        "percent": null,
+        "previous_total": null,
+        "previous_start": "2023-01",
+        "previous_end": "2023-12",
+        "reason": "Previous-year coverage is unavailable or incomplete."
+      }
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "year": 2025,
+      "start_month": "2025-01",
+      "end_month": "2025-12",
+      "covered_months": 12,
+      "total": 1237,
+      "average_per_month": 103.08333333333333,
+      "growth": {
+        "available": true,
+        "percent": -34.757383966244724,
+        "previous_total": 1896,
+        "previous_start": "2024-01",
+        "previous_end": "2024-12",
+        "reason": null
+      }
+    },
+    {
+      "state": "W.P. KUALA LUMPUR",
+      "year": 2026,
+      "start_month": "2026-01",
+      "end_month": "2026-09",
+      "covered_months": 9,
+      "total": 1310,
+      "average_per_month": 145.55555555555554,
+      "growth": {
+        "available": true,
+        "percent": 69.90920881971465,
+        "previous_total": 771,
+        "previous_start": "2025-01",
+        "previous_end": "2025-09",
+        "reason": null
+      }
+    }
+  ],
+  "peak": {
+    "state": "W.P. KUALA LUMPUR",
+    "month": "2025-12",
+    "count": 245
+  },
+  "metric_label": "New electric motokar registrations",
+  "summary_enabled": true,
+  "summary": null
+}

@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     geocoder_url: str = 'https://nominatim.openstreetmap.org'
     geocoder_user_agent: str = 'CastraVolt/0.1 (urban EV planning research prototype)'
     overpass_url: str = 'https://overpass.private.coffee/api/interpreter'
+    groq_api_key: SecretStr = SecretStr('')
+    groq_model: str = Field(default='openai/gpt-oss-20b',min_length=1,max_length=120)
+    groq_timeout_seconds: int = Field(default=30,ge=5,le=60)
     poi_cache_hours: int = Field(default=24,ge=1,le=168)
     poi_source: Literal['local','overpass'] = 'local'
     model_directory: Path = Path('model/verified_poi_state_rf80_cv10')

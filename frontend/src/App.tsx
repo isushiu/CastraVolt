@@ -1,16 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Navigate, NavLink, Route, Routes } from 'react-router-dom';
 import { ArrowRight, ArrowUpRight, BarChart3, Check, ChevronRight,
-  Compass, FolderOpen, MapPin, Menu, PanelLeftClose, RefreshCw, X } from 'lucide-react';
+  Compass, FolderOpen, Menu, PanelLeftClose, RefreshCw, X } from 'lucide-react';
 import { getSystemInfo } from './api/client';
 import { AuthPage, AuthProvider, RequireAuth, useAuth } from './auth';
 import { ProjectsPage, ProjectWorkspace } from './projects';
 import Estimator from './estimator';
-
-function RoadmapPage({ trends = false }: { trends?: boolean }) {
-  return <><div className="page-heading"><div><div className="eyebrow">{trends ? 'REGISTRATION CONTEXT' : 'PROJECT TOOLS'}</div><h1>{trends ? 'EV adoption trends' : 'Site estimator'}</h1></div></div>
-    <section className="empty-projects"><div className="empty-icon">{trends ? <BarChart3/> : <MapPin/>}</div><h2>{trends ? 'Monthly context, clearly presented' : 'Start with a proposed location'}</h2><p>{trends ? 'The monthly dashboard will bring together filtered 2024–2026 registrations with state and period comparisons.' : 'The estimator will connect a selected site, surrounding facilities and a planning estimate within your project.'}</p><span className="upcoming-tag">Coming in a later stage</span></section></>;
-}
+const Trends=lazy(()=>import('./Trends'));
 
 function Connection() {
   const [state, setState] = useState<'loading'|'online'|'offline'>('loading');
@@ -70,7 +66,7 @@ export function Workspace() {
       <div className="sidebar-bottom"><div className="study-label"><span className="small-dot"/> STUDY AREA</div><p>Kuala Lumpur<br />&amp; Selangor</p><div className="sidebar-rule"/><span className="prototype-label">FYP research prototype <ArrowUpRight size={13}/></span><button className="signout" onClick={()=>{setLogoutError('');void auth.signOut().catch(()=>setLogoutError('Unable to sign out. Please retry.'));}}>Sign out</button>{logoutError&&<p role="alert">{logoutError}</p>}</div>
     </aside>
     <div className="main-shell"><header className="utility-bar"><div className="breadcrumb"><button className="mobile-menu" aria-label="Open navigation" aria-expanded={menuOpen} onClick={()=>setMenuOpen(true)}><Menu size={20}/></button><PanelLeftClose size={17} className="desktop-panel-icon"/><span>Workspace</span><ChevronRight size={13}/><span className="breadcrumb-current">CastraVolt</span></div><div className="utility-right"><span className="prototype-label header-prototype"><Check size={13}/> {auth.user?.name}</span><span className="avatar" aria-label="Your account">{auth.user?.name.slice(0,2).toUpperCase()}</span></div></header>
-      <main id="main" className="main-content" tabIndex={-1}><div className="page-content"><Routes><Route path="/" element={<ProjectsPage/>}/><Route path="/projects/:projectId" element={<ProjectWorkspace/>}/><Route path="/estimator" element={<Estimator/>}/><Route path="/trends" element={<RoadmapPage trends/>}/><Route path="*" element={<section className="empty-projects"><h1>Page not found</h1><NavLink to="/" className="button primary">Return to projects <ArrowRight size={16}/></NavLink></section>}/></Routes></div>
+      <main id="main" className="main-content" tabIndex={-1}><div className="page-content"><Routes><Route path="/" element={<ProjectsPage/>}/><Route path="/projects/:projectId" element={<ProjectWorkspace/>}/><Route path="/estimator" element={<Estimator/>}/><Route path="/trends" element={<Suspense fallback={<p role="status">Loading monthly trends…</p>}><Trends/></Suspense>}/><Route path="*" element={<section className="empty-projects"><h1>Page not found</h1><NavLink to="/" className="button primary">Return to projects <ArrowRight size={16}/></NavLink></section>}/></Routes></div>
       <footer><span>CastraVolt <span className="footer-divider">/</span> Urban EV infrastructure planning</span><Connection/></footer></main>
     </div>
   </div>;

@@ -9,7 +9,7 @@ from urllib.error import HTTPError,URLError
 
 from fastapi import APIRouter,Depends,HTTPException,Request
 from pydantic import BaseModel,ConfigDict,Field
-from sqlalchemy import delete,func,select,update
+from sqlalchemy import delete,func,select,update,text
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
 
@@ -196,6 +196,13 @@ def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user
         local=load_snapshot()
     source='local-osm:'+local['_snapshot_sha256'] if local is not None else settings.overpass_url
     key=digest(json.dumps([snapshot['latitude'],snapshot['longitude'],RADIUS,RULE_HASH,source]))
+    if local is not None:
+        # Serialise local misses for this exact area until its cache row is
+        # published. Concurrent prediction retries then reuse that row rather
+        # than incorrectly consuming the per-planner fresh-area cooldown.
+        lock_key=int(key[:16],16)
+        if lock_key>=2**63:lock_key-=2**64
+        db.execute(text('SELECT pg_advisory_xact_lock(:key)'),{'key':lock_key})
     cached=db.get(PoiCache,key);hit=bool(cached and cached.expires_at>now())
     if hit:
         counts=cached.counts;provenance=cached.provenance;extracted=cached.extracted_at;db.commit()
@@ -207,12 +214,11 @@ def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user
             local_key=digest('local-poi:'+str(user.id))
             reservation=insert(AuthRateLimit).values(key=local_key,count=1,expires_at=func.clock_timestamp()+timedelta(seconds=5))
             reservation=reservation.on_conflict_do_update(index_elements=['key'],set_={'count':1,'expires_at':func.clock_timestamp()+timedelta(seconds=5)},where=AuthRateLimit.expires_at<=func.clock_timestamp()).returning(AuthRateLimit.key)
-            reserved=db.scalar(reservation);db.commit()
+            reserved=db.scalar(reservation)
             if not reserved:
                 remaining=db.scalar(select(func.extract('epoch',AuthRateLimit.expires_at-func.clock_timestamp())).where(AuthRateLimit.key==local_key))
                 delay=max(1,min(5,math.ceil(remaining or 1)));db.commit()
                 raise HTTPException(429,f'Please wait {delay} seconds before preparing another uncached area.',headers={'Retry-After':str(delay)})
-            db.commit()
             data=query_snapshot(local,snapshot['latitude'],snapshot['longitude'])
             counts=extract_counts(data,snapshot['latitude'],snapshot['longitude'])
         else:
@@ -253,6 +259,7 @@ def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user
         and getattr(model,'snapshot_sha256',None)==provenance.get('source_snapshot_sha256'))
     limitation=('Research planning estimate; site-category dependence and larger-site errors limit accuracy.' if eligible
         else 'The model or map source does not match the evaluated 1 km training setup. Use the bundled map snapshot and selected model.')
+    if model is None:limitation='The trained model is not loaded. Restore the verified model files and restart the backend.'
     return PreparedContext(site_id=str(site_id),site_updated_at=snapshot['updated_at'],features=ModelFeatures(**counts,
         category=snapshot['category'],state=state),extracted_at=extracted,cache_hit=hit,provenance=provenance,
         inference_eligible=eligible,limitation=limitation)

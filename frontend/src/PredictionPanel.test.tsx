@@ -14,3 +14,10 @@ test('no invented output before saved context is ready',()=>{
   const html=renderToStaticMarkup(<MemoryRouter><PredictionPanel result={null} ready={false} busy={false} error="" onPredict={()=>{}} projectId="p1"/></MemoryRouter>);
   expect(html).toContain('disabled');expect(html).not.toContain('prediction-number');expect(html).toContain('prepare its context');
 });
+
+
+test('blocked prediction explains the missing model instead of asking to save again',()=>{
+ const html=renderToStaticMarkup(<MemoryRouter><PredictionPanel result={null} ready={false} busy={false} error="" onPredict={()=>{}} projectId="p1" blockedReason="The trained model is not loaded. Restart the backend after restoring it."/></MemoryRouter>);
+ expect(html).toContain('The trained model is not loaded.');
+ expect(html).not.toContain('Save your site and prepare its context');
+});
