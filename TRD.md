@@ -237,3 +237,62 @@ Hosting, map/geocoding/POI providers, email provider, backup recovery targets an
 3. Select urban boundaries, hosting and external providers.
 4. Align notebook export configuration with the current rounding policy.
 5. Implement individual accounts and ownership before exposing saved project data to multiple planners.
+<<<<<<< Updated upstream
+=======
+
+
+## Stage 4 implementation — 27 October 2026
+
+The active estimator uses Leaflet 1.9.4 with OpenStreetMap tiles and visible attribution. Project workspace offers Add site on map and Open on map; the sidebar estimator starts with a project chooser. Planners can submit an address search, click the map, drag the pin or use numeric coordinates. A 3,000 metre Leaflet Circle follows the pin. Confirm the host-site category before saving; nearby POIs do not determine that category. Saving creates or updates an owned site without running ML.
+
+State is derived server-side from bundled, hash-checked Selangor/Kuala Lumpur state polygons (geoBoundaries MYS ADM1, OSM/Wambacher, 2017, ODbL 1.0). Unsupported/ambiguous boundary points are rejected, including Putrajaya. This is a reproducible research boundary with provisional urban-only coverage, not current cadastral verification. User-supplied state fields are forbidden. Moving the pin invalidates prior validation/saved state, clears the stale address, and requests category reconfirmation.
+
+Address search uses a configurable server-side Nominatim endpoint, explicit submission only, bounded time/response size, provider identification, seven-day successful-result caching and a PostgreSQL global 1.1-second reservation. No autocomplete, searches on every keystroke, or POI/inference on map movement. Search/map failures expose retry/manual alternatives. Browser generation/abort guards prevent late responses replacing current selections. Standard tile requests retain provider attribution, browser caching and origin referrers.
+
+Public OSM/Nominatim endpoints are low-volume development defaults, not a production capacity promise. Configure suitable providers for wider use. Provider details, source hashes, licensing and checks are recorded in docs/STAGE_4_IMPLEMENTATION.md. Existing-site records with unresolved state remain unchanged until a coordinate update; Stage 5/6 must independently validate state before using adoption context.
+
+
+### Map-only refinement — 27 October 2026
+
+User decision supersedes earlier manual-coordinate alternatives: create and edit sites through the map only. Remove the separate Add site form and inline site editor. Project workspace offers Add site on map and Open on map. Coordinates are displayed read-only; state is derived on the server from the selected pin. Address is reverse-geocoded automatically after the pin settles (1.2 second debounce), or reused from an address search. Name and host-site category remain planner inputs; category is not inferred from nearby facilities.
+
+Reverse lookup shares the existing global provider quota/cache, uses local state polygons rather than the provider's state label, aborts/discards stale responses and can be retried. Save waits for pending address lookup; if lookup fails, address remains optional and the valid pin/state can still be saved. POI/adoption feature extraction remains Stage 5. The observed Not Found response was traced to an older running backend with no location routes; restart once via start.cmd. Local startup now enables source-directory backend reload. User app ports/processes were inspected but not stopped or occupied.
+
+
+## Stage 5 feature preparation — 27 October 2026
+
+After saving a site, Prepare site context explicitly requests server-side facilities within 3,000 metres. The backend reads the owned site's pin/category, derives its state, gathers eight counts (mall, petrol, hotel, office, transit, university, hospital, parking), and appends fixed 2025 registrations (Selangor 560, KL 1,237), category and state: 11 model fields. Registration context is reconciled from the filtered CSV and packaged with source hash/scope. The 2024–2026 series remains available for the later trends dashboard; it is not dynamically substituted into the model lookup.
+
+Counts/provenance are cached by exact location, radius, rule fingerprint and provider. Provider failures/incomplete results are errors, not zero facilities. Changes cancel or clear displayed context, and backend rechecks site revision/session/ownership after extraction. No inference or saved charger prediction happens at this stage.
+
+Original training extraction definitions are still unavailable. New counting rules are explicitly provisional, with inference_eligible=false; they cannot be claimed equivalent to the training POIs. Original rules plus genuine site parity checks, or consistent POI regeneration and retraining, remain necessary. Live provider availability also remains unverified after TLS/timeout failures. See docs/STAGE_5_IMPLEMENTATION.md for exact tags, geometry, deduplication, cache/error behavior and evidence. Stage 5 is pending that dependency, despite the implemented service/UI.
+
+
+## Working local data source — 27 October 2026
+
+Latest implementation supersedes the requirement to wait for public Overpass availability. The default `CASTRAVOLT_POI_SOURCE=local` reads the bundled `resources/poi_snapshot.json.gz`, containing 10,981 genuine OSM facility representations from Geofabrik's 25 October 2026 extract. The compact catalogue is 483,026 bytes; source/checksums/coverage/license are in poi_snapshot_manifest.json. It covers the two state geometries plus a >3 km buffer and rejects circles outside its coverage. Local requests make no provider call and do not use the global Overpass cooldown. Cache keys include the snapshot SHA-256; classification/radius/deduplication remain versioned as before.
+
+The full 252,386,711-byte source PBF stays ignored under data/poi/source. Its published checksum was verified, and its SHA-256 is 92e10b7d3d6b415758fa8e5720411fcb20e431e1f7d7f3e1420a2703289edd23. The compact derived database ships in the application package under ODbL 1.0 with OpenStreetMap/Geofabrik attribution. Source timestamp: 2026-10-25T21:21:21Z. This is a dated snapshot, not a real-time facility inventory; rebuilding/restarting is a deliberate data update.
+
+Way bounding boxes are resolved from source node coordinates. Relation bounds include source members and nested relations. Incomplete geometry affecting study coverage aborts the build; radius uses bounding-box centres, matching the documented provisional method. `scripts/build_local_pois.py` is optional build tooling using the separate poi-build group, not a runtime requirement. Native system TLS via truststore repairs the observed Python-vs-Windows validation mismatch while retaining certificate/hostname checks; optional Overpass and address clients use it. Production data/model parity is not certified by this repair.
+
+Verified real catalogue queries: public KLCC and the user's reported saved pin return counts; the latter prepared in approximately 12 ms in a direct local check. Browser QA on isolated 5174/8001 confirmed Prepare site context displays the real eight counts and 560 Selangor registrations. No ML prediction was generated. Original training POI-rule parity remains pending, so inference_eligible stays false. App startup now defaults to source polling for reliable development reload on Windows drives.
+
+Verification: 54 backend tests passed, 24 frontend tests and production build passed. Tests include source integrity/coverage, way/relation geometry, native TLS verification flags, no remote call for local preparation, and successful cache reuse. A wheel check verifies the snapshot/manifest are shipped. No user app process was stopped or app port occupied; temporary browser QA is cleaned up after verification. Existing user process needs one restart using start.cmd to activate the new source.
+
+
+## Stage 6 experimental serving — 27 October 2026
+
+User-selected layout: prediction output sits directly beneath the map, with facility inputs on the right. Save site → Prepare site context → Generate experimental estimate. The backend uses the selected verified Random Forest and all 11 server-derived features. Display total planned charging points using nearest-half-up and minimum one; retain raw output. No automatic inference on pin movement and no retraining in the application.
+
+Every saved estimate includes immutable site/features/source/adoption/rule/model provenance and the unverified POI status. Request UUID and site revision prevent duplicate/conflicting retries; database uniqueness and final ownership/session/revision checks cover concurrency. Results clear when the draft changes. Site history retains the experimental label and calculation/input details. Model startup checks exact hash/runtime/features/selected parameters and reproduces ten saved fixtures; missing/incompatible models fail visibly.
+
+Original live/training POI-rule parity remains unresolved. The development action explicitly requests an experimental result; it does not change inference_eligible=false or claim model accuracy for the new counts. Production rejects these unverified inputs. Stage 6 validated completion remains pending that dependency. Experimental local workflow passed 66 backend / 27 frontend tests, build and genuine browser-to-history verification. See docs/STAGE_6_IMPLEMENTATION.md.
+
+
+## Current model integration — 27 October 2026
+
+This decision supersedes earlier 3 km/adoption prediction specifications. The estimator uses eight POI counts within **1 km**, the confirmed host-site category and boundary-derived state. EV registration numbers are excluded from prediction; keep 2024–2026 data for the future monthly trends dashboard.
+
+The selected evaluated Random Forest is `model/verified_poi_state_rf80_cv10` (80/20 with training-only CV10). Results appear below the map, estimate total planned charging points, and use nearest whole number with halves upward and minimum one. Exact model, query-rule and OSM snapshot compatibility is required. New history stores no adoption context; old history is preserved. Research prototype wording reflects measured capacity accuracy limits, not a placeholder model. See BACKLOG.md and RESULTS.md for implementation status and validation.
+>>>>>>> Stashed changes

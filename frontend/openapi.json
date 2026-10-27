@@ -72,6 +72,67 @@
   },
   "components": {
     "schemas": {
+<<<<<<< Updated upstream
+=======
+      "AuthResult": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/Planner"
+          },
+          "csrf_token": {
+            "type": "string",
+            "title": "Csrf Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user",
+          "csrf_token"
+        ],
+        "title": "AuthResult"
+      },
+      "CsrfResult": {
+        "properties": {
+          "csrf_token": {
+            "type": "string",
+            "title": "Csrf Token"
+          }
+        },
+        "type": "object",
+        "required": [
+          "csrf_token"
+        ],
+        "title": "CsrfResult"
+      },
+      "EmailInput": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "format": "email",
+            "title": "Email"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email"
+        ],
+        "title": "EmailInput"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+>>>>>>> Stashed changes
       "Liveness": {
         "properties": {
           "status": {
@@ -84,6 +145,508 @@
         "type": "object",
         "title": "Liveness"
       },
+<<<<<<< Updated upstream
+=======
+      "LocationResult": {
+        "properties": {
+          "latitude": {
+            "type": "number",
+            "title": "Latitude"
+          },
+          "longitude": {
+            "type": "number",
+            "title": "Longitude"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "boundary_version": {
+            "type": "string",
+            "title": "Boundary Version",
+            "default": "MYS-ADM1-15666254-2017"
+          },
+          "urban_coverage": {
+            "type": "string",
+            "title": "Urban Coverage",
+            "default": "provisional"
+          }
+        },
+        "type": "object",
+        "required": [
+          "latitude",
+          "longitude",
+          "state"
+        ],
+        "title": "LocationResult"
+      },
+      "LoginInput": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 254,
+            "minLength": 1,
+            "title": "Id"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Password"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "password"
+        ],
+        "title": "LoginInput"
+      },
+      "Message": {
+        "properties": {
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "message"
+        ],
+        "title": "Message"
+      },
+      "ModelFeatures": {
+        "properties": {
+          "nearby_mall_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Mall Count"
+          },
+          "nearby_petrol_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Petrol Count"
+          },
+          "nearby_hotel_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Hotel Count"
+          },
+          "nearby_office_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Office Count"
+          },
+          "nearby_transit_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Transit Count"
+          },
+          "nearby_university_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby University Count"
+          },
+          "nearby_hospital_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Hospital Count"
+          },
+          "nearby_parking_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Parking Count"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "nearby_mall_count",
+          "nearby_petrol_count",
+          "nearby_hotel_count",
+          "nearby_office_count",
+          "nearby_transit_count",
+          "nearby_university_count",
+          "nearby_hospital_count",
+          "nearby_parking_count",
+          "category",
+          "state"
+        ],
+        "title": "ModelFeatures"
+      },
+      "Planner": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "email"
+        ],
+        "title": "Planner"
+      },
+      "PoiProvenance": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "osm_base_timestamp": {
+            "type": "string",
+            "title": "Osm Base Timestamp"
+          },
+          "response_sha256": {
+            "type": "string",
+            "title": "Response Sha256"
+          },
+          "geometry": {
+            "type": "string",
+            "title": "Geometry"
+          },
+          "deduplication": {
+            "type": "string",
+            "title": "Deduplication"
+          },
+          "attribution": {
+            "type": "string",
+            "title": "Attribution"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "source_snapshot_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Snapshot Sha256"
+          }
+        },
+        "type": "object",
+        "required": [
+          "provider",
+          "osm_base_timestamp",
+          "response_sha256",
+          "geometry",
+          "deduplication",
+          "attribution"
+        ],
+        "title": "PoiProvenance"
+      },
+      "PredictionInput": {
+        "properties": {
+          "idempotency_key": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Idempotency Key"
+          },
+          "site_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Site Updated At"
+          },
+          "acknowledge_model_limitations": {
+            "type": "boolean",
+            "title": "Acknowledge Model Limitations",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "idempotency_key",
+          "site_updated_at"
+        ],
+        "title": "PredictionInput"
+      },
+      "PredictionResult": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "site_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Site Id"
+          },
+          "input_snapshot": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Input Snapshot"
+          },
+          "raw_estimate": {
+            "type": "number",
+            "title": "Raw Estimate"
+          },
+          "displayed_total": {
+            "type": "integer",
+            "title": "Displayed Total"
+          },
+          "model_version": {
+            "type": "string",
+            "title": "Model Version"
+          },
+          "extraction_rule_version": {
+            "type": "string",
+            "title": "Extraction Rule Version"
+          },
+          "poi_timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Poi Timestamp"
+          },
+          "adoption_reference_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adoption Reference Year"
+          },
+          "adoption_value": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Adoption Value"
+          },
+          "rounding_policy": {
+            "type": "string",
+            "title": "Rounding Policy"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "experimental": {
+            "type": "boolean",
+            "title": "Experimental"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "site_id",
+          "input_snapshot",
+          "raw_estimate",
+          "displayed_total",
+          "model_version",
+          "extraction_rule_version",
+          "poi_timestamp",
+          "adoption_reference_year",
+          "adoption_value",
+          "rounding_policy",
+          "created_at",
+          "experimental"
+        ],
+        "title": "PredictionResult"
+      },
+      "PreparedContext": {
+        "properties": {
+          "site_id": {
+            "type": "string",
+            "title": "Site Id"
+          },
+          "site_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Site Updated At"
+          },
+          "features": {
+            "$ref": "#/components/schemas/ModelFeatures"
+          },
+          "radius_metres": {
+            "type": "integer",
+            "title": "Radius Metres",
+            "default": 1000
+          },
+          "extraction_rule_version": {
+            "type": "string",
+            "title": "Extraction Rule Version",
+            "default": "provisional-centres-wikidata50m-v1"
+          },
+          "rule_sha256": {
+            "type": "string",
+            "title": "Rule Sha256",
+            "default": "47df51e25751ad656cbdb495db37f8b6dde7eb38ebe600bd29a3512fd773be89"
+          },
+          "boundary_version": {
+            "type": "string",
+            "title": "Boundary Version",
+            "default": "MYS-ADM1-15666254-2017"
+          },
+          "extracted_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Extracted At"
+          },
+          "cache_hit": {
+            "type": "boolean",
+            "title": "Cache Hit"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/PoiProvenance"
+          },
+          "inference_eligible": {
+            "type": "boolean",
+            "title": "Inference Eligible",
+            "default": false
+          },
+          "limitation": {
+            "type": "string",
+            "title": "Limitation",
+            "default": "Research planning estimate; site-category dependence and larger-site errors limit accuracy."
+          }
+        },
+        "type": "object",
+        "required": [
+          "site_id",
+          "site_updated_at",
+          "features",
+          "extracted_at",
+          "cache_hit",
+          "provenance"
+        ],
+        "title": "PreparedContext"
+      },
+      "ProjectInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Description",
+            "default": ""
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "ProjectInput"
+      },
+      "ProjectPatch": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 100,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ProjectPatch"
+      },
+      "ProjectResult": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 2000,
+            "title": "Description",
+            "default": ""
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "ProjectResult"
+      },
+>>>>>>> Stashed changes
       "Readiness": {
         "properties": {
           "scope": {

@@ -87,6 +87,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def live():
         return Liveness()
 
+<<<<<<< Updated upstream
+=======
+    @app.get('/health/model')
+    def model_status(request:Request):
+        model=request.app.state.prediction_model
+        if model is None:return JSONResponse(status_code=503,content={'status':'unavailable','experimental':True,'validated_predictions_available':False})
+        return {'status':'ready','model_version':model.version,'experimental':True,'research_prototype':True,
+                'radius_metres':model.radius_metres,'features':list(model.features),'validated_predictions_available':False}
+
+>>>>>>> Stashed changes
     @app.get('/health/ready', response_model=Readiness,
              responses={503: {'model': Readiness}})
     def ready(request: Request):

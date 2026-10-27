@@ -59,6 +59,33 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+<<<<<<< Updated upstream
+=======
+        /** AuthResult */
+        AuthResult: {
+            user: components["schemas"]["Planner"];
+            /** Csrf Token */
+            csrf_token: string;
+        };
+        /** CsrfResult */
+        CsrfResult: {
+            /** Csrf Token */
+            csrf_token: string;
+        };
+        /** EmailInput */
+        EmailInput: {
+            /**
+             * Email
+             * Format: email
+             */
+            email: string;
+        };
+        /** HTTPValidationError */
+        HTTPValidationError: {
+            /** Detail */
+            detail?: components["schemas"]["ValidationError"][];
+        };
+>>>>>>> Stashed changes
         /** Liveness */
         Liveness: {
             /**
@@ -68,6 +95,246 @@ export interface components {
              */
             status: "alive";
         };
+<<<<<<< Updated upstream
+=======
+        /** LocationResult */
+        LocationResult: {
+            /** Latitude */
+            latitude: number;
+            /** Longitude */
+            longitude: number;
+            /** State */
+            state: string;
+            /**
+             * Boundary Version
+             * @default MYS-ADM1-15666254-2017
+             */
+            boundary_version: string;
+            /**
+             * Urban Coverage
+             * @default provisional
+             */
+            urban_coverage: string;
+        };
+        /** LoginInput */
+        LoginInput: {
+            /** Id */
+            id: string;
+            /** Password */
+            password: string;
+        };
+        /** Message */
+        Message: {
+            /** Message */
+            message: string;
+        };
+        /** ModelFeatures */
+        ModelFeatures: {
+            /** Nearby Mall Count */
+            nearby_mall_count: number;
+            /** Nearby Petrol Count */
+            nearby_petrol_count: number;
+            /** Nearby Hotel Count */
+            nearby_hotel_count: number;
+            /** Nearby Office Count */
+            nearby_office_count: number;
+            /** Nearby Transit Count */
+            nearby_transit_count: number;
+            /** Nearby University Count */
+            nearby_university_count: number;
+            /** Nearby Hospital Count */
+            nearby_hospital_count: number;
+            /** Nearby Parking Count */
+            nearby_parking_count: number;
+            /** Category */
+            category: string;
+            /** State */
+            state: string;
+        };
+        /** Planner */
+        Planner: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Email */
+            email: string;
+        };
+        /** PoiProvenance */
+        PoiProvenance: {
+            /** Provider */
+            provider: string;
+            /** Osm Base Timestamp */
+            osm_base_timestamp: string;
+            /** Response Sha256 */
+            response_sha256: string;
+            /** Geometry */
+            geometry: string;
+            /** Deduplication */
+            deduplication: string;
+            /** Attribution */
+            attribution: string;
+            /** Source Url */
+            source_url?: string | null;
+            /** Source Snapshot Sha256 */
+            source_snapshot_sha256?: string | null;
+        };
+        /** PredictionInput */
+        PredictionInput: {
+            /**
+             * Idempotency Key
+             * Format: uuid
+             */
+            idempotency_key: string;
+            /**
+             * Site Updated At
+             * Format: date-time
+             */
+            site_updated_at: string;
+            /**
+             * Acknowledge Model Limitations
+             * @default false
+             */
+            acknowledge_model_limitations: boolean;
+        };
+        /** PredictionResult */
+        PredictionResult: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Site Id
+             * Format: uuid
+             */
+            site_id: string;
+            /** Input Snapshot */
+            input_snapshot: {
+                [key: string]: unknown;
+            };
+            /** Raw Estimate */
+            raw_estimate: number;
+            /** Displayed Total */
+            displayed_total: number;
+            /** Model Version */
+            model_version: string;
+            /** Extraction Rule Version */
+            extraction_rule_version: string;
+            /**
+             * Poi Timestamp
+             * Format: date-time
+             */
+            poi_timestamp: string;
+            /** Adoption Reference Year */
+            adoption_reference_year: number | null;
+            /** Adoption Value */
+            adoption_value: number | null;
+            /** Rounding Policy */
+            rounding_policy: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Experimental */
+            experimental: boolean;
+        };
+        /** PreparedContext */
+        PreparedContext: {
+            /** Site Id */
+            site_id: string;
+            /**
+             * Site Updated At
+             * Format: date-time
+             */
+            site_updated_at: string;
+            features: components["schemas"]["ModelFeatures"];
+            /**
+             * Radius Metres
+             * @default 1000
+             */
+            radius_metres: number;
+            /**
+             * Extraction Rule Version
+             * @default provisional-centres-wikidata50m-v1
+             */
+            extraction_rule_version: string;
+            /**
+             * Rule Sha256
+             * @default 47df51e25751ad656cbdb495db37f8b6dde7eb38ebe600bd29a3512fd773be89
+             */
+            rule_sha256: string;
+            /**
+             * Boundary Version
+             * @default MYS-ADM1-15666254-2017
+             */
+            boundary_version: string;
+            /**
+             * Extracted At
+             * Format: date-time
+             */
+            extracted_at: string;
+            /** Cache Hit */
+            cache_hit: boolean;
+            provenance: components["schemas"]["PoiProvenance"];
+            /**
+             * Inference Eligible
+             * @default false
+             */
+            inference_eligible: boolean;
+            /**
+             * Limitation
+             * @default Research planning estimate; site-category dependence and larger-site errors limit accuracy.
+             */
+            limitation: string;
+        };
+        /** ProjectInput */
+        ProjectInput: {
+            /** Name */
+            name: string;
+            /**
+             * Description
+             * @default
+             */
+            description: string;
+        };
+        /** ProjectPatch */
+        ProjectPatch: {
+            /** Name */
+            name?: string | null;
+            /** Description */
+            description?: string | null;
+        };
+        /** ProjectResult */
+        ProjectResult: {
+            /** Name */
+            name: string;
+            /**
+             * Description
+             * @default
+             */
+            description: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+>>>>>>> Stashed changes
         /** Readiness */
         Readiness: {
             /**

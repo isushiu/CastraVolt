@@ -1,0 +1,12 @@
+source,column,dtype,missing,unique_nonmissing,constant
+updated_mevnet.csv,nearby_mall_count,int64,0,22,False
+updated_mevnet.csv,nearby_petrol_count,int64,0,12,False
+updated_mevnet.csv,nearby_hotel_count,int64,0,97,False
+updated_mevnet.csv,nearby_office_count,int64,0,132,False
+updated_mevnet.csv,nearby_transit_count,int64,0,16,False
+updated_mevnet.csv,nearby_university_count,int64,0,11,False
+updated_mevnet.csv,nearby_hospital_count,int64,0,17,False
+updated_mevnet.csv,nearby_parking_count,int64,0,117,False
+updated_mevnet.csv,category,object,0,24,False
+updated_mevnet.csv,state,object,0,2,False
+updated_mevnet.csv,total_planned_chargers,int64,0,32,False

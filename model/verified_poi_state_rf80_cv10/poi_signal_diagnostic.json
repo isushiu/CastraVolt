@@ -1,0 +1,60 @@
+{
+  "training_cv_ablation": {
+    "POIs_only": {
+      "mean": 2.630133193436491,
+      "std": 0.258635318557014
+    },
+    "category_state_only": {
+      "mean": 1.8935809258244927,
+      "std": 0.2569907248516987
+    },
+    "POIs_category_state_selected": {
+      "mean": 1.9025545370218189,
+      "source": "saved training-CV score"
+    }
+  },
+  "heldout_permutation": {
+    "RandomForest": {
+      "original_test_MAE": 2.012392212095907,
+      "repeated_block_permutation": {
+        "all_POIs": {
+          "mean_MAE": 2.0005680705470863,
+          "mean_increase_over_original": -0.0118241415488205,
+          "std_MAE": 0.022325931682962326
+        },
+        "category": {
+          "mean_MAE": 3.125301054427919,
+          "mean_increase_over_original": 1.1129088423320121,
+          "std_MAE": 0.08342133435786384
+        },
+        "state": {
+          "mean_MAE": 2.0124711580601646,
+          "mean_increase_over_original": 7.894596425783718e-05,
+          "std_MAE": 0.0009415118378109873
+        }
+      }
+    },
+    "XGBoost": {
+      "original_test_MAE": 1.9535679817199707,
+      "repeated_block_permutation": {
+        "all_POIs": {
+          "mean_MAE": 2.1185707688331603,
+          "mean_increase_over_original": 0.1650027871131896,
+          "std_MAE": 0.05114597889904101
+        },
+        "category": {
+          "mean_MAE": 3.0631515622138976,
+          "mean_increase_over_original": 1.109583580493927,
+          "std_MAE": 0.09500317552985317
+        },
+        "state": {
+          "mean_MAE": 1.9548085629940033,
+          "mean_increase_over_original": 0.0012405812740325928,
+          "std_MAE": 0.0020653734943983154
+        }
+      }
+    }
+  },
+  "method": "Same saved 80% training set and CV10 folds; ablations retain RF selected parameters. Held-out feature blocks jointly shuffled over 20 deterministic seeds.",
+  "limitations": "Exploratory diagnosis after test inspection, not independent final selection; correlated features and inferred categories limit interpretation."
+}

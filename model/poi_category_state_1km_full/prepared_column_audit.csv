@@ -1,0 +1,14 @@
+source,column,dtype,missing,unique_nonmissing,constant
+prepared_sites,nearby_mall_count,float64,0,22,False
+prepared_sites,nearby_petrol_count,float64,0,12,False
+prepared_sites,nearby_hotel_count,float64,0,97,False
+prepared_sites,nearby_office_count,float64,0,132,False
+prepared_sites,nearby_transit_count,float64,0,16,False
+prepared_sites,nearby_university_count,float64,0,11,False
+prepared_sites,nearby_hospital_count,float64,0,17,False
+prepared_sites,nearby_parking_count,float64,0,117,False
+prepared_sites,category,string,0,24,False
+prepared_sites,state,string,0,2,False
+prepared_sites,total_planned_chargers,int64,0,32,False
+prepared_sites,_source_row,int64,0,1902,False
+prepared_sites,_coordinate_group,object,0,1901,False

@@ -382,3 +382,27 @@ Initial state: planning documents and a training notebook exist. These do not me
 - Stage 8 — Not started.
 
 For each update, add: stage/status; delivered file paths or artifact versions; verification performed and results; unresolved dependency/limitation; next stage or independent task. Check the matching Phase checkboxes as work is verified. Do not mark an entire stage complete based on a partial screenshot or successful command alone.
+<<<<<<< Updated upstream
+=======
+
+
+### Map-only follow-up — 27 October 2026
+
+Removed the separate manual Add site form and inline site editor; creation/editing now use the estimator map. Coordinates are read-only. Pin state is validated locally and address is reverse-geocoded after the pin settles, using the shared cache/provider quota. Save waits for pending address resolution and permits an absent address after a visible lookup failure. Name/category remain planner-confirmed inputs.
+
+Diagnosed the user's 404 against the actual running API: port 8000's OpenAPI had no location routes, and the frontend proxy returned the same 404. This was an older backend process. No user process was stopped. Restart once through start.cmd; the updated launcher enables backend source reload for subsequent code changes. Missing location routes now produce an explicit restart instruction instead of bare Not Found.
+
+Verified: 36 backend tests, 17 frontend tests and frontend build passed. Isolated real-browser check confirmed map-only creation, dropped-pin coordinates/state/address derivation and saved site. Temporary preview/database cleaned up. Model/POI extraction remains Stage 5/6.
+
+
+### Stage 5 local-source repair — 27 October 2026
+
+Facility availability is now verified using a bundled genuine Geofabrik OSM snapshot, dated 25 October 2026: 10,981 node/way/relation representations, 483 KB compressed, state coverage plus 3 km buffer. Default local mode bypasses public-service requests/cooldowns; source hash is part of the successful-count cache key. No raw 240 MB download is needed on another computer. Native certificate verification is used for remaining external HTTP calls. Real-browser context preparation at the reported pin succeeds. Verified 54 backend / 24 frontend tests and production build. Original training counting-rule parity remains the Stage 5 dependency; do not conflate resolved availability with model validity.
+
+
+## Current model integration — 27 October 2026
+
+This decision supersedes earlier 3 km/adoption prediction specifications. The estimator uses eight POI counts within **1 km**, the confirmed host-site category and boundary-derived state. EV registration numbers are excluded from prediction; keep 2024–2026 data for the future monthly trends dashboard.
+
+The selected evaluated Random Forest is `model/verified_poi_state_rf80_cv10` (80/20 with training-only CV10). Results appear below the map, estimate total planned charging points, and use nearest whole number with halves upward and minimum one. Exact model, query-rule and OSM snapshot compatibility is required. New history stores no adoption context; old history is preserved. Research prototype wording reflects measured capacity accuracy limits, not a placeholder model. See BACKLOG.md and RESULTS.md for implementation status and validation.
+>>>>>>> Stashed changes
