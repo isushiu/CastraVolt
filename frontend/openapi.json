@@ -1005,6 +1005,49 @@
         }
       }
     },
+    "/api/v1/sites/{site_id}/features": {
+      "post": {
+        "tags": [
+          "Feature preparation"
+        ],
+        "summary": "Prepare Features",
+        "operationId": "prepare_features_api_v1_sites__site_id__features_post",
+        "parameters": [
+          {
+            "name": "site_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Site Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PreparedContext"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/health/live": {
       "get": {
         "summary": "Live",
@@ -1072,6 +1115,39 @@
   },
   "components": {
     "schemas": {
+      "AdoptionContext": {
+        "properties": {
+          "reference_year": {
+            "type": "integer",
+            "title": "Reference Year"
+          },
+          "value": {
+            "type": "integer",
+            "title": "Value"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "source_sha256": {
+            "type": "string",
+            "title": "Source Sha256"
+          },
+          "measure": {
+            "type": "string",
+            "title": "Measure"
+          }
+        },
+        "type": "object",
+        "required": [
+          "reference_year",
+          "value",
+          "version",
+          "source_sha256",
+          "measure"
+        ],
+        "title": "AdoptionContext"
+      },
       "AuthResult": {
         "properties": {
           "user": {
@@ -1210,6 +1286,79 @@
         ],
         "title": "Message"
       },
+      "ModelFeatures": {
+        "properties": {
+          "nearby_mall_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Mall Count"
+          },
+          "nearby_petrol_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Petrol Count"
+          },
+          "nearby_hotel_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Hotel Count"
+          },
+          "nearby_office_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Office Count"
+          },
+          "nearby_transit_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Transit Count"
+          },
+          "nearby_university_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby University Count"
+          },
+          "nearby_hospital_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Hospital Count"
+          },
+          "nearby_parking_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Nearby Parking Count"
+          },
+          "state_ev_registrations": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "State Ev Registrations"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "nearby_mall_count",
+          "nearby_petrol_count",
+          "nearby_hotel_count",
+          "nearby_office_count",
+          "nearby_transit_count",
+          "nearby_university_count",
+          "nearby_hospital_count",
+          "nearby_parking_count",
+          "state_ev_registrations",
+          "category",
+          "state"
+        ],
+        "title": "ModelFeatures"
+      },
       "Planner": {
         "properties": {
           "id": {
@@ -1233,6 +1382,66 @@
           "email"
         ],
         "title": "Planner"
+      },
+      "PoiProvenance": {
+        "properties": {
+          "provider": {
+            "type": "string",
+            "title": "Provider"
+          },
+          "osm_base_timestamp": {
+            "type": "string",
+            "title": "Osm Base Timestamp"
+          },
+          "response_sha256": {
+            "type": "string",
+            "title": "Response Sha256"
+          },
+          "geometry": {
+            "type": "string",
+            "title": "Geometry"
+          },
+          "deduplication": {
+            "type": "string",
+            "title": "Deduplication"
+          },
+          "attribution": {
+            "type": "string",
+            "title": "Attribution"
+          },
+          "source_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Url"
+          },
+          "source_snapshot_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Snapshot Sha256"
+          }
+        },
+        "type": "object",
+        "required": [
+          "provider",
+          "osm_base_timestamp",
+          "response_sha256",
+          "geometry",
+          "deduplication",
+          "attribution"
+        ],
+        "title": "PoiProvenance"
       },
       "PredictionResult": {
         "properties": {
@@ -1306,6 +1515,78 @@
           "created_at"
         ],
         "title": "PredictionResult"
+      },
+      "PreparedContext": {
+        "properties": {
+          "site_id": {
+            "type": "string",
+            "title": "Site Id"
+          },
+          "site_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Site Updated At"
+          },
+          "features": {
+            "$ref": "#/components/schemas/ModelFeatures"
+          },
+          "radius_metres": {
+            "type": "integer",
+            "title": "Radius Metres",
+            "default": 3000
+          },
+          "extraction_rule_version": {
+            "type": "string",
+            "title": "Extraction Rule Version",
+            "default": "provisional-centres-wikidata50m-v1"
+          },
+          "rule_sha256": {
+            "type": "string",
+            "title": "Rule Sha256",
+            "default": "7784129121cabddff6e4f0de3a0c38536178f9f6750e2ea7da81ddd8b6856942"
+          },
+          "boundary_version": {
+            "type": "string",
+            "title": "Boundary Version",
+            "default": "MYS-ADM1-15666254-2017"
+          },
+          "extracted_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Extracted At"
+          },
+          "cache_hit": {
+            "type": "boolean",
+            "title": "Cache Hit"
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/PoiProvenance"
+          },
+          "adoption": {
+            "$ref": "#/components/schemas/AdoptionContext"
+          },
+          "inference_eligible": {
+            "type": "boolean",
+            "title": "Inference Eligible",
+            "default": false
+          },
+          "limitation": {
+            "type": "string",
+            "title": "Limitation",
+            "default": "Live POI counting rules are provisional; equivalence to the training features is not verified. No charger prediction has been made."
+          }
+        },
+        "type": "object",
+        "required": [
+          "site_id",
+          "site_updated_at",
+          "features",
+          "extracted_at",
+          "cache_hit",
+          "provenance",
+          "adoption"
+        ],
+        "title": "PreparedContext"
       },
       "ProjectInput": {
         "properties": {

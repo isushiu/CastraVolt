@@ -81,3 +81,17 @@ Internet access is needed for map tiles and address search. State checks use bun
 
 
 If a new screen shows **Not Found** for location checks after an update, the old backend is still running. Stop the app in its terminal with Ctrl+C, then run `.\start.cmd` again. Development startup now reloads backend Python changes automatically. Coordinates/state/address are derived from the map pin; site creation and editing use the map only.
+
+
+## Preparing site context
+
+Save a site, then choose **Prepare site context** to request nearby mapped facilities within 3 km and its state's fixed 2025 EV registration figure. Counts are cached and can take time to fetch. Provider errors show a retry message; they never mean zero facilities.
+
+The current counting rules are a **research preview** awaiting comparison with the original training extraction rules. This does not yet produce charger predictions. External Overpass service availability was not verified successfully in this development session. Restart with start.cmd after updating to apply the POI-cache migration.
+
+
+## Facility lookup now works locally
+
+The default source is a compact OpenStreetMap snapshot bundled with the app (map data dated **25 October 2026**). Prepare site context no longer waits for public Overpass servers or their cooldown. It covers KL/Selangor and the surrounding 3 km circles. The snapshot date/source are shown beside the results. Map tiles and address search still use the internet.
+
+After updating, stop the app with Ctrl+C and run `.\start.cmd` once. The compact snapshot is included when cloning/copying the code; no large OSM download or additional data service is required to run it. The counting rules remain a research preview pending training-data validation.

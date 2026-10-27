@@ -135,6 +135,9 @@ def check_frontend(url):
 def launch(command, root, log):
     job = WindowsJob() if os.name == 'nt' else None
     options = {'creationflags': subprocess.CREATE_NEW_PROCESS_GROUP | subprocess.CREATE_NO_WINDOW} if os.name == 'nt' else {'start_new_session': True}
+    child_env=os.environ.copy()
+    child_env.setdefault('WATCHFILES_FORCE_POLLING','true')
+    options['env']=child_env
     try:
         process = subprocess.Popen(command, cwd=root, stdout=log, stderr=subprocess.STDOUT, **options)
         if job:

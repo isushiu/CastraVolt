@@ -92,3 +92,16 @@ test('an unnamed new pin clears the previous name and asks for a manual name',as
   fireEvent.change(screen.getByLabelText('Site name'),{target:{value:'My planned site'}});
   expect(screen.queryByText('No place name found for this spot. Please enter a site name.')).toBeNull();
 });
+
+test('site context is prepared only on request and is cleared when the pin moves',async()=>{
+  const fetcher=setup(path=>path.endsWith('/features')?Promise.resolve(new Response(JSON.stringify({features:{nearby_mall_count:2,nearby_petrol_count:1,nearby_hotel_count:3,nearby_office_count:4,nearby_transit_count:5,nearby_university_count:0,nearby_hospital_count:1,nearby_parking_count:8,state_ev_registrations:1237,state:'W.P. KUALA LUMPUR',category:'Office'},adoption:{reference_year:2025},provenance:{osm_base_timestamp:'2026-10-27'},extracted_at:'2026-10-27T00:00:00Z',extraction_rule_version:'provisional',cache_hit:false}))):undefined);
+  await chooseAndComplete();
+  await waitFor(()=>expect((screen.getByRole('button',{name:'Save proposed site'}) as HTMLButtonElement).disabled).toBe(false),{timeout:3000});
+  fireEvent.click(screen.getByRole('button',{name:'Save proposed site'}));await screen.findByText('Site saved to KL pilot.');
+  expect(fetcher.mock.calls.some(([path])=>String(path).endsWith('/features'))).toBe(false);
+  fireEvent.click(screen.getByRole('button',{name:'Prepare site context'}));
+  await screen.findByText('1,237 new EV car registrations');
+  fireEvent.click(screen.getByRole('button',{name:'Choose Selangor pin'}));
+  expect(screen.queryByText('1,237 new EV car registrations')).toBeNull();
+  expect((screen.getByRole('button',{name:'Prepare site context'}) as HTMLButtonElement).disabled).toBe(true);
+});

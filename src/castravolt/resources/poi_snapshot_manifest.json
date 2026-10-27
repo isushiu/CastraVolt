@@ -1,0 +1,16 @@
+{
+  "coverage_bbox": [
+    100.75959060000004,
+    2.5441311000000844,
+    102.0211583,
+    3.9201848
+  ],
+  "rule_sha256": "7784129121cabddff6e4f0de3a0c38536178f9f6750e2ea7da81ddd8b6856942",
+  "source_timestamp": "2026-10-25T21:21:21Z",
+  "source_url": "https://download.geofabrik.de/asia/malaysia-singapore-brunei-261025.osm.pbf",
+  "source_sha256": "92e10b7d3d6b415758fa8e5720411fcb20e431e1f7d7f3e1420a2703289edd23",
+  "attribution": "\u00a9 OpenStreetMap contributors, extract by Geofabrik; ODbL 1.0",
+  "snapshot_sha256": "d56e00cebd86a4f9d6b24158f43f84c8e5af07afd508cb9162c215e4a5f9bdb6",
+  "element_count": 10981,
+  "snapshot_bytes": 483026
+}

@@ -3,7 +3,7 @@ import type { components } from './schema';
 export type SystemInfo = components['schemas']['SystemInfo'];
 
 export class ApiError extends Error {
-  constructor(message: string, public readonly status: number, public readonly requestId?: string) {
+  constructor(message: string, public readonly status: number, public readonly requestId?: string, public readonly retryAfterSeconds?: number) {
     super(message);
   }
 }

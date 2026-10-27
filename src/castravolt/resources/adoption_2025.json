@@ -1,0 +1,18 @@
+{
+  "version": "fixed-2025-v1",
+  "reference_year": 2025,
+  "period_start": "2025-01-01",
+  "period_end": "2025-12-31",
+  "measure": "new electric motokar registrations, not fleet stock",
+  "counts": {
+    "SELANGOR": 560,
+    "W.P. KUALA LUMPUR": 1237
+  },
+  "source_file": "ev_registration2025.csv",
+  "source_sha256": "29dc875544b21a626222682f4c2d06b79d56773a6c71b5d708f31a7335c94dad",
+  "scope": {
+    "fuel": "electric",
+    "vehicle_type": "motokar",
+    "exclude": "Rakan Niaga and all other states/types"
+  }
+}

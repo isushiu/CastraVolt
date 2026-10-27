@@ -17,6 +17,7 @@ from sqlalchemy.orm import Session
 from castravolt.account_models import AuthRateLimit, User
 from castravolt.auth import current_user, database, digest, now, throttle
 from castravolt.location_models import GeocodeCache
+from castravolt.network import tls_context
 
 router=APIRouter(prefix='/api/v1/locations',tags=['Locations'])
 BOUNDARY_VERSION='MYS-ADM1-15666254-2017'
@@ -85,7 +86,7 @@ def fetch_reverse(settings,latitude,longitude):
     params=urlencode({'lat':latitude,'lon':longitude,'format':'jsonv2','zoom':18,'accept-language':'en'})
     request=UrlRequest(settings.geocoder_url.rstrip('/')+'/reverse?'+params,
         headers={'User-Agent':settings.geocoder_user_agent,'Accept':'application/json'})
-    with urlopen(request,timeout=8) as response: raw=response.read(256001)
+    with urlopen(request,timeout=8,context=tls_context()) as response: raw=response.read(256001)
     if len(raw)>256000: raise ValueError('Provider response exceeds limit')
     result=json.loads(raw)
     if not isinstance(result,dict) or not result.get('display_name'): raise ValueError('No address returned')
@@ -125,7 +126,7 @@ def fetch_search(settings,query):
                       'viewbox':'100.7,4.0,102.1,2.5','bounded':1,'accept-language':'en'})
     request=UrlRequest(settings.geocoder_url.rstrip('/')+'/search?'+params,
                        headers={'User-Agent':settings.geocoder_user_agent,'Accept':'application/json'})
-    with urlopen(request,timeout=8) as response:
+    with urlopen(request,timeout=8,context=tls_context()) as response:
         raw=response.read(256001)
     if len(raw)>256000: raise ValueError('Provider response exceeds limit')
     data=json.loads(raw)

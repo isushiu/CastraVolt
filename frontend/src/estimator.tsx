@@ -7,6 +7,8 @@ import { ApiError } from './api/client';
 import type { Project, Site } from './api/projects';
 import type { components } from './api/schema';
 import SiteMap from './SiteMap';
+import FeatureContext from './FeatureContext';
+import type { PreparedContext } from './FeatureContext';
 import type { Point } from './SiteMap';
 
 type Location=components['schemas']['LocationResult'];
@@ -25,20 +27,23 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
   const [point,setPoint]=useState<Point|null>(null);
   const [name,setName]=useState(''),[address,setAddress]=useState(''),[category,setCategory]=useState('Unknown'),[confirmed,setConfirmed]=useState(false);
   const [nameUnavailable,setNameUnavailable]=useState(false);
+  const [context,setContext]=useState<PreparedContext|null>(null),[contextBusy,setContextBusy]=useState(false),[contextError,setContextError]=useState('');
+  const [contextRetryAt,setContextRetryAt]=useState<number|null>(null);
+  const contextAbort=useRef<AbortController|null>(null);
   const [validation,setValidation]=useState<Location|null>(null),[validating,setValidating]=useState(false),[locationError,setLocationError]=useState('');
   const [query,setQuery]=useState(''),[results,setResults]=useState<SearchResult[]>([]),[searching,setSearching]=useState(false),[searched,setSearched]=useState(false),[searchError,setSearchError]=useState('');
   const [saving,setSaving]=useState(false),[saveError,setSaveError]=useState(''),[saved,setSaved]=useState<Site|null>(null);
   const [persistedId,setPersistedId]=useState(siteId);
   const [addressLoading,setAddressLoading]=useState(false),[addressError,setAddressError]=useState(''),[addressAttempt,setAddressAttempt]=useState(0);
   const alive=useRef(true),revision=useRef(0),pinGeneration=useRef(0),searchGeneration=useRef(0),searchAbort=useRef<AbortController|null>(null),validationAbort=useRef<AbortController|null>(null);
-  useEffect(()=>{alive.current=true;return()=>{alive.current=false;searchAbort.current?.abort();validationAbort.current?.abort();};},[]);
+  useEffect(()=>{alive.current=true;return()=>{alive.current=false;searchAbort.current?.abort();validationAbort.current?.abort();contextAbort.current?.abort();};},[]);
   useEffect(()=>{const controller=new AbortController();setLoading(true);setInitialError('');
     Promise.all([projectApi<Project[]>('/projects','GET',undefined,controller.signal),projectApi<string[]>('/reference/site-categories','GET',undefined,controller.signal),
       projectId?projectApi<Project>(`/projects/${projectId}`,'GET',undefined,controller.signal):Promise.resolve(null),siteId?projectApi<Site>(`/sites/${siteId}`,'GET',undefined,controller.signal):Promise.resolve(null)])
       .then(([all,cats,p,site])=>{if(controller.signal.aborted)return;if(site&&site.project_id!==projectId)throw new Error('This site does not belong to the selected project.');setProjects(all);setCategories(cats);setProject(p);
-        if(site){setPoint({latitude:site.latitude,longitude:site.longitude});setName(site.name);setAddress(site.address??'');setCategory(site.category);setConfirmed(true);}})
+        if(site){setPoint({latitude:site.latitude,longitude:site.longitude});setName(site.name);setAddress(site.address??'');setCategory(site.category);setConfirmed(true);setSaved(site);}})
       .catch(err=>{if(!controller.signal.aborted)setInitialError(errorMessage(err));}).finally(()=>{if(!controller.signal.aborted)setLoading(false);});return()=>controller.abort();},[projectId,siteId,attempt]);
-  function invalidate(){revision.current++;setSaved(null);setSaveError('');}
+  function invalidate(){revision.current++;setSaved(null);setSaveError('');contextAbort.current?.abort();setContext(null);setContextBusy(false);setContextError('');}
   function selectPoint(next:Point,selected?:SearchResult){
     pinGeneration.current++;
     searchAbort.current?.abort();searchGeneration.current++;setSearching(false);setResults([]);setSearched(false);
@@ -83,6 +88,16 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
     }catch(err){if(alive.current&&current===revision.current)setSaveError(errorMessage(err));}
     finally{if(alive.current)setSaving(false);}
   }
+  async function prepareContext(){
+    if(!saved||!validation)return;
+    contextAbort.current?.abort();const controller=new AbortController();contextAbort.current=controller;
+    if(contextRetryAt&&contextRetryAt>Date.now())return;
+    const current=revision.current;setContextBusy(true);setContextError('');setContext(null);setContextRetryAt(null);
+    try{const result=await projectApi<PreparedContext>(`/sites/${saved.id}/features`,'POST',undefined,controller.signal);
+      if(!controller.signal.aborted&&current===revision.current)setContext(result);
+    }catch(err){if(!controller.signal.aborted&&current===revision.current){setContextError(errorMessage(err));if(err instanceof ApiError&&err.retryAfterSeconds)setContextRetryAt(Date.now()+err.retryAfterSeconds*1000);}}
+    finally{if(!controller.signal.aborted&&current===revision.current)setContextBusy(false);}
+  }
   if(loading)return <p role="status">Opening site estimator…</p>;
   if(initialError)return <section className="editor-panel"><h1>Unable to open estimator</h1><p role="alert">{initialError}</p><button className="button secondary" onClick={()=>setAttempt(n=>n+1)}>Try again</button><Link to="/">Return to projects</Link></section>;
   if(!projectId)return <><div className="page-heading"><div><div className="eyebrow">PROJECT TOOLS</div><h1>Site estimator</h1><p>Choose the project for your proposed charging site.</p></div></div><section className="editor-panel"><h2>Start with a project</h2>{projects.length===0?<p>Create a project before saving a site. <Link to="/">Go to Projects</Link></p>:<div className="project-picker">{projects.map(item=><button key={item.id} className="project-choice" onClick={()=>chooseProject(item.id)}><MapPin size={19}/><span>{item.name}</span><span>Open estimator →</span></button>)}</div>}</section></>;
@@ -103,6 +118,6 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
         <label className="category-confirm"><input type="checkbox" checked={confirmed} onChange={e=>{invalidate();setConfirmed(e.target.checked);}}/>I confirm the host-site category.</label>
         <button className="button primary" disabled={!point||!validation||!name.trim()||!confirmed||saving||addressLoading||!!saved}>{saving?'Saving…':saved?'Site saved':siteId?'Save site changes':'Save proposed site'}</button></fieldset>
         {saveError&&<p role="alert" className="auth-error">{saveError}</p>}{saved&&<div className="saved-site-message" role="status"><Check size={18}/><div>Site saved to {project?.name}.<Link to={`/projects/${projectId}`}>View project and site history →</Link></div></div>}
-      </form><div className="estimator-limitation"><strong>Study coverage</strong><p>State boundaries are checked using OSM-derived geoBoundaries (2017). Urban-only coverage is provisional. The 3 km circle is a preview; POI gathering and ML estimates come in later stages.</p><a href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Boundary source and attribution</a></div>
+      </form><FeatureContext context={context} busy={contextBusy} error={contextError} ready={!!saved&&!!validation&&!saving&&!addressLoading} onPrepare={()=>void prepareContext()} retryAt={contextRetryAt}/><div className="estimator-limitation"><strong>Study coverage</strong><p>State boundaries are checked using OSM-derived geoBoundaries (2017). Urban-only coverage is provisional. Facility counts use provisional counting rules; ML estimates come in a later stage.</p><a href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Boundary source and attribution</a></div>
     </section></div></>;
 }

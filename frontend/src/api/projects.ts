@@ -19,7 +19,9 @@ export async function projectApi<T>(path: string, method='GET', data?: unknown, 
   if(!response.ok) {
     if(response.status===401) window.dispatchEvent(new Event('castravolt:unauthenticated'));
     const body=await response.json().catch(()=>null);
-    throw new ApiError(body?.error?.message??'Unable to complete the request. Please retry.',response.status);
+    const retry=Number(response.headers.get('Retry-After'));
+    throw new ApiError(body?.error?.message??'Unable to complete the request. Please retry.',response.status,
+      response.headers.get('X-Request-ID')??undefined,Number.isFinite(retry)&&retry>0?Math.min(3600,retry):undefined);
   }
   if(response.status===204) return undefined as T;
   return response.json();

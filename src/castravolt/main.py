@@ -18,6 +18,7 @@ from castravolt.database import make_engine
 from castravolt.auth import router as auth_router
 from castravolt.projects import router as projects_router
 from castravolt.locations import router as locations_router
+from castravolt.features import router as features_router
 
 logger = logging.getLogger('castravolt')
 
@@ -56,9 +57,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(auth_router)
     app.include_router(projects_router)
     app.include_router(locations_router)
+    app.include_router(features_router)
     app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins,
                        allow_credentials=True, allow_methods=['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-                       allow_headers=['Content-Type', 'X-CSRF-Token'], expose_headers=['X-Request-ID'])
+                       allow_headers=['Content-Type', 'X-CSRF-Token'], expose_headers=['X-Request-ID','Retry-After'])
 
     @app.middleware('http')
     async def request_context(request: Request, call_next):
@@ -115,7 +117,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
 
     @app.get('/api/v1/system', response_model=SystemInfo)
     def system():
-        return SystemInfo()
+        return SystemInfo(capabilities={'accounts':True,'projects':True,'predictions':False,'local_pois':settings.poi_source=='local'})
 
     return app
 

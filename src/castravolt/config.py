@@ -16,8 +16,11 @@ class Settings(BaseSettings):
     internal_access: bool = True
     geocoder_url: str = 'https://nominatim.openstreetmap.org'
     geocoder_user_agent: str = 'CastraVolt/0.1 (urban EV planning research prototype)'
+    overpass_url: str = 'https://overpass.private.coffee/api/interpreter'
+    poi_cache_hours: int = Field(default=24,ge=1,le=168)
+    poi_source: Literal['local','overpass'] = 'local'
 
-    @field_validator('geocoder_url')
+    @field_validator('geocoder_url','overpass_url')
     @classmethod
     def https_geocoder(cls,value):
         parsed=urlsplit(value)

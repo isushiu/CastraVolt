@@ -1,3 +1,4 @@
 # Keep launcher line endings usable after cloning on another operating system.
 *.sh text eol=lf
 *.cmd text eol=crlf
+*.gz binary

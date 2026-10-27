@@ -333,6 +333,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/sites/{site_id}/features": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Prepare Features */
+        post: operations["prepare_features_api_v1_sites__site_id__features_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/health/live": {
         parameters: {
             query?: never;
@@ -388,6 +405,19 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AdoptionContext */
+        AdoptionContext: {
+            /** Reference Year */
+            reference_year: number;
+            /** Value */
+            value: number;
+            /** Version */
+            version: string;
+            /** Source Sha256 */
+            source_sha256: string;
+            /** Measure */
+            measure: string;
+        };
         /** AuthResult */
         AuthResult: {
             user: components["schemas"]["Planner"];
@@ -452,6 +482,31 @@ export interface components {
             /** Message */
             message: string;
         };
+        /** ModelFeatures */
+        ModelFeatures: {
+            /** Nearby Mall Count */
+            nearby_mall_count: number;
+            /** Nearby Petrol Count */
+            nearby_petrol_count: number;
+            /** Nearby Hotel Count */
+            nearby_hotel_count: number;
+            /** Nearby Office Count */
+            nearby_office_count: number;
+            /** Nearby Transit Count */
+            nearby_transit_count: number;
+            /** Nearby University Count */
+            nearby_university_count: number;
+            /** Nearby Hospital Count */
+            nearby_hospital_count: number;
+            /** Nearby Parking Count */
+            nearby_parking_count: number;
+            /** State Ev Registrations */
+            state_ev_registrations: number;
+            /** Category */
+            category: string;
+            /** State */
+            state: string;
+        };
         /** Planner */
         Planner: {
             /**
@@ -463,6 +518,25 @@ export interface components {
             name: string;
             /** Email */
             email: string;
+        };
+        /** PoiProvenance */
+        PoiProvenance: {
+            /** Provider */
+            provider: string;
+            /** Osm Base Timestamp */
+            osm_base_timestamp: string;
+            /** Response Sha256 */
+            response_sha256: string;
+            /** Geometry */
+            geometry: string;
+            /** Deduplication */
+            deduplication: string;
+            /** Attribution */
+            attribution: string;
+            /** Source Url */
+            source_url?: string | null;
+            /** Source Snapshot Sha256 */
+            source_snapshot_sha256?: string | null;
         };
         /** PredictionResult */
         PredictionResult: {
@@ -504,6 +578,56 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
+        };
+        /** PreparedContext */
+        PreparedContext: {
+            /** Site Id */
+            site_id: string;
+            /**
+             * Site Updated At
+             * Format: date-time
+             */
+            site_updated_at: string;
+            features: components["schemas"]["ModelFeatures"];
+            /**
+             * Radius Metres
+             * @default 3000
+             */
+            radius_metres: number;
+            /**
+             * Extraction Rule Version
+             * @default provisional-centres-wikidata50m-v1
+             */
+            extraction_rule_version: string;
+            /**
+             * Rule Sha256
+             * @default 7784129121cabddff6e4f0de3a0c38536178f9f6750e2ea7da81ddd8b6856942
+             */
+            rule_sha256: string;
+            /**
+             * Boundary Version
+             * @default MYS-ADM1-15666254-2017
+             */
+            boundary_version: string;
+            /**
+             * Extracted At
+             * Format: date-time
+             */
+            extracted_at: string;
+            /** Cache Hit */
+            cache_hit: boolean;
+            provenance: components["schemas"]["PoiProvenance"];
+            adoption: components["schemas"]["AdoptionContext"];
+            /**
+             * Inference Eligible
+             * @default false
+             */
+            inference_eligible: boolean;
+            /**
+             * Limitation
+             * @default Live POI counting rules are provisional; equivalence to the training features is not verified. No charger prediction has been made.
+             */
+            limitation: string;
         };
         /** ProjectInput */
         ProjectInput: {
@@ -1468,6 +1592,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["SearchResult"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    prepare_features_api_v1_sites__site_id__features_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                site_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PreparedContext"];
                 };
             };
             /** @description Validation Error */

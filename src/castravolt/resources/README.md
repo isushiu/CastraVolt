@@ -5,3 +5,10 @@
 Source: OpenStreetMap contributors / Wambacher, distributed through geoBoundaries. The source metadata specifies **Open Data Commons Open Database License 1.0**, not the generic license of another geoBoundaries release. This derived database is provided under [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/); retain source attribution and license information when redistributing. [OpenStreetMap copyright and attribution](https://www.openstreetmap.org/copyright).
 
 The dataset represents **2017** boundaries (built December 2023). It is a reproducible research boundary, not proof of current cadastral accuracy or urban land use. Exact boundary points and ambiguous overlaps are rejected. Putrajaya is outside the supported states. Any boundary replacement must update its manifest/version and geographic fixtures. No network download is required at application startup.
+
+
+# Local facility snapshot
+
+`poi_snapshot.json.gz` is an ODbL 1.0 derived database from the [Geofabrik Malaysia/Singapore/Brunei extract](https://download.geofabrik.de/asia/malaysia-singapore-brunei.html), containing public OpenStreetMap facilities for KL/Selangor plus a buffer. © OpenStreetMap contributors; extract by Geofabrik. Retain [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/) and [OSM attribution](https://www.openstreetmap.org/copyright). The compressed data and source/snapshot hashes, geographic coverage and source timestamp ship together in poi_snapshot_manifest.json.
+
+The derivation filters the eight documented provisional tag groups, resolves node positions and way/relation bounding-box centres, and clips representative points to the buffered coverage. It preserves OSM types, IDs and facility tags; metadata about OSM contributors is not included. This dataset is a snapshot and does not establish equivalence with the FYP's engineered training counts. See docs/LOCAL_POI_PLAN.md and docs/STAGE_5_IMPLEMENTATION.md.

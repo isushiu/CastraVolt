@@ -74,3 +74,23 @@ Full local application checks: `uv run pytest tests/test_accounts.py tests/test_
 - Boundary source, exact hashes and ODbL license are bundled in src/castravolt/resources. Data represents 2017 and urban-only coverage is provisional. Include these package resources when deploying; missing/corrupt geometry must not be replaced with a bounding rectangle.
 - Expanded suite: `uv run pytest tests/test_locations.py tests/test_map_api.py tests/test_projects.py tests/test_accounts.py tests/test_foundation.py tests/test_dev_workflow.py -q`.
 - Policies checked: https://operations.osmfoundation.org/policies/nominatim/ and https://operations.osmfoundation.org/policies/tiles/. Leaflet Circle radius is in metres: https://leafletjs.com/reference.html#circle.
+
+## Stage 5 feature service
+
+`POST /api/v1/sites/{id}/features` requires a session, CSRF and ownership. It reads the persisted site; never trust browser-supplied POI/adoption counts. Migration 0005 adds the successful-extraction cache. `CASTRAVOLT_OVERPASS_URL` configures the HTTPS provider; default Private.coffee. `CASTRAVOLT_POI_CACHE_HOURS` defaults to 24. Outgoing misses reserve a shared 35-second lease; per-IP/user quotas also apply. Failures do not poison the cache.
+
+Run `uv run python scripts/prepare_adoption_context.py` to reconcile the current filtered 2025 CSV into packaged context. Counts differing from the evaluated setup fail for review rather than silently changing the model's inputs. Hash/scope are included. No pandas or raw CSV read is required on normal API requests.
+
+Run `uv run pytest tests/test_features.py tests/test_feature_api.py` plus existing application tests. Original extraction parity is pending; no configuration flag automatically approves new rules for inference. Read docs/STAGE_5_IMPLEMENTATION.md before Stage 6.
+
+
+Provider errors now retain Retry-After for UI countdowns. Check logs for `poi_provider_failure kind=... status=... request_id=...`. The message distinguishes timeout, connection, TLS verification, provider overload and incomplete result. The shared lease is shortened on completion/failure rather than always holding 35 seconds. Never disable certificate checks or treat failures as zero POIs. Current live provider access remains unverified after reproducible status failures.
+
+
+## Bundled local POIs (default)
+
+`CASTRAVOLT_POI_SOURCE=local` uses hash-checked resources/poi_snapshot.json.gz, with source coverage/time/ODbL metadata in poi_snapshot_manifest.json. Local context requests have no Overpass dependency or cooldown. `overpass` is an explicit alternative, using the configured HTTPS endpoint and native system TLS verification. Snapshot source/rule hashes enter cache keys; do not edit a manifest to disguise incompatible rules.
+
+For a deliberate source refresh: install optional tooling with `uv sync --locked --group poi-build --group model-validation`; download and verify a trusted Geofabrik source PBF; run `uv run --group poi-build --group model-validation python scripts/build_local_pois.py <source.osm.pbf>`. Inspect fixture counts/source/license and commit the compact snapshot plus manifest together. Never publish an incomplete build. Restart workers after a snapshot update. Source PBF files stay in ignored data/poi/source; normal setup does not need osmium or a source download.
+
+The source reader uses multiple filtered passes, with strict missing-reference handling for study coverage. Native source polling defaults on in launcher children to avoid missed filesystem events. This does not modify global environment settings.

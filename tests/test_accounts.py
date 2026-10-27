@@ -29,7 +29,7 @@ def account_settings(tmp_path_factory):
             env={**os.environ,'CASTRAVOLT_DATABASE_URL':test_url},capture_output=True,text=True)
         assert result.returncode == 0, result.stderr
         yield Settings(database_url=test_url,mail_directory=str(tmp_path_factory.mktemp('mail')),
-                       frontend_url='http://localhost:5173',auth_rate_limit=1000,internal_access=False)
+                       frontend_url='http://localhost:5173',auth_rate_limit=1000,internal_access=False,poi_source='overpass')
     finally:
         with admin.connect() as connection:
             connection.execute(text(f'DROP DATABASE "{name}" WITH (FORCE)'))
@@ -40,7 +40,7 @@ def account_settings(tmp_path_factory):
 def client(account_settings):
     engine = create_engine(account_settings.database_url)
     with engine.begin() as connection:
-        connection.execute(text('TRUNCATE account_tokens, sessions, users, auth_rate_limits CASCADE'))
+        connection.execute(text('TRUNCATE account_tokens, sessions, users, auth_rate_limits, poi_cache CASCADE'))
     engine.dispose()
     for path in Path(account_settings.mail_directory).glob('*.eml'): path.unlink()
     with TestClient(create_app(account_settings)) as c:

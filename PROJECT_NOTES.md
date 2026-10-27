@@ -344,3 +344,34 @@ Reverse lookup shares the existing global provider quota/cache, uses local state
 ### Pin name refresh — 27 October 2026
 
 Moving or reselecting the pin clears the previous site name and refreshes it from the new search/reverse-geocoding result. No name is carried across locations. A name entered manually while the current pin lookup is pending is preserved. If no name is returned (or lookup fails), show a small indication asking the planner to enter one; saving still requires a nonblank name. Existing saved names are preserved when opening a site until its pin is moved. Regression coverage checks moving between named places and then to an unnamed spot.
+
+
+## Stage 5 feature preparation — 27 October 2026
+
+After saving a site, Prepare site context explicitly requests server-side facilities within 3,000 metres. The backend reads the owned site's pin/category, derives its state, gathers eight counts (mall, petrol, hotel, office, transit, university, hospital, parking), and appends fixed 2025 registrations (Selangor 560, KL 1,237), category and state: 11 model fields. Registration context is reconciled from the filtered CSV and packaged with source hash/scope. The 2024–2026 series remains available for the later trends dashboard; it is not dynamically substituted into the model lookup.
+
+Counts/provenance are cached by exact location, radius, rule fingerprint and provider. Provider failures/incomplete results are errors, not zero facilities. Changes cancel or clear displayed context, and backend rechecks site revision/session/ownership after extraction. No inference or saved charger prediction happens at this stage.
+
+Original training extraction definitions are still unavailable. New counting rules are explicitly provisional, with inference_eligible=false; they cannot be claimed equivalent to the training POIs. Original rules plus genuine site parity checks, or consistent POI regeneration and retraining, remain necessary. Live provider availability also remains unverified after TLS/timeout failures. See docs/STAGE_5_IMPLEMENTATION.md for exact tags, geometry, deduplication, cache/error behavior and evidence. Stage 5 is pending that dependency, despite the implemented service/UI.
+
+
+## Provider failure follow-up — 27 October 2026
+
+Reproduced the user's failure: configured Private.coffee status endpoint times out before any POI query. Explicit IPv4 curl also timed out with HTTP 000/no response; the issue was not resolved by IPv4. overpass-api.de failed TLS certificate verification and an OSM-listed alternate status endpoint also timed out. External web status checks timed out too. No certificate validation was disabled and no successful live extraction is claimed.
+
+Implementation now classifies network failures, socket timeouts (504), TLS verification failure, upstream overload and incomplete responses. Return only safe actionable messages; log exception class/status/request ID rather than raw sensitive details. Retry-After propagates to the client and the context button shows a countdown. Cached successes are checked before reservations.
+
+The 35-second in-flight provider lease now has a random ownership token. Completion shortens it to two seconds; connection/timeouts/incomplete responses use a shorter ten-second retry, TLS failure thirty seconds and upstream overload respects the bounded reported delay (minimum thirty seconds). Blocked callers receive the actual remaining wait rather than a fixed 35 seconds. A late response cannot shorten a newer request's lease. Provider service availability remains an external unresolved limitation; these changes do not repair an unreachable endpoint or establish training-feature parity.
+
+
+## Working local data source — 27 October 2026
+
+Latest implementation supersedes the requirement to wait for public Overpass availability. The default `CASTRAVOLT_POI_SOURCE=local` reads the bundled `resources/poi_snapshot.json.gz`, containing 10,981 genuine OSM facility representations from Geofabrik's 25 October 2026 extract. The compact catalogue is 483,026 bytes; source/checksums/coverage/license are in poi_snapshot_manifest.json. It covers the two state geometries plus a >3 km buffer and rejects circles outside its coverage. Local requests make no provider call and do not use the global Overpass cooldown. Cache keys include the snapshot SHA-256; classification/radius/deduplication remain versioned as before.
+
+The full 252,386,711-byte source PBF stays ignored under data/poi/source. Its published checksum was verified, and its SHA-256 is 92e10b7d3d6b415758fa8e5720411fcb20e431e1f7d7f3e1420a2703289edd23. The compact derived database ships in the application package under ODbL 1.0 with OpenStreetMap/Geofabrik attribution. Source timestamp: 2026-10-25T21:21:21Z. This is a dated snapshot, not a real-time facility inventory; rebuilding/restarting is a deliberate data update.
+
+Way bounding boxes are resolved from source node coordinates. Relation bounds include source members and nested relations. Incomplete geometry affecting study coverage aborts the build; radius uses bounding-box centres, matching the documented provisional method. `scripts/build_local_pois.py` is optional build tooling using the separate poi-build group, not a runtime requirement. Native system TLS via truststore repairs the observed Python-vs-Windows validation mismatch while retaining certificate/hostname checks; optional Overpass and address clients use it. Production data/model parity is not certified by this repair.
+
+Verified real catalogue queries: public KLCC and the user's reported saved pin return counts; the latter prepared in approximately 12 ms in a direct local check. Browser QA on isolated 5174/8001 confirmed Prepare site context displays the real eight counts and 560 Selangor registrations. No ML prediction was generated. Original training POI-rule parity remains pending, so inference_eligible stays false. App startup now defaults to source polling for reliable development reload on Windows drives.
+
+Verification: 54 backend tests passed, 24 frontend tests and production build passed. Tests include source integrity/coverage, way/relation geometry, native TLS verification flags, no remote call for local preparation, and successful cache reuse. A wheel check verifies the snapshot/manifest are shipped. No user app process was stopped or app port occupied; temporary browser QA is cleaned up after verification. Existing user process needs one restart using start.cmd to activate the new source.
