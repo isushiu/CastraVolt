@@ -802,6 +802,57 @@
             }
           }
         }
+      },
+      "post": {
+        "tags": [
+          "Predictions"
+        ],
+        "summary": "Predict",
+        "operationId": "predict_api_v1_sites__site_id__predictions_post",
+        "parameters": [
+          {
+            "name": "site_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Site Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PredictionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredictionResult"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/api/v1/predictions/{prediction_id}": {
@@ -1060,6 +1111,22 @@
                 "schema": {
                   "$ref": "#/components/schemas/Liveness"
                 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/model": {
+      "get": {
+        "summary": "Model Status",
+        "operationId": "model_status_health_model_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
               }
             }
           }
@@ -1443,6 +1510,32 @@
         ],
         "title": "PoiProvenance"
       },
+      "PredictionInput": {
+        "properties": {
+          "idempotency_key": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Idempotency Key"
+          },
+          "site_updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Site Updated At"
+          },
+          "acknowledge_unverified_pois": {
+            "type": "boolean",
+            "title": "Acknowledge Unverified Pois",
+            "default": false
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "idempotency_key",
+          "site_updated_at"
+        ],
+        "title": "PredictionInput"
+      },
       "PredictionResult": {
         "properties": {
           "id": {
@@ -1497,6 +1590,10 @@
             "type": "string",
             "format": "date-time",
             "title": "Created At"
+          },
+          "experimental": {
+            "type": "boolean",
+            "title": "Experimental"
           }
         },
         "type": "object",
@@ -1512,7 +1609,8 @@
           "adoption_reference_year",
           "adoption_value",
           "rounding_policy",
-          "created_at"
+          "created_at",
+          "experimental"
         ],
         "title": "PredictionResult"
       },
@@ -1573,7 +1671,7 @@
           "limitation": {
             "type": "string",
             "title": "Limitation",
-            "default": "Live POI counting rules are provisional; equivalence to the training features is not verified. No charger prediction has been made."
+            "default": "Live POI counting rules are provisional; equivalence to the training features is not verified."
           }
         },
         "type": "object",

@@ -98,6 +98,7 @@ class PredictionResult(BaseModel):
     adoption_value: int
     rounding_policy: str
     created_at: datetime
+    experimental: bool
 
 
 def owned_project(db, owner, project_id, lock=False):

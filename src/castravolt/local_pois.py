@@ -28,16 +28,17 @@ def load_snapshot():
     except Exception:raise HTTPException(503,'The local facility snapshot is not installed. Run setup before preparing site context.') from None
 
 
-def query_snapshot(snapshot,latitude,longitude):
+def query_snapshot(snapshot,latitude,longitude,*,radius_metres=None):
     from castravolt.features import distance,RADIUS
+    radius=RADIUS if radius_metres is None else radius_metres
     west,south,east,north=snapshot['coverage_bbox']
-    lat_delta=math.degrees(RADIUS/6371008.8)
-    lon_delta=math.degrees(math.asin(math.sin(RADIUS/6371008.8)/math.cos(math.radians(latitude))))
+    lat_delta=math.degrees(radius/6371008.8)
+    lon_delta=math.degrees(math.asin(math.sin(radius/6371008.8)/math.cos(math.radians(latitude))))
     if not (west<=longitude-lon_delta and longitude+lon_delta<=east and south<=latitude-lat_delta and latitude+lat_delta<=north):
         raise HTTPException(422,'This pin’s full 3 km circle is outside the installed facility snapshot coverage.')
     elements=[]
     for item in snapshot['elements']:
         point=item if item['type']=='node' else item['center']
-        if distance((latitude,longitude),(point['lat'],point['lon']))<=RADIUS:elements.append(item)
+        if distance((latitude,longitude),(point['lat'],point['lon']))<=radius:elements.append(item)
     return {'version':0.6,'osm3s':{'timestamp_osm_base':snapshot['source_timestamp']},
         'elements':elements+[{'type':'count','tags':{'total':str(len(elements))}}]}

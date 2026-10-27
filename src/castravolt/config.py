@@ -1,5 +1,6 @@
 from typing import Literal
 from urllib.parse import urlsplit
+from pathlib import Path
 from pydantic import Field, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -19,6 +20,7 @@ class Settings(BaseSettings):
     overpass_url: str = 'https://overpass.private.coffee/api/interpreter'
     poi_cache_hours: int = Field(default=24,ge=1,le=168)
     poi_source: Literal['local','overpass'] = 'local'
+    model_directory: Path = Path('model/verified_rf80_cv5')
 
     @field_validator('geocoder_url','overpass_url')
     @classmethod

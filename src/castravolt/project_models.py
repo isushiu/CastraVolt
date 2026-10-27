@@ -1,7 +1,7 @@
 from datetime import datetime
 from uuid import UUID, uuid4
 
-from sqlalchemy import CheckConstraint, DateTime, Float, ForeignKey, Integer, String, Text
+from sqlalchemy import CheckConstraint, DateTime, Float, ForeignKey, Integer, String, Text,UniqueConstraint
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -35,7 +35,7 @@ class Site(Base):
 
 class Prediction(Base):
     __tablename__ = 'predictions'
-    __table_args__ = (CheckConstraint('displayed_total >= 1'),)
+    __table_args__ = (CheckConstraint('displayed_total >= 1'),UniqueConstraint('site_id','idempotency_key',name='uq_prediction_site_key'))
     id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
     site_id: Mapped[UUID] = mapped_column(ForeignKey('sites.id', ondelete='CASCADE'), index=True)
     requester_id: Mapped[UUID] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'))
@@ -50,3 +50,7 @@ class Prediction(Base):
     rounding_policy: Mapped[str] = mapped_column(String(100))
     idempotency_key: Mapped[str | None] = mapped_column(String(128))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+    @property
+    def experimental(self):
+        return self.input_snapshot.get('validation',{}).get('poi_parity_verified') is not True

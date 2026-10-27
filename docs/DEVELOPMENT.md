@@ -94,3 +94,12 @@ Provider errors now retain Retry-After for UI countdowns. Check logs for `poi_pr
 For a deliberate source refresh: install optional tooling with `uv sync --locked --group poi-build --group model-validation`; download and verify a trusted Geofabrik source PBF; run `uv run --group poi-build --group model-validation python scripts/build_local_pois.py <source.osm.pbf>`. Inspect fixture counts/source/license and commit the compact snapshot plus manifest together. Never publish an incomplete build. Restart workers after a snapshot update. Source PBF files stay in ignored data/poi/source; normal setup does not need osmium or a source download.
 
 The source reader uses multiple filtered passes, with strict missing-reference handling for study coverage. Native source polling defaults on in launcher children to avoid missed filesystem events. This does not modify global environment settings.
+
+
+## Stage 6 model serving
+
+Setup already installs the model-validation group. Manual serving should retain it: `uv run --group model-validation uvicorn castravolt.main:app --host 127.0.0.1 --port 8000`. `CASTRAVOLT_MODEL_DIRECTORY` defaults to the repo-relative model/verified_rf80_cv5; trusted manifest, fixtures and ignored evaluated_pipeline.joblib are required. Check `/health/model` for artifact readiness. Foundation DB readiness does not certify model/data validity.
+
+`POST /api/v1/sites/{id}/predictions`: JSON idempotency_key (UUID), site_updated_at (aware timestamp) and acknowledge_unverified_pois=true. The latter is the labelled experimental development action, not scientific approval; production rejects unverified feature inference. No browser feature counts are accepted. Migration 0006 enforces key uniqueness. History GETs remain immutable/owned; metadata includes full model and source hashes.
+
+Full application verification adds tests/test_inference.py and tests/test_prediction_api.py to the existing suite. Experimental requests cannot mark POI parity verified. Retain all scientific limitations when transferring or demonstrating this prototype.

@@ -17,7 +17,7 @@ export default function FeatureContext({context,busy,error,ready,onPrepare,retry
     {error&&<p className="auth-error" role="alert">{error}</p>}
     {context&&<div className="prepared-context"><h4>Mapped facilities within 3 km</h4><dl className="facility-counts">{groups.map(([key,label])=><div key={key}><dt>{label}</dt><dd>{context.features[key]}</dd></div>)}</dl>
       <div className="adoption-context"><strong>{context.features.state_ev_registrations.toLocaleString()} new EV car registrations</strong><span>{context.features.state} · {context.adoption.reference_year} · electric motokar</span></div>
-      <p className="context-warning" role="status">Research preview: these POI counting rules have not yet been verified against the training data. No charger prediction has been made.</p>
+      <p className="context-warning" role="status">Research preview: these POI counting rules have not yet been verified against the training data.</p>
       <p className="context-help">Source: {context.provenance.provider} · map data dated {context.provenance.osm_base_timestamp.slice(0,10)}</p><details><summary>Sources and preparation details</summary><p>Prepared {new Date(context.extracted_at).toLocaleString()}{context.cache_hit?' · Reused cached extraction':''}</p><p>© OpenStreetMap contributors · ODbL</p><p>OSM source timestamp: {context.provenance.osm_base_timestamp}</p><p>Counting rules: {context.extraction_rule_version}</p><p>EV context: fixed 2025 new registrations, not fleet stock.</p></details>
     </div>}
   </section>;

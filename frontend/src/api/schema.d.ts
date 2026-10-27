@@ -258,7 +258,8 @@ export interface paths {
         /** History */
         get: operations["history_api_v1_sites__site_id__predictions_get"];
         put?: never;
-        post?: never;
+        /** Predict */
+        post: operations["predict_api_v1_sites__site_id__predictions_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -359,6 +360,23 @@ export interface paths {
         };
         /** Live */
         get: operations["live_health_live_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/health/model": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Model Status */
+        get: operations["model_status_health_model_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -538,6 +556,24 @@ export interface components {
             /** Source Snapshot Sha256 */
             source_snapshot_sha256?: string | null;
         };
+        /** PredictionInput */
+        PredictionInput: {
+            /**
+             * Idempotency Key
+             * Format: uuid
+             */
+            idempotency_key: string;
+            /**
+             * Site Updated At
+             * Format: date-time
+             */
+            site_updated_at: string;
+            /**
+             * Acknowledge Unverified Pois
+             * @default false
+             */
+            acknowledge_unverified_pois: boolean;
+        };
         /** PredictionResult */
         PredictionResult: {
             /**
@@ -578,6 +614,8 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
+            /** Experimental */
+            experimental: boolean;
         };
         /** PreparedContext */
         PreparedContext: {
@@ -625,7 +663,7 @@ export interface components {
             inference_eligible: boolean;
             /**
              * Limitation
-             * @default Live POI counting rules are provisional; equivalence to the training features is not verified. No charger prediction has been made.
+             * @default Live POI counting rules are provisional; equivalence to the training features is not verified.
              */
             limitation: string;
         };
@@ -1479,6 +1517,41 @@ export interface operations {
             };
         };
     };
+    predict_api_v1_sites__site_id__predictions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                site_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PredictionInput"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PredictionResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     prediction_api_v1_predictions__prediction_id__get: {
         parameters: {
             query?: never;
@@ -1652,6 +1725,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Liveness"];
+                };
+            };
+        };
+    };
+    model_status_health_model_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
         };

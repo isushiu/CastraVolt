@@ -3,6 +3,19 @@ import pytest
 from fastapi import HTTPException
 
 
+def test_explicit_one_km_radius_excludes_facilities_between_one_and_three_km():
+    from castravolt.local_pois import query_snapshot
+    from castravolt.features import extract_counts
+    snapshot={'coverage_bbox':[100,2,103,5],'source_timestamp':'2026-10-25T21:21:21Z',
+              'elements':[{'type':'node','id':1,'lat':3.004,'lon':101.5,'tags':{'amenity':'fuel'}},
+                          {'type':'node','id':2,'lat':3.015,'lon':101.5,'tags':{'amenity':'fuel'}}]}
+    payload=query_snapshot(snapshot,3,101.5,radius_metres=1000)
+    assert extract_counts(payload,3,101.5,radius_metres=1000)['nearby_petrol_count']==1
+    all_points=query_snapshot(snapshot,3,101.5)
+    assert extract_counts(all_points,3,101.5)['nearby_petrol_count']==2
+    assert extract_counts(all_points,3,101.5,radius_metres=1000)['nearby_petrol_count']==1
+
+
 def test_local_snapshot_returns_real_types_and_rejects_incomplete_coverage(tmp_path):
     from castravolt.local_pois import read_snapshot,query_snapshot
     from castravolt.features import RULE_HASH,extract_counts

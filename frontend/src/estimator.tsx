@@ -4,11 +4,12 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, Check, MapPin, Search } from 'lucide-react';
 import { projectApi } from './api/projects';
 import { ApiError } from './api/client';
-import type { Project, Site } from './api/projects';
+import type { Project, Site,Prediction } from './api/projects';
 import type { components } from './api/schema';
 import SiteMap from './SiteMap';
 import FeatureContext from './FeatureContext';
 import type { PreparedContext } from './FeatureContext';
+import PredictionPanel from './PredictionPanel';
 import type { Point } from './SiteMap';
 
 type Location=components['schemas']['LocationResult'];
@@ -30,20 +31,23 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
   const [context,setContext]=useState<PreparedContext|null>(null),[contextBusy,setContextBusy]=useState(false),[contextError,setContextError]=useState('');
   const [contextRetryAt,setContextRetryAt]=useState<number|null>(null);
   const contextAbort=useRef<AbortController|null>(null);
+  const [prediction,setPrediction]=useState<Prediction|null>(null),[predicting,setPredicting]=useState(false),[predictionError,setPredictionError]=useState('');
+  const predictionAbort=useRef<AbortController|null>(null),predictionKey=useRef<string|null>(null);
   const [validation,setValidation]=useState<Location|null>(null),[validating,setValidating]=useState(false),[locationError,setLocationError]=useState('');
   const [query,setQuery]=useState(''),[results,setResults]=useState<SearchResult[]>([]),[searching,setSearching]=useState(false),[searched,setSearched]=useState(false),[searchError,setSearchError]=useState('');
   const [saving,setSaving]=useState(false),[saveError,setSaveError]=useState(''),[saved,setSaved]=useState<Site|null>(null);
   const [persistedId,setPersistedId]=useState(siteId);
   const [addressLoading,setAddressLoading]=useState(false),[addressError,setAddressError]=useState(''),[addressAttempt,setAddressAttempt]=useState(0);
   const alive=useRef(true),revision=useRef(0),pinGeneration=useRef(0),searchGeneration=useRef(0),searchAbort=useRef<AbortController|null>(null),validationAbort=useRef<AbortController|null>(null);
-  useEffect(()=>{alive.current=true;return()=>{alive.current=false;searchAbort.current?.abort();validationAbort.current?.abort();contextAbort.current?.abort();};},[]);
+  useEffect(()=>{alive.current=true;return()=>{alive.current=false;searchAbort.current?.abort();validationAbort.current?.abort();contextAbort.current?.abort();predictionAbort.current?.abort();};},[]);
   useEffect(()=>{const controller=new AbortController();setLoading(true);setInitialError('');
     Promise.all([projectApi<Project[]>('/projects','GET',undefined,controller.signal),projectApi<string[]>('/reference/site-categories','GET',undefined,controller.signal),
       projectId?projectApi<Project>(`/projects/${projectId}`,'GET',undefined,controller.signal):Promise.resolve(null),siteId?projectApi<Site>(`/sites/${siteId}`,'GET',undefined,controller.signal):Promise.resolve(null)])
       .then(([all,cats,p,site])=>{if(controller.signal.aborted)return;if(site&&site.project_id!==projectId)throw new Error('This site does not belong to the selected project.');setProjects(all);setCategories(cats);setProject(p);
         if(site){setPoint({latitude:site.latitude,longitude:site.longitude});setName(site.name);setAddress(site.address??'');setCategory(site.category);setConfirmed(true);setSaved(site);}})
       .catch(err=>{if(!controller.signal.aborted)setInitialError(errorMessage(err));}).finally(()=>{if(!controller.signal.aborted)setLoading(false);});return()=>controller.abort();},[projectId,siteId,attempt]);
-  function invalidate(){revision.current++;setSaved(null);setSaveError('');contextAbort.current?.abort();setContext(null);setContextBusy(false);setContextError('');}
+  function resetPrediction(){predictionAbort.current?.abort();predictionKey.current=null;setPrediction(null);setPredicting(false);setPredictionError('');}
+  function invalidate(){revision.current++;setSaved(null);setSaveError('');contextAbort.current?.abort();setContext(null);setContextBusy(false);setContextError('');resetPrediction();}
   function selectPoint(next:Point,selected?:SearchResult){
     pinGeneration.current++;
     searchAbort.current?.abort();searchGeneration.current++;setSearching(false);setResults([]);setSearched(false);
@@ -90,6 +94,7 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
   }
   async function prepareContext(){
     if(!saved||!validation)return;
+    resetPrediction();
     contextAbort.current?.abort();const controller=new AbortController();contextAbort.current=controller;
     if(contextRetryAt&&contextRetryAt>Date.now())return;
     const current=revision.current;setContextBusy(true);setContextError('');setContext(null);setContextRetryAt(null);
@@ -97,6 +102,17 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
       if(!controller.signal.aborted&&current===revision.current)setContext(result);
     }catch(err){if(!controller.signal.aborted&&current===revision.current){setContextError(errorMessage(err));if(err instanceof ApiError&&err.retryAfterSeconds)setContextRetryAt(Date.now()+err.retryAfterSeconds*1000);}}
     finally{if(!controller.signal.aborted&&current===revision.current)setContextBusy(false);}
+  }
+  async function generatePrediction(){
+    if(!saved||!context||predicting)return;
+    predictionAbort.current?.abort();const controller=new AbortController();predictionAbort.current=controller;
+    const current=revision.current;predictionKey.current??=crypto.randomUUID();const key=predictionKey.current;
+    setPredicting(true);setPredictionError('');
+    try{const result=await projectApi<Prediction>(`/sites/${saved.id}/predictions`,'POST',{
+      idempotency_key:key,site_updated_at:saved.updated_at,acknowledge_unverified_pois:true},controller.signal);
+      if(!controller.signal.aborted&&current===revision.current){setPrediction(result);predictionKey.current=null;}
+    }catch(err){if(!controller.signal.aborted&&current===revision.current)setPredictionError(errorMessage(err));}
+    finally{if(!controller.signal.aborted&&current===revision.current)setPredicting(false);}
   }
   if(loading)return <p role="status">Opening site estimator…</p>;
   if(initialError)return <section className="editor-panel"><h1>Unable to open estimator</h1><p role="alert">{initialError}</p><button className="button secondary" onClick={()=>setAttempt(n=>n+1)}>Try again</button><Link to="/">Return to projects</Link></section>;
@@ -107,6 +123,7 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
       {results.length>0&&<ul className="search-results" aria-label="Address search results">{results.map((item,index)=><li key={`${item.latitude}:${item.longitude}:${index}`}><button disabled={saving} onClick={()=>selectPoint(item,item)}><strong>{item.name}</strong><span>{item.address}</span></button></li>)}</ul>}
       <p className="provider-note">Search uses Nominatim · © OpenStreetMap contributors. Searches run only when submitted.</p></section>
       <SiteMap point={point} onSelect={selectPoint} disabled={saving}/>
+      <PredictionPanel result={prediction} ready={!!saved&&!!context&&!saving&&!contextBusy&&!addressLoading} busy={predicting} error={predictionError} onPredict={()=>void generatePrediction()} projectId={projectId}/>
     </div><section className="selection-panel"><div className="eyebrow">SELECTED LOCATION</div><h2>{point?'Your proposed site':'Choose a location'}</h2><p className="selection-description">Place a pin or choose a search result. Location details are derived from the pin.</p>
       <form onSubmit={save} className="workspace-form"><fieldset disabled={saving} className="site-fieldset"><dl className="coordinate-summary"><div><dt>Latitude</dt><dd>{point?point.latitude.toFixed(6):'—'}</dd></div><div><dt>Longitude</dt><dd>{point?point.longitude.toFixed(6):'—'}</dd></div></dl>
         {validating&&<p role="status">Checking study-state boundary…</p>}{locationError&&<div role="alert" className="auth-error">{locationError}{point&&<button type="button" className="text-button" onClick={()=>setPoint({...point})}>Retry location check</button>}</div>}
@@ -118,6 +135,6 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
         <label className="category-confirm"><input type="checkbox" checked={confirmed} onChange={e=>{invalidate();setConfirmed(e.target.checked);}}/>I confirm the host-site category.</label>
         <button className="button primary" disabled={!point||!validation||!name.trim()||!confirmed||saving||addressLoading||!!saved}>{saving?'Saving…':saved?'Site saved':siteId?'Save site changes':'Save proposed site'}</button></fieldset>
         {saveError&&<p role="alert" className="auth-error">{saveError}</p>}{saved&&<div className="saved-site-message" role="status"><Check size={18}/><div>Site saved to {project?.name}.<Link to={`/projects/${projectId}`}>View project and site history →</Link></div></div>}
-      </form><FeatureContext context={context} busy={contextBusy} error={contextError} ready={!!saved&&!!validation&&!saving&&!addressLoading} onPrepare={()=>void prepareContext()} retryAt={contextRetryAt}/><div className="estimator-limitation"><strong>Study coverage</strong><p>State boundaries are checked using OSM-derived geoBoundaries (2017). Urban-only coverage is provisional. Facility counts use provisional counting rules; ML estimates come in a later stage.</p><a href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Boundary source and attribution</a></div>
+      </form><FeatureContext context={context} busy={contextBusy} error={contextError} ready={!!saved&&!!validation&&!saving&&!addressLoading} onPrepare={()=>void prepareContext()} retryAt={contextRetryAt}/><div className="estimator-limitation"><strong>Study coverage</strong><p>State boundaries are checked using OSM-derived geoBoundaries (2017). Urban-only coverage is provisional. Facility counts use provisional counting rules; generated estimates remain experimental.</p><a href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Boundary source and attribution</a></div>
     </section></div></>;
 }

@@ -375,3 +375,58 @@ Way bounding boxes are resolved from source node coordinates. Relation bounds in
 Verified real catalogue queries: public KLCC and the user's reported saved pin return counts; the latter prepared in approximately 12 ms in a direct local check. Browser QA on isolated 5174/8001 confirmed Prepare site context displays the real eight counts and 560 Selangor registrations. No ML prediction was generated. Original training POI-rule parity remains pending, so inference_eligible stays false. App startup now defaults to source polling for reliable development reload on Windows drives.
 
 Verification: 54 backend tests passed, 24 frontend tests and production build passed. Tests include source integrity/coverage, way/relation geometry, native TLS verification flags, no remote call for local preparation, and successful cache reuse. A wheel check verifies the snapshot/manifest are shipped. No user app process was stopped or app port occupied; temporary browser QA is cleaned up after verification. Existing user process needs one restart using start.cmd to activate the new source.
+
+
+## Stage 6 experimental serving — 27 October 2026
+
+User-selected layout: prediction output sits directly beneath the map, with facility inputs on the right. Save site → Prepare site context → Generate experimental estimate. The backend uses the selected verified Random Forest and all 11 server-derived features. Display total planned charging points using nearest-half-up and minimum one; retain raw output. No automatic inference on pin movement and no retraining in the application.
+
+Every saved estimate includes immutable site/features/source/adoption/rule/model provenance and the unverified POI status. Request UUID and site revision prevent duplicate/conflicting retries; database uniqueness and final ownership/session/revision checks cover concurrency. Results clear when the draft changes. Site history retains the experimental label and calculation/input details. Model startup checks exact hash/runtime/features/selected parameters and reproduces ten saved fixtures; missing/incompatible models fail visibly.
+
+Original live/training POI-rule parity remains unresolved. The development action explicitly requests an experimental result; it does not change inference_eligible=false or claim model accuracy for the new counts. Production rejects these unverified inputs. Stage 6 validated completion remains pending that dependency. Experimental local workflow passed 66 backend / 27 frontend tests, build and genuine browser-to-history verification. See docs/STAGE_6_IMPLEMENTATION.md.
+
+
+### 2026-10-27: repeated 5/10 prediction audit
+
+The serving pipeline calls the verified trained Random Forest; there is no fixed charger-output rule. Nearest-half-up rounding compresses many non-mall raw outputs near 5. Controlled sparse/medium/dense Unknown-category inputs produced 4.959528, 4.845304 and 5.258004; the medium example with Shopping Mall category produced 9.908197.
+
+A diagnostic five-fold shuffled coordinate-group CV (seed 42) on the supplied 764 prepared rows gave MAE: category/state/adoption only 2.8719; POIs only 3.6429; all selected features 2.9441; a more flexible RF (300 trees, depth 10, leaf 2) 3.1320; training-fold median baseline 3.1204. These are exploratory diagnostic results on previously inspected data, not an independent final evaluation. More flexible settings increased output variety but worsened MAE; variety alone is not a valid model-selection criterion.
+
+Five checked original site coordinates had materially different app versus supplied training POIs. At source row 0, supplied counts included 6 petrol stations and 6 offices, whereas the current 3 km app extractor returned 33 petrol stations and 34 offices. This establishes an input consistency problem; it does not establish which radius or historical mapping generated the supplied counts. Do not silently relabel those original counts as matching the app.
+
+Next corrective work: preserve the original dataset; regenerate a versioned training POI dataset at every training-site coordinate using the exact same snapshot, radius, classification and deduplication code as the app. Evaluate category-only, POI-only and combined models with the same folds, checking error and sensitivity. Replace the served artifact only if the rebuilt model supports a useful relationship and passes validation. The current model must not be described as a validated location-specific capacity recommendation.
+
+
+### Fresh MEVnet export (27 October 2026)
+
+Created data/ML Data/updated_mevnet.csv directly from the official service: 1,911 records (Selangor 1,334; KL 577), comprising 764 Existing and 1,147 Newly Proposed. All 49 source attributes retained, nulls preserved. Prior 764-row prepared dataset only included Existing sites. This new export has no engineered POIs yet and has not replaced the serving model. Provenance and raw response retained under data/updated_mevnet_source/.
+
+
+### Updated MEVnet POI preparation completed (27 October 2026)
+
+updated_mevnet.csv now contains all 49 official fields plus engineered total_planned_chargers, eight app-identical 3 km OSM POI features, summed POIs, fixed 2025 adoption, per-row provenance and quality flags (70 columns). 1,910 POI extractions complete; one missing-coordinate row has blank POIs. Four source-state/coordinate-state mismatches flagged. 1,906 rows preprocessing-eligible. All source attributes and all charger sums verified after CSV round trip. Missing/nonfinite coordinate checks and genuine site parity with app also checked. Raw source retained separately. Next step is model development/evaluation using this dataset; current served artifact unchanged.
+
+
+### Agreed radius changed to 1 km; clean matrix rebuilt (27 October 2026)
+
+User requested 1 km and removal of unused columns/observations. Rebuilt all POIs with explicit 1,000 m query and extraction filters. Current output data/ML Data/updated_mevnet_1km.csv (updated_mevnet.csv is Windows-locked and remains 3 km): 1,902 rows, eight POI fields + state adoption + category + state + total target. Nine rows excluded: four state-coordinate mismatches, four zero totals outside positive-capacity scope, one missing coordinate. No missing matrix cells, constant columns or exact site duplicates. Unknown category retained for 1,139 proposed sites; assess missingness/category confounding. All source attributes, charger components and row-coordinate mappings retained outside model matrix. App/model remain on old 3 km until coordinated retraining and serving update. Twelve POI tests passed including explicit 1 km-versus-3 km boundary behaviour.
+
+
+27 October 2026 filename resolution: file lock released; updated_mevnet.csv now contains the verified 1 km matrix (1,902 observations, 12 columns). updated_mevnet_1km.csv is an identical backup. The preparation manifest now identifies updated_mevnet.csv as the current training file.
+
+
+27 October category recheck: corrected earlier statement that all proposed sites lacked categories. Actual main-layer nulls: 1,146 Newly Proposed + one Existing; one proposed site is Showroom. Prior 764 rows cannot restore missing categories (the matching old row is already Unknown). Six verified name/state/coordinate matches from dashboard coverage layer restored. Current category-corrected dataset is updated_mevnet_1km.csv because updated_mevnet.csv is locked again; 1,902 rows, 1,133 remaining Unknown. Audit and verified overrides retained under data/updated_mevnet_source/.
+
+
+27 October host-category enrichment: current data/ML Data/updated_mevnet.csv has 1,902 rows; 1,528 categorised and 374 Unknown (previously 1,133 Unknown). Applied 759 OSM-inferred labels to eligible rows, plus the six earlier official coverage recoveries. Raw-level matcher assigned 761 of 1,141 missing-category sites from real host name/coordinate/footprint evidence. Supplied categories preserved. No arbitrary proximity assignment or forced Others fallback. Per-site evidence, OSM URLs and uncertainty retained under updated_mevnet_source/; inferred labels require review and are distinguished from official labels. Sixteen targeted tests passed. Current model/app unchanged.
+
+
+27 October extended category review: user explicitly requested analyst deductions from original names/coordinates and additional location evidence. Current updated_mevnet.csv: 1,902 rows, 1,899 categorised, three Unknown (Kebun KL, Virgin Resources, WC Meranti Management). Reduced remaining Unknown from 374 to three using 318 raw explicit-description deductions and 59 researched raw site deductions (371 eligible records). Preserved all official categories, target sums and 1 km POI columns; verified against prior backup. Evidence/source/reasons in category_research_audit.csv and separate overrides. Deduced labels are inferred, not official ground truth. Nineteen targeted tests passed. Serving model/app unchanged.
+
+
+### POIs + category + state Colab notebook (27 October 2026)
+
+Created notebooks/CastraVolt_POI_Category_State.ipynb using data/ML Data/updated_mevnet.csv and matching updated_mevnet_row_groups.csv. Inputs are eight 1 km POI counts plus category and state; adoption is excluded. Target is total_planned_chargers under the existing-plus-additional-proposed assumption. Seed 42; random coordinate-group-preserving 50/50, 70/30, 80/20, 5/10 CV and the six split-plus-CV setups; Random Forest, XGBoost, always-three and training-median baselines; nearest-half-up minimum-one display rounding. Full mode runs 30 sampled settings per tuned model/setup. Inferred category labels and overlapping nearby-site POIs limit interpretation. Local smoke run executed all 11 setups against 1,902 rows and produced 96 score rows; feature exclusion, grouping, outputs and rounding verified. Full-budget training and actual Colab upload/Drive were not executed; no serving model changed. See notebooks/README.md.
+
+
+27 October feature cleanup: removed state_ev_registrations from updated_mevnet.csv and its 1 km backup, plus adoption fields from derived audit tables. Current dataset has 1,902 unchanged rows and 11 columns: eight POIs, category, state and total_planned_chargers. Preparation script will not re-add adoption. Updated preparation hash and rebuilt CastraVolt_POI_Category_State.ipynb to accept the revised dataset. Registration source files retained separately for the dashboard.

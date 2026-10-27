@@ -1,3 +1,13 @@
+# Current 1 km POI + category + state notebook
+
+Open `CastraVolt_POI_Category_State.ipynb` in Google Colab and run its cells in order. The upload cell requires two files selected together from `data/ML Data`: `updated_mevnet.csv` and `updated_mevnet_row_groups.csv`. The row-groups file keeps identical site coordinates together during splitting; coordinates and IDs are not model inputs. The pair is hash-checked against the dataset used to build this notebook. If you regenerate the dataset, rebuild the notebook with `python notebooks/build_poi_state_notebook.py` and use its newly matched files.
+
+The notebook uses eight POI counts (1 km), site category and state. Registration numbers are excluded. The target is the existing-plus-proposed total under the documented additional-proposed assumption. Missing categories include inferred labels. `RUN_MODE = 'smoke'` tests the 11 setups with small models; set `RUN_MODE = 'full'` to run the agreed full models and tuning. Full tuning may take substantial time. It compares Random Forest, XGBoost, always-three and training-median baselines; shows MAE, RMSE, R², rounded MAE and prediction-distribution plots; and saves a ZIP with predictions, split assignments, metadata and a refitted candidate. In the last cell, uncomment the `files.download(archive)` lines to download the results.
+
+Local verification ran all cells in smoke mode on 1,902 rows, all 11 setups and four models/baselines; the matching files, ten model inputs, grouped split, rounding, saved candidate and ZIP were verified. Full-budget training and Colab upload/Drive were not executed. The candidate is not automatically installed in the app; the current app still uses a 3 km model/feature contract. The earlier notebook below remains available for the original experiments.
+
+---
+
 # CastraVolt Colab notebook
 
 Open https://colab.research.google.com/ and choose File → Upload notebook, then select `CastraVolt_ML_Training.ipynb`.

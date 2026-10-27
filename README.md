@@ -2,7 +2,7 @@
 
 CastraVolt helps planners estimate the total EV charging points for a proposed site in Kuala Lumpur or Selangor. It also displays monthly EV registration trends.
 
-Built with React, TypeScript, FastAPI and PostgreSQL. Internal login, projects, map/address selection and saved sites are available. Live predictions and the trends dashboard are under development.
+Built with React, TypeScript, FastAPI and PostgreSQL. Internal login, projects, map/address selection and saved sites are available. Experimental model estimates and saved history are available; the trends dashboard is under development.
 
 ## Requirements
 
@@ -95,3 +95,10 @@ The current counting rules are a **research preview** awaiting comparison with t
 The default source is a compact OpenStreetMap snapshot bundled with the app (map data dated **25 October 2026**). Prepare site context no longer waits for public Overpass servers or their cooldown. It covers KL/Selangor and the surrounding 3 km circles. The snapshot date/source are shown beside the results. Map tiles and address search still use the internet.
 
 After updating, stop the app with Ctrl+C and run `.\start.cmd` once. The compact snapshot is included when cloning/copying the code; no large OSM download or additional data service is required to run it. The counting rules remain a research preview pending training-data validation.
+
+
+## Generate an estimate
+
+Save the site → **Prepare site context** → **Generate experimental estimate**. The output appears below the map and is saved to site history. It shows the total planned charging points. Editing the pin or inputs clears the current result; past snapshots stay in history.
+
+Estimates remain **experimental** because live POI counting rules are not yet verified against training. The original model is checked against saved test outputs. To update, restart with start.cmd (applies migration 0006). Setup installs the required model dependencies. On another computer, separately copy the trusted evaluated_pipeline.joblib into model/verified_rf80_cv5; model binaries are excluded from Git. Never replace it with the default deployment candidate.

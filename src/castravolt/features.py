@@ -83,7 +83,7 @@ def distance(a,b):
     return 6371008.8*2*math.asin(min(1,math.sqrt(value)))
 
 
-def extract_counts(data,latitude,longitude):
+def extract_counts(data,latitude,longitude,*,radius_metres=RADIUS):
     try:
         if data.get('remark') or not isinstance(data.get('elements'),list): raise ValueError()
         timestamp=datetime.fromisoformat(data['osm3s']['timestamp_osm_base'].replace('Z','+00:00'))
@@ -99,7 +99,7 @@ def extract_counts(data,latitude,longitude):
             position=item if kind=='node' else item['center']
             lat,lon=float(position['lat']),float(position['lon'])
             if not math.isfinite(lat) or not math.isfinite(lon) or abs(lat)>90 or abs(lon)>180: raise ValueError()
-            if distance((latitude,longitude),(lat,lon))<=RADIUS:
+            if distance((latitude,longitude),(lat,lon))<=radius_metres:
                 items[(kind,identifier)]={'tags':tags,'point':(lat,lon),'type':kind}
         counts={}
         for feature,mapping in RULES.items():
@@ -188,7 +188,7 @@ class PreparedContext(BaseModel):
     provenance:PoiProvenance
     adoption:AdoptionContext
     inference_eligible:bool=False
-    limitation:str='Live POI counting rules are provisional; equivalence to the training features is not verified. No charger prediction has been made.'
+    limitation:str='Live POI counting rules are provisional; equivalence to the training features is not verified.'
 
 
 @router.post('/{site_id}/features',response_model=PreparedContext,dependencies=[Depends(csrf)])

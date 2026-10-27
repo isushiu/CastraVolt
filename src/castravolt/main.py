@@ -19,6 +19,8 @@ from castravolt.auth import router as auth_router
 from castravolt.projects import router as projects_router
 from castravolt.locations import router as locations_router
 from castravolt.features import router as features_router
+from castravolt.predictions import router as predictions_router
+from castravolt.inference import load_model
 
 logger = logging.getLogger('castravolt')
 
@@ -48,6 +50,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI):
         app.state.engine = make_engine(settings)
+        try:app.state.prediction_model=load_model(settings)
+        except Exception:
+            app.state.prediction_model=None
+            logger.warning('verified_model_unavailable')
         yield
         if app.state.engine is not None:
             app.state.engine.dispose()
@@ -58,6 +64,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(projects_router)
     app.include_router(locations_router)
     app.include_router(features_router)
+    app.include_router(predictions_router)
     app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins,
                        allow_credentials=True, allow_methods=['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
                        allow_headers=['Content-Type', 'X-CSRF-Token'], expose_headers=['X-Request-ID','Retry-After'])
@@ -98,6 +105,12 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     @app.get('/health/live', response_model=Liveness)
     def live():
         return Liveness()
+
+    @app.get('/health/model')
+    def model_status(request:Request):
+        model=request.app.state.prediction_model
+        if model is None:return JSONResponse(status_code=503,content={'status':'unavailable','experimental':True,'validated_predictions_available':False})
+        return {'status':'ready','model_version':model.version,'experimental':True,'validated_predictions_available':False}
 
     @app.get('/health/ready', response_model=Readiness,
              responses={503: {'model': Readiness}})
