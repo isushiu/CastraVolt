@@ -1,8 +1,11 @@
 # CastraVolt Implementation Plan
 
-Status: Build plan; application implementation has not started
 
-Updated: 26 October 2026
+> Current internal scope (27 October 2026): shared demo login `admin` / `123`; no public registration, verification or password recovery. Everyone using this account shares its projects, sites and history. Database ownership/session/CSRF checks remain. Earlier individual-account requirements below describe retained future capability and are superseded for this prototype. Demo access is development-only; production rejects it.
+
+Status: Implementation in progress; Stages 1–4 complete locally
+
+Updated: 27 October 2026
 
 References: PRD.md, TRD.md, DESIGN.md. Follow the Midnight Iris visual specification in DESIGN.md Section 13. This plan describes the selected adoption-enabled model and 3 km POI radius.
 
@@ -157,19 +160,19 @@ Completion: each verified planner can enter/leave a private authenticated sessio
 
 ### Phase 3 — private projects and sites
 
-- [ ] Implement project/site CRUD with owner-scoped queries and migrations.
-- [ ] Build Projects and Project workspace screens, including empty states and deletion confirmation.
-- [ ] Add prediction-history schema and immutable snapshots.
-- [ ] Verify planner A cannot access planner B's projects, sites or predictions by changing IDs.
+- [x] Implement project/site CRUD with owner-scoped queries and migrations.
+- [x] Build Projects and Project workspace screens, including empty states and deletion confirmation.
+- [x] Add prediction-history schema and immutable snapshots.
+- [x] Verify planner A cannot access planner B's projects, sites or predictions by changing IDs.
 
 Completion: login leads to the planner's own workspace and saved-site lifecycle works.
 
 ### Phase 4 — map and site selection
 
-- [ ] Select renderer/tile/geocoding providers and urban study boundary.
-- [ ] Build address search, pin movement, 3 km circle and selected-site summary.
-- [ ] Add confirmed category control and Save/update site behaviour.
-- [ ] Implement unsupported-location, map failure and stale-selection states.
+- [x] Select Leaflet/OSM/Nominatim and versioned state polygons; urban-only boundary remains an explicitly documented provisional limitation.
+- [x] Build address search, pin movement, 3 km circle and selected-site summary.
+- [x] Add confirmed category control and Save/update site behaviour.
+- [x] Implement unsupported-location, map failure and stale-selection states.
 
 Completion: a planner can save a valid proposed site in the correct project without yet running inference.
 
@@ -375,11 +378,20 @@ Initial state: planning documents and a training notebook exist. These do not me
 - Stage 1 — Complete. React/TypeScript foundation, typed FastAPI connection, bounded PostgreSQL setup, migrations, lockfiles and setup/start/check launchers delivered. Live startup verified on 26 October 2026: PostgreSQL healthy on host port 55432, migration baseline applied, API database readiness passed and frontend started. Current backend/launcher suite: 18 passing tests. Original application build and four frontend tests passed. Account/project CRUD and live prediction serving remain later stages.
 - Stage 2 — Complete for local development. Added account/session/token/rate-limit migration, Argon2id password hashing, hashed opaque sessions, CSRF/origin protection, expiring single-use email/reset tokens, generic recovery responses, session revocation, protected navigation and Midnight Iris account screens. Development email capture is private under tmp/mailbox; SMTP is configurable, not externally tested. PostgreSQL integration tests use disposable databases, including concurrent verification consumption. Browser QA on isolated 8001/5174 verified register → local email → verification → login → Projects → logout and password recovery/reset; user ports 8000/5173 were not used. Review fixes cover consistent token/user locking, post-response delivery and browser session revalidation. Project CRUD remains Stage 3.
 - Stage 2 verification record: final backend/account/launcher suite 25 passed; frontend suite 8 passed; production frontend build passed. Code review findings addressed. Temporary 8001/5174 services were stopped and their disposable browser-test database removed. No real email was sent. Main application migrations run on the user's next start.
-- Stage 3 — Not started.
-- Stage 4 — Not started.
+- Stage 3 — Complete for local development. Migration 0003, owner-scoped project/site CRUD, read-only prediction history, typed client and Projects/workspace screens delivered. Internal shared admin/123 replaces public account UI by user request. State awaits trusted map validation; sites use manual coordinates for now. Deletes confirm cascading removal. Map selection and inference remain Stages 4 and 6. Final verification: 30 backend tests, 11 frontend tests and production build passed. Browser QA on isolated ports 5174/8001 verified admin login, project creation, site/category saving, reload persistence and empty history. Temporary services and disposable database removed; user ports untouched. See docs/STAGE_3_IMPLEMENTATION.md.
+- Stage 4 — Complete for local development, with explicit research coverage limits. Leaflet/OSM map, 3,000 metre circle, click/drag pin, submitted Nominatim address search, manual coordinates, project chooser, category confirmation and owned-site create/update/reopen delivered. PostgreSQL cache migration 0004 and global provider throttling added. Server derives supported state using hash-checked geoBoundaries 2017 polygons; Putrajaya/unsupported locations rejected. Urban-only coverage remains provisional and visible. Final checks: 35 backend tests, 17 frontend tests, production build passed. Live browser on isolated 5174/8001 verified real search/tiles, save, drag invalidation, same-row update and reopening. No POI/inference called. Temporary preview/database removed. See docs/STAGE_4_IMPLEMENTATION.md.
 - Stage 5 — Not started.
 - Stage 6 — Not started.
 - Stage 7 — Not started.
 - Stage 8 — Not started.
 
 For each update, add: stage/status; delivered file paths or artifact versions; verification performed and results; unresolved dependency/limitation; next stage or independent task. Check the matching Phase checkboxes as work is verified. Do not mark an entire stage complete based on a partial screenshot or successful command alone.
+
+
+### Map-only follow-up — 27 October 2026
+
+Removed the separate manual Add site form and inline site editor; creation/editing now use the estimator map. Coordinates are read-only. Pin state is validated locally and address is reverse-geocoded after the pin settles, using the shared cache/provider quota. Save waits for pending address resolution and permits an absent address after a visible lookup failure. Name/category remain planner-confirmed inputs.
+
+Diagnosed the user's 404 against the actual running API: port 8000's OpenAPI had no location routes, and the frontend proxy returned the same 404. This was an older backend process. No user process was stopped. Restart once through start.cmd; the updated launcher enables backend source reload for subsequent code changes. Missing location routes now produce an explicit restart instruction instead of bare Not Found.
+
+Verified: 36 backend tests, 17 frontend tests and frontend build passed. Isolated real-browser check confirmed map-only creation, dropped-pin coordinates/state/address derivation and saved site. Temporary preview/database cleaned up. Model/POI extraction remains Stage 5/6.

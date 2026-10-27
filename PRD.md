@@ -1,8 +1,11 @@
 # CastraVolt Product Requirements Document
 
+
+> Current internal scope (27 October 2026): shared demo login `admin` / `123`; no public registration, verification or password recovery. Everyone using this account shares its projects, sites and history. Database ownership/session/CSRF checks remain. Earlier individual-account requirements below describe retained future capability and are superseded for this prototype. Demo access is development-only; production rejects it.
+
 Status: Prototype specification
 
-Updated: 26 October 2026
+Updated: 27 October 2026
 
 ## 1. Purpose
 
@@ -16,7 +19,7 @@ This is an FYP decision-support prototype. The prediction represents patterns in
 
 Primary user: a planner evaluating a proposed new EV charging site.
 
-Each planner has an individual login account with private projects, sites and saved predictions. Cross-account sharing is outside the initial scope. Registration, email verification, login/logout and password recovery are specified in TRD.md.
+The internal prototype uses the shared admin account described above. Login opens its persistent Projects workspace. Individually provisioned accounts can be added later if planners require separate workspaces.
 
 Supported states: Selangor and W.P. Kuala Lumpur. The study concerns urban sites; support for every coordinate in these states is not implied. An urban-area boundary or explicit urban study extent must be selected before enforcing an urban-only location check.
 
@@ -251,3 +254,21 @@ Keep models server-side. Version the model, feature schema, extraction rules, ro
 6. Validate the acceptance criteria and document modelling limitations in the FYP.
 
 No additional hyperparameter search is a prerequisite for developing the interface. Data-rule compatibility and correct model export are prerequisites for claiming that live application estimates reproduce the selected experiment.
+
+
+## Stage 4 implementation — 27 October 2026
+
+The active estimator uses Leaflet 1.9.4 with OpenStreetMap tiles and visible attribution. Project workspace offers Add site on map and Open on map; the sidebar estimator starts with a project chooser. Planners can submit an address search, click the map, drag the pin or use numeric coordinates. A 3,000 metre Leaflet Circle follows the pin. Confirm the host-site category before saving; nearby POIs do not determine that category. Saving creates or updates an owned site without running ML.
+
+State is derived server-side from bundled, hash-checked Selangor/Kuala Lumpur state polygons (geoBoundaries MYS ADM1, OSM/Wambacher, 2017, ODbL 1.0). Unsupported/ambiguous boundary points are rejected, including Putrajaya. This is a reproducible research boundary with provisional urban-only coverage, not current cadastral verification. User-supplied state fields are forbidden. Moving the pin invalidates prior validation/saved state, clears the stale address, and requests category reconfirmation.
+
+Address search uses a configurable server-side Nominatim endpoint, explicit submission only, bounded time/response size, provider identification, seven-day successful-result caching and a PostgreSQL global 1.1-second reservation. No autocomplete, searches on every keystroke, or POI/inference on map movement. Search/map failures expose retry/manual alternatives. Browser generation/abort guards prevent late responses replacing current selections. Standard tile requests retain provider attribution, browser caching and origin referrers.
+
+Public OSM/Nominatim endpoints are low-volume development defaults, not a production capacity promise. Configure suitable providers for wider use. Provider details, source hashes, licensing and checks are recorded in docs/STAGE_4_IMPLEMENTATION.md. Existing-site records with unresolved state remain unchanged until a coordinate update; Stage 5/6 must independently validate state before using adoption context.
+
+
+### Map-only refinement — 27 October 2026
+
+User decision supersedes earlier manual-coordinate alternatives: create and edit sites through the map only. Remove the separate Add site form and inline site editor. Project workspace offers Add site on map and Open on map. Coordinates are displayed read-only; state is derived on the server from the selected pin. Address is reverse-geocoded automatically after the pin settles (1.2 second debounce), or reused from an address search. Name and host-site category remain planner inputs; category is not inferred from nearby facilities.
+
+Reverse lookup shares the existing global provider quota/cache, uses local state polygons rather than the provider's state label, aborts/discards stale responses and can be retried. Save waits for pending address lookup; if lookup fails, address remains optional and the valid pin/state can still be saved. POI/adoption feature extraction remains Stage 5. The observed Not Found response was traced to an older running backend with no location routes; restart once via start.cmd. Local startup now enables source-directory backend reload. User app ports/processes were inspected but not stopped or occupied.

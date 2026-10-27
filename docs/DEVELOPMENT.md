@@ -56,3 +56,21 @@ Frontend dependencies are pinned with a lockfile. The project-local `.npmrc` avo
 
 Product/design/build decisions live in PRD.md, TRD.md, DESIGN.md and IMPLEMENTATION_PLAN.md. Model artifacts and environment files are excluded from Git; manifests/fixtures are retained. Transfer trusted artifacts explicitly when moving this project to another machine.
 
+
+## Internal prototype and project storage
+
+Default `CASTRAVOLT_INTERNAL_ACCESS=true`: login ID `admin`, password `123`; public registration and email recovery are disabled. A hashed persistent admin row is created on first successful login. Everyone with this shared login sees its records. Production settings reject demo access.
+
+Migration `0003_projects` adds projects, sites and prediction snapshots. Run the normal startup launcher to apply it. Projects/sites support CRUD; prediction endpoints are read-only until model integration. Confirmed deletion cascades through child sites/predictions. State remains unresolved until map/boundary integration.
+
+Full local application checks: `uv run pytest tests/test_accounts.py tests/test_projects.py tests/test_foundation.py tests/test_dev_workflow.py -q`. PostgreSQL integration tests create and drop uniquely named test databases, preserving the application database. The retained public-account tests use explicit non-internal settings in disposable databases.
+
+## Stage 4 providers and state boundaries
+
+- Run setup after updating frontend dependencies, then startup; migration `0004_geocode_cache` is applied automatically.
+- Leaflet 1.9.4 and @types/leaflet 1.9.21 are locked. Default tiles: https://tile.openstreetmap.org/{z}/{x}/{y}.png with OSM attribution and normal browser caching. Optional overrides `VITE_MAP_TILE_URL` / `VITE_MAP_TILE_ATTRIBUTION` belong in frontend/.env.local and require restarting Vite (rebuild for production).
+- Backend `CASTRAVOLT_GEOCODER_URL` and `CASTRAVOLT_GEOCODER_USER_AGENT` configure Nominatim-compatible HTTPS search. Public Nominatim requires an identifying application User-Agent, caching and no more than one request/second; the global PostgreSQL reservation uses 1.1 seconds. Search is explicit, never autocomplete. Select a suitable service for significant traffic.
+- `GET /api/v1/locations/search?q=...` and `/locations/validate?latitude=...&longitude=...` require a session. Search errors do not become cached zero results. Validation requires no remote geocoder and state cannot be supplied by the browser.
+- Boundary source, exact hashes and ODbL license are bundled in src/castravolt/resources. Data represents 2017 and urban-only coverage is provisional. Include these package resources when deploying; missing/corrupt geometry must not be replaced with a bounding rectangle.
+- Expanded suite: `uv run pytest tests/test_locations.py tests/test_map_api.py tests/test_projects.py tests/test_accounts.py tests/test_foundation.py tests/test_dev_workflow.py -q`.
+- Policies checked: https://operations.osmfoundation.org/policies/nominatim/ and https://operations.osmfoundation.org/policies/tiles/. Leaflet Circle radius is in metres: https://leafletjs.com/reference.html#circle.

@@ -2,6 +2,8 @@ from alembic import context
 from castravolt.config import Settings
 from castravolt.database import Base, make_engine
 import castravolt.account_models  # Register account metadata for autogeneration.
+import castravolt.project_models
+import castravolt.location_models
 
 config = context.config
 settings = Settings()

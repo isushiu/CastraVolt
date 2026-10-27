@@ -47,7 +47,7 @@ export function AuthProvider({children}: {children:ReactNode}) {
   },[]);
   async function signIn(email:string,password:string) {
     generation.current++;
-    const result=await accountAction('login',{email,password});
+    const result=await accountAction('login',{id:email,password});
     if (!result.user) throw new Error('Unable to start your session.');
     setUnavailable(false); setLoading(false); setUser(result.user);
   }
@@ -65,13 +65,24 @@ export function RequireAuth({children}: {children:ReactNode}) {
   const auth=useAuth(); const location=useLocation();
   if (auth.loading) return <main className="session-state" role="status">Opening your workspace…</main>;
   if (auth.unavailable) return <main className="session-state"><h1>Unable to connect</h1><p>Your account service is temporarily unavailable.</p><button className="button primary" onClick={()=>void auth.refresh()}>Try again</button></main>;
-  if (!auth.user) return <Navigate to="/login" replace state={{from:location.pathname}}/>;
+  if (!auth.user) return <Navigate to="/login" replace state={{from:location.pathname+location.search}}/>;
   return children;
 }
 
 type Mode = 'login'|'register'|'verify-email'|'forgot-password'|'reset-password'|'resend-verification';
+
+function returnPath(from:unknown){
+  if(typeof from!=='string')return '/';
+  try{
+    const origin=typeof window==='undefined'?'http://localhost':window.location.origin;
+    const destination=new URL(from,origin);
+    const safe=destination.origin===origin&&(/^\/projects\/[a-f0-9-]+$/.test(destination.pathname)||['/','/estimator','/trends'].includes(destination.pathname));
+    return safe?destination.pathname+destination.search:'/';
+  }catch{return '/';}
+}
+
 const copy: Record<Mode,{title:string; description:string; action:string}> = {
-  login:{title:'Welcome back.',description:'Sign in to your private planning workspace.',action:'Sign in'},
+  login:{title:'Welcome back.',description:'Sign in to the internal CastraVolt workspace.',action:'Sign in'},
   register:{title:'Make room for better planning.',description:'Create your individual CastraVolt account.',action:'Create account'},
   'verify-email':{title:'One last step.',description:'Confirm your email address to access your workspace.',action:'Verify email'},
   'forgot-password':{title:'Let’s get you back in.',description:'Request a link to reset your password.',action:'Send reset link'},
@@ -89,15 +100,15 @@ export function AuthPage({mode}: {mode:Mode}) {
   const needsEmail=['login','register','forgot-password','resend-verification'].includes(mode);
   const needsPassword=['login','register','reset-password'].includes(mode);
   const text=copy[mode];
-  if (auth.user && (mode==='login'||mode==='register')) return <Navigate to="/" replace/>;
+  const destination=returnPath(location.state?.from);
+  if (auth.user && (mode==='login'||mode==='register')) return <Navigate to={destination} replace/>;
   async function submit(event:FormEvent) {
     event.preventDefault();setBusy(true);setError('');
     try {
       if (mode==='login') {
         await auth.signIn(email.trim(),password);
         // Only allow the known internal workspace destinations after authentication.
-        const from=location.state?.from;
-        navigate(['/','/estimator','/trends'].includes(from) ? from : '/', {replace:true});
+        navigate(destination, {replace:true});
       } else {
         const data: Record<string,string>={};
         if(needsEmail) data.email=email.trim();
@@ -120,13 +131,13 @@ export function AuthPage({mode}: {mode:Mode}) {
     <section className="auth-form-panel"><div className="auth-form-inner"><div className="eyebrow">EV INFRASTRUCTURE PLANNING</div><h2>{text.title}</h2><p className="auth-description">{text.description}</p>
       {success ? <div className="auth-success" role="status"><Mail size={25}/><p>{success}</p><Link className="button primary" to="/login">Back to sign in <ArrowRight size={16}/></Link></div> : <form onSubmit={submit}>
         {mode==='register' && <label>Full name<input name="name" autoComplete="name" value={name} onChange={e=>setName(e.target.value)} required maxLength={100}/></label>}
-        {needsEmail && <label>Email address<input name="email" type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} required maxLength={254}/></label>}
+        {needsEmail && <label>{mode==='login'?'User ID':'Email address'}<input name={mode==='login'?'username':'email'} type={mode==='login'?'text':'email'} autoComplete={mode==='login'?'username':'email'} value={email} onChange={e=>setEmail(e.target.value)} required maxLength={254}/></label>}
         {needsPassword && <label>Password<input name="password" type="password" autoComplete={mode==='login'?'current-password':'new-password'} value={password} onChange={e=>setPassword(e.target.value)} required minLength={mode==='login'?1:12} maxLength={128}/>{mode!=='login'&&<small>Use at least 12 characters.</small>}</label>}
         {tokenMode&&!token&&<p className="auth-error" role="alert">Open the complete link from your email to continue.</p>}
         {error&&<p className="auth-error" role="alert">{error}</p>}
         <button className="button primary auth-submit" disabled={busy||(tokenMode&&!token)}>{busy?'Please wait…':text.action}<ArrowRight size={16}/></button>
       </form>}
-      <div className="auth-links">{mode==='login'?<><Link to="/forgot-password">Forgot password?</Link><p>New to CastraVolt? <Link to="/register">Create an account</Link></p><Link to="/resend-verification">Resend verification email</Link></>:<><Link to="/login"><ArrowLeft size={14}/> Back to sign in</Link>{mode==='verify-email'&&<Link to="/resend-verification">Request a new verification link</Link>}</>}</div>
+      <div className="auth-links">{mode==='login'?<p>Demo access: <strong>admin</strong> / <strong>123</strong></p>:<Link to="/login"><ArrowLeft size={14}/> Back to sign in</Link>}</div>
       <p className="auth-footnote">Planning with context. Built for Kuala Lumpur and Selangor.</p>
     </div></section>
   </main>;

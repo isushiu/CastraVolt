@@ -1,8 +1,11 @@
 # CastraVolt Technical Requirements Document
 
+
+> Current internal scope (27 October 2026): shared demo login `admin` / `123`; no public registration, verification or password recovery. Everyone using this account shares its projects, sites and history. Database ownership/session/CSRF checks remain. Earlier individual-account requirements below describe retained future capability and are superseded for this prototype. Demo access is development-only; production rejects it.
+
 Status: Implementation specification; infrastructure providers remain to be selected
 
-Updated: 26 October 2026
+Updated: 27 October 2026
 
 Product specification: PRD.md
 
@@ -18,19 +21,11 @@ Request flow: browser → FastAPI → authorised database operations, geocoding/
 
 Technology versions must be pinned in lockfiles during implementation. The model-serving Python and ML library versions must match the verified artifact environment or pass compatibility tests. Do not load an artifact solely because its filename looks correct.
 
-## 2. Individual planner accounts
+## 2. Internal account access
 
-Every planner has an individual account. Projects, proposed sites, and saved predictions are private to their owner. Shared editing, public links, and organisation roles are outside the initial scope.
+`CASTRAVOLT_INTERNAL_ACCESS=true` is the development default. User ID `admin`, password `123`; registration, verification and recovery endpoints are disabled. The admin row is inserted on first successful login with an Argon2id hash. Its ID and data persist across restarts. This username grants no additional administrative privileges.
 
-Required account flows: register, verify email, log in, log out, inspect the current session, request password reset, and reset password using a single-use expiring token. Use generic responses where appropriate to avoid disclosing whether an email exists.
-
-Proposed implementation: backend-managed opaque sessions in Secure, HttpOnly cookies with an appropriate SameSite policy. Store only a hash of each session token in PostgreSQL. Rotate the session on login, expire sessions, and revoke them on logout. Password reset revokes existing sessions. Cookie-authenticated mutations require CSRF protection, including origin checks and a CSRF token. Set exact trusted origins; never combine credentialed requests with wildcard CORS.
-
-Hash passwords using Argon2id through a maintained library. Never store plaintext passwords or bearer tokens in browser localStorage. Rate-limit login, registration, password reset, and verification requests. Do not log passwords, reset tokens, session tokens, or email-verification tokens.
-
-Prefer a same-origin production deployment (frontend and `/api` behind one HTTPS origin). If deployed across origins, explicitly configure cookie, CSRF, and CORS behaviour and test it in real browsers.
-
-Email delivery provider and account-recovery configuration must be chosen before production. Development may use a local mail catcher; do not expose reset tokens in production responses.
+Retain opaque sessions with hashed tokens, HttpOnly/SameSite cookies, login rate limits, CSRF/origin validation and logout revocation. Never store session tokens in localStorage. Owner-scope every project/site/history query. All users of the shared account see its records. Public account code remains available for future provisioning; production rejects demo access. Future hosted account provisioning and recovery require a separate decision.
 
 ## 3. Frontend responsibilities
 
@@ -73,7 +68,7 @@ Use UUID primary keys and timezone-aware UTC timestamps. Use foreign keys, index
 
 Use JSONB for prediction feature snapshots and model metadata; validate their schema in the backend. Use typed columns for frequently queried ownership keys, dates and numerical outputs. PostgreSQL geographic extensions are optional; add PostGIS if the selected implementation performs meaningful spatial queries or boundary checks in the database.
 
-Prediction history is append-only in the normal interface. Editing a site creates a new prediction on the next request. Project deletion requires an authenticated owner action and documented handling of child records. A confirmation dialog must make the effect clear.
+Prediction history is append-only in the normal interface. Editing a site creates a new prediction on the next request. Project deletion requires owner authentication and confirmation that all child sites and saved predictions are permanently deleted. Site deletion also cascades to its predictions. Foreign keys enforce this policy. Editing a site preserves existing prediction snapshots.
 
 ## 6. Ownership and access enforcement
 
@@ -237,3 +232,21 @@ Hosting, map/geocoding/POI providers, email provider, backup recovery targets an
 3. Select urban boundaries, hosting and external providers.
 4. Align notebook export configuration with the current rounding policy.
 5. Implement individual accounts and ownership before exposing saved project data to multiple planners.
+
+
+## Stage 4 implementation — 27 October 2026
+
+The active estimator uses Leaflet 1.9.4 with OpenStreetMap tiles and visible attribution. Project workspace offers Add site on map and Open on map; the sidebar estimator starts with a project chooser. Planners can submit an address search, click the map, drag the pin or use numeric coordinates. A 3,000 metre Leaflet Circle follows the pin. Confirm the host-site category before saving; nearby POIs do not determine that category. Saving creates or updates an owned site without running ML.
+
+State is derived server-side from bundled, hash-checked Selangor/Kuala Lumpur state polygons (geoBoundaries MYS ADM1, OSM/Wambacher, 2017, ODbL 1.0). Unsupported/ambiguous boundary points are rejected, including Putrajaya. This is a reproducible research boundary with provisional urban-only coverage, not current cadastral verification. User-supplied state fields are forbidden. Moving the pin invalidates prior validation/saved state, clears the stale address, and requests category reconfirmation.
+
+Address search uses a configurable server-side Nominatim endpoint, explicit submission only, bounded time/response size, provider identification, seven-day successful-result caching and a PostgreSQL global 1.1-second reservation. No autocomplete, searches on every keystroke, or POI/inference on map movement. Search/map failures expose retry/manual alternatives. Browser generation/abort guards prevent late responses replacing current selections. Standard tile requests retain provider attribution, browser caching and origin referrers.
+
+Public OSM/Nominatim endpoints are low-volume development defaults, not a production capacity promise. Configure suitable providers for wider use. Provider details, source hashes, licensing and checks are recorded in docs/STAGE_4_IMPLEMENTATION.md. Existing-site records with unresolved state remain unchanged until a coordinate update; Stage 5/6 must independently validate state before using adoption context.
+
+
+### Map-only refinement — 27 October 2026
+
+User decision supersedes earlier manual-coordinate alternatives: create and edit sites through the map only. Remove the separate Add site form and inline site editor. Project workspace offers Add site on map and Open on map. Coordinates are displayed read-only; state is derived on the server from the selected pin. Address is reverse-geocoded automatically after the pin settles (1.2 second debounce), or reused from an address search. Name and host-site category remain planner inputs; category is not inferred from nearby facilities.
+
+Reverse lookup shares the existing global provider quota/cache, uses local state polygons rather than the provider's state label, aborts/discards stale responses and can be retried. Save waits for pending address lookup; if lookup fails, address remains optional and the valid pin/state can still be saved. POI/adoption feature extraction remains Stage 5. The observed Not Found response was traced to an older running backend with no location routes; restart once via start.cmd. Local startup now enables source-directory backend reload. User app ports/processes were inspected but not stopped or occupied.

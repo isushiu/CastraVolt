@@ -243,7 +243,7 @@ def start(root=ROOT):
         log_dir = root/'tmp'
         log_dir.mkdir(exist_ok=True)
         for label,command,check in [
-            ('backend',[str(python),'-m','uvicorn','castravolt.main:app','--host','127.0.0.1','--port','8000'],
+            ('backend',[str(python),'-m','uvicorn','castravolt.main:app','--host','127.0.0.1','--port','8000','--reload','--reload-dir',str(root/'src')],
              lambda: check_api('http://127.0.0.1:8000/api/v1/system')),
             ('frontend',['node',str(root/'frontend/node_modules/vite/bin/vite.js'),
                          '--host','127.0.0.1','--port','5173'],

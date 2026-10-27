@@ -29,7 +29,7 @@ def account_settings(tmp_path_factory):
             env={**os.environ,'CASTRAVOLT_DATABASE_URL':test_url},capture_output=True,text=True)
         assert result.returncode == 0, result.stderr
         yield Settings(database_url=test_url,mail_directory=str(tmp_path_factory.mktemp('mail')),
-                       frontend_url='http://localhost:5173',auth_rate_limit=1000)
+                       frontend_url='http://localhost:5173',auth_rate_limit=1000,internal_access=False)
     finally:
         with admin.connect() as connection:
             connection.execute(text(f'DROP DATABASE "{name}" WITH (FORCE)'))

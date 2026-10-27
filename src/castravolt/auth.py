@@ -6,7 +6,7 @@ from uuid import UUID
 from argon2 import PasswordHasher
 from argon2.exceptions import VerificationError, InvalidHashError
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, Response
-from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, AliasChoices, field_validator
 from sqlalchemy import delete, select, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError
@@ -29,6 +29,19 @@ def database(request: Request):
     if request.app.state.engine is None: raise HTTPException(503,'Account service is unavailable.')
     with Session(request.app.state.engine,expire_on_commit=False) as session:
         yield session
+
+
+def individual_access(request: Request):
+    if request.app.state.settings.internal_access:
+        raise HTTPException(404, 'Public account registration and recovery are disabled.')
+
+
+def current_user(request: Request, db: Session=Depends(database)):
+    active=current_session(request,db)
+    if not active: raise HTTPException(401,'Please sign in to continue.')
+    user=db.get(User,active.user_id)
+    if user is None: raise HTTPException(401,'Please sign in to continue.')
+    return user
 
 
 def current_session(request,db):
@@ -109,6 +122,11 @@ class Registration(Credentials):
         return value
 
 
+class LoginInput(BaseModel):
+    id: str = Field(min_length=1,max_length=254,validation_alias=AliasChoices('id','email'))
+    password: str = Field(min_length=1,max_length=128)
+
+
 class EmailInput(BaseModel):
     email: EmailStr = Field(max_length=254)
     @field_validator('email')
@@ -157,7 +175,7 @@ def get_csrf(request: Request,response: Response,db: Session=Depends(database)):
     return {'csrf_token':value}
 
 
-@router.post('/register',response_model=Message,status_code=202,dependencies=[Depends(csrf)])
+@router.post('/register',response_model=Message,status_code=202,dependencies=[Depends(individual_access),Depends(csrf)])
 def register(data: Registration,request: Request,background_tasks: BackgroundTasks,db: Session=Depends(database)):
     throttle(request,db,'register',data.email)
     password_hash=hasher.hash(data.password)
@@ -174,7 +192,7 @@ def register(data: Registration,request: Request,background_tasks: BackgroundTas
     return {'message':'If registration can proceed, a verification email will arrive shortly.'}
 
 
-@router.post('/verify-email',response_model=Message,dependencies=[Depends(csrf)])
+@router.post('/verify-email',response_model=Message,dependencies=[Depends(individual_access),Depends(csrf)])
 def verify_email(data: TokenInput,request: Request,db: Session=Depends(database)):
     throttle(request,db,'verify')
     user,token=locked_token(db,data.token,'verify')
@@ -182,7 +200,7 @@ def verify_email(data: TokenInput,request: Request,db: Session=Depends(database)
     return {'message':'Email verified. You can now sign in.'}
 
 
-@router.post('/resend-verification',response_model=Message,status_code=202,dependencies=[Depends(csrf)])
+@router.post('/resend-verification',response_model=Message,status_code=202,dependencies=[Depends(individual_access),Depends(csrf)])
 def resend(data: EmailInput,request: Request,background_tasks: BackgroundTasks,db: Session=Depends(database)):
     throttle(request,db,'resend',data.email)
     user=db.scalar(select(User).where(User.email==data.email).with_for_update())
@@ -193,13 +211,22 @@ def resend(data: EmailInput,request: Request,background_tasks: BackgroundTasks,d
 
 
 @router.post('/login',response_model=AuthResult,dependencies=[Depends(csrf)])
-def login(data: Credentials,request: Request,response: Response,db: Session=Depends(database)):
-    throttle(request,db,'login',data.email)
-    user=db.scalar(select(User).where(User.email==data.email).with_for_update())
+def login(data: LoginInput,request: Request,response: Response,db: Session=Depends(database)):
+    identifier=data.id.strip().casefold()
+    throttle(request,db,'login',identifier)
+    if request.app.state.settings.internal_access:
+        if identifier!='admin' or not secrets.compare_digest(data.password.encode('utf-8'),b'123'):
+            raise HTTPException(401,'Unable to sign in. Check your ID and password.')
+        # Insert once; never reset or replace an existing account on a restart.
+        from uuid import uuid4
+        db.execute(insert(User).values(id=uuid4(),email='admin@castravolt.local',name='Admin',
+                   password_hash=hasher.hash('123'),verified_at=now(),created_at=now()).on_conflict_do_nothing(index_elements=['email']))
+        identifier='admin@castravolt.local'
+    user=db.scalar(select(User).where(User.email==identifier).with_for_update())
     try: valid=hasher.verify(user.password_hash if user else dummy_hash,data.password)
     except (VerificationError,InvalidHashError): valid=False
     if not valid or not user or not user.verified_at:
-        raise HTTPException(401,'Unable to sign in. Check your details and verify your email.')
+        raise HTTPException(401,'Unable to sign in. Check your login details.')
     if hasher.check_needs_rehash(user.password_hash): user.password_hash=hasher.hash(data.password)
     old=current_session(request,db)
     if old: old.revoked_at=now()
@@ -228,7 +255,7 @@ def logout(request: Request,response: Response,db: Session=Depends(database)):
     return {'message':'Signed out.'}
 
 
-@router.post('/forgot-password',response_model=Message,status_code=202,dependencies=[Depends(csrf)])
+@router.post('/forgot-password',response_model=Message,status_code=202,dependencies=[Depends(individual_access),Depends(csrf)])
 def forgot(data: EmailInput,request: Request,background_tasks: BackgroundTasks,db: Session=Depends(database)):
     throttle(request,db,'forgot',data.email)
     user=db.scalar(select(User).where(User.email==data.email).with_for_update())
@@ -238,7 +265,7 @@ def forgot(data: EmailInput,request: Request,background_tasks: BackgroundTasks,d
     return {'message':'If this account is eligible, a password reset email will arrive shortly.'}
 
 
-@router.post('/reset-password',response_model=Message,dependencies=[Depends(csrf)])
+@router.post('/reset-password',response_model=Message,dependencies=[Depends(individual_access),Depends(csrf)])
 def reset(data: ResetInput,request: Request,db: Session=Depends(database)):
     throttle(request,db,'reset')
     user,token=locked_token(db,data.token,'reset')

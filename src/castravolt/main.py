@@ -16,6 +16,8 @@ from starlette.exceptions import HTTPException
 from castravolt.config import Settings
 from castravolt.database import make_engine
 from castravolt.auth import router as auth_router
+from castravolt.projects import router as projects_router
+from castravolt.locations import router as locations_router
 
 logger = logging.getLogger('castravolt')
 
@@ -24,7 +26,7 @@ class SystemInfo(BaseModel):
     name: str = 'CastraVolt'
     version: str = '0.1.0'
     stage: Literal['foundation'] = 'foundation'
-    capabilities: dict[str, bool] = {'accounts': True, 'projects': False, 'predictions': False}
+    capabilities: dict[str, bool] = {'accounts': True, 'projects': True, 'predictions': False}
 
 
 class Liveness(BaseModel):
@@ -52,8 +54,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app = FastAPI(title='CastraVolt API', version='0.1.0', lifespan=lifespan)
     app.state.settings=settings
     app.include_router(auth_router)
+    app.include_router(projects_router)
+    app.include_router(locations_router)
     app.add_middleware(CORSMiddleware, allow_origins=settings.cors_origins,
-                       allow_credentials=True, allow_methods=['GET', 'POST', 'OPTIONS'],
+                       allow_credentials=True, allow_methods=['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
                        allow_headers=['Content-Type', 'X-CSRF-Token'], expose_headers=['X-Request-ID'])
 
     @app.middleware('http')
@@ -69,7 +73,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
                 'error': {'code': 'internal_error', 'message': 'The request could not be completed.',
                           'request_id': request.state.request_id}})
         response.headers['X-Request-ID'] = request.state.request_id
-        if request.url.path.startswith('/api/v1/auth'):
+        if request.url.path.startswith('/api/v1/'):
             response.headers['Cache-Control']='no-store'
             response.headers['Referrer-Policy']='no-referrer'
         logger.info('request method=%s status=%s duration_ms=%.1f request_id=%s',

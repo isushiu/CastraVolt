@@ -4,6 +4,12 @@ from castravolt.config import Settings
 from castravolt.main import create_app
 
 
+def test_shared_demo_access_cannot_be_enabled_in_production():
+    import pytest
+    with pytest.raises(ValueError, match='shared demo account'):
+        Settings(environment='production', secure_cookies=True, mail_mode='smtp', frontend_url='https://example.com')
+
+
 def test_liveness_and_request_id_without_database():
     with TestClient(create_app(Settings(database_url=None))) as client:
         response = client.get('/health/live')

@@ -2,7 +2,7 @@
 
 CastraVolt helps planners estimate the total EV charging points for a proposed site in Kuala Lumpur or Selangor. It also displays monthly EV registration trends.
 
-Built with React, TypeScript, FastAPI and PostgreSQL. Individual account access is available; private project creation and live predictions are still under development.
+Built with React, TypeScript, FastAPI and PostgreSQL. Internal login, projects, map/address selection and saved sites are available. Live predictions and the trends dashboard are under development.
 
 ## Requirements
 
@@ -44,11 +44,11 @@ Open [CastraVolt](http://127.0.0.1:5173/). Keep the terminal open; press **Ctrl+
 
 After the first setup, you normally only need to open Docker and run `.\start.cmd`.
 
-## Try an account locally
+## Sign in
 
-After starting, choose **Create an account**. Verification and password-reset emails are saved as `.eml` files in `tmp/mailbox` for local development; they are not sent to your real inbox. Open the newest file in a text editor, copy its link into the browser, and complete verification. Then sign in to Projects.
+Use **User ID: `admin`** and **Password: `123`**. No registration or email verification is needed. Everyone using this internal demo account shares its projects and sites.
 
-Existing users updating to this version should stop their running app, run setup again, and start it. Startup applies the new account database migration automatically. No demo account or shared default password is created.
+After updating an existing checkout, stop the app and run `start.cmd` again. Startup applies the new project/site migration automatically and keeps existing data. Shared demo credentials are for local development only.
 
 ## macOS / Linux
 
@@ -72,3 +72,12 @@ These requirements are for local development. Planners using a future hosted ver
 - **A service fails to start:** inspect `tmp/dev-backend.log` or `tmp/dev-frontend.log`.
 
 For manual startup, tests and technical details, see [Development notes](docs/DEVELOPMENT.md).
+
+## Choosing a site
+
+Open a project → **Add site on map**. Search for an address, click the map, or drag the pin. Confirm the site name/category, then save. The dashed circle shows 3 km; the app checks the pin is in Kuala Lumpur or Selangor. Urban-only coverage remains provisional. **Open on map** edits a saved site.
+
+Internet access is needed for map tiles and address search. State checks use bundled research boundaries. The public map/search providers are development defaults; larger deployments need suitable provider arrangements. POI gathering and ML estimates are later stages.
+
+
+If a new screen shows **Not Found** for location checks after an update, the old backend is still running. Stop the app in its terminal with Ctrl+C, then run `.\start.cmd` again. Development startup now reloads backend Python changes automatically. Coordinates/state/address are derived from the map pin; site creation and editing use the map only.

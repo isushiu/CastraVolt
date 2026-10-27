@@ -13,6 +13,17 @@ class Settings(BaseSettings):
     frontend_url: str = 'http://127.0.0.1:5173'
     secure_cookies: bool = False
     environment: Literal['development','production'] = 'development'
+    internal_access: bool = True
+    geocoder_url: str = 'https://nominatim.openstreetmap.org'
+    geocoder_user_agent: str = 'CastraVolt/0.1 (urban EV planning research prototype)'
+
+    @field_validator('geocoder_url')
+    @classmethod
+    def https_geocoder(cls,value):
+        parsed=urlsplit(value)
+        if parsed.scheme!='https' or not parsed.netloc or parsed.username or parsed.password or parsed.query or parsed.fragment:
+            raise ValueError('Geocoder must be a configured HTTPS provider')
+        return value.rstrip('/')
     session_hours: int = Field(default=24,ge=1,le=168)
     auth_rate_limit: int = Field(default=30,ge=1,le=1000)
     mail_mode: Literal['file','smtp'] = 'file'
@@ -34,6 +45,8 @@ class Settings(BaseSettings):
 
     @model_validator(mode='after')
     def safe_production(self):
+        if self.environment=='production' and self.internal_access:
+            raise ValueError('The shared demo account is for development only')
         if self.environment=='production' and (not self.secure_cookies or self.mail_mode!='smtp' or not self.smtp_starttls or not self.frontend_url.startswith('https://')):
             raise ValueError('Production requires HTTPS, secure cookies and TLS SMTP delivery')
         return self
