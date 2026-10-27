@@ -14,7 +14,7 @@ export default function SiteMap({point,onSelect,disabled=false}:{point:Point|nul
   const [error,setError]=useState(false),[loading,setLoading]=useState(true);
   useEffect(()=>{
     if(!host.current)return;
-    const instance=L.map(host.current,{center:[3.139,101.6869],zoom:11,scrollWheelZoom:false});map.current=instance;
+    const instance=L.map(host.current,{center:[3.139,101.6869],zoom:11,scrollWheelZoom:true});map.current=instance;
     const layer=L.tileLayer(tileUrl,{attribution:tileAttribution,maxZoom:19}).addTo(instance);tiles.current=layer;
     layer.on('tileerror',()=>{setError(true);setLoading(false);});layer.on('load',()=>setLoading(false));
     instance.on('click',(event:L.LeafletMouseEvent)=>{if(!locked.current)select.current({latitude:event.latlng.lat,longitude:event.latlng.lng});});
