@@ -22,3 +22,14 @@ No source CSVs are modified. State adoption is configurable and off by default u
 The target uses the authorised assumption that proposed chargers are additions. Displayed counts use ceiling and a configurable default minimum of one. Raw and rounded metrics are reported separately. Saved models are deployment candidates, not proof of optimal charger capacity. A smoke-trained candidate must not be deployed.
 
 Local validation executed every code cell against the four project CSVs in smoke mode. All 11 setups ran for both models and the two baselines. This does not verify the Colab upload/Drive interface or complete full-budget tuning. Identical-coordinate isolation, reproducible assignments, target sums, forbidden-input exclusion and ceiling behaviour were also checked.
+
+
+## Feature comparison notebook
+
+Open `CastraVolt_Feature_Comparison.ipynb` in Google Colab. It compares all seven nonempty combinations of POIs (the eight counts as one block), site category and state, using separately tuned RF and XGBoost models plus two simple baselines. EV registration data is excluded.
+
+Upload the same `updated_mevnet.csv` and `updated_mevnet_row_groups.csv` together. Hash and row-alignment checks protect the pairing; coordinates are only for splits. Defaults: full mode, 80/20 holdout, ten training CV folds, seed 42, 30 sampled settings per candidate. The 4,200 validation fits can take a substantial session; GPU is unnecessary. Optional extra train fractions increase the workload. This is a feature-ablation comparison rather than every combination of the earlier eleven protocols.
+
+Run all cells, then return the downloaded ZIP. It includes `comparison_summary.csv`, `feature_added_value.csv`, `permutation_diagnostics.csv`, predictions, source/fold assignments, searches, target-band errors, zero-POI scenarios, metadata and the training-CV-selected candidate. Each settings run uses a timestamped output directory so different runs do not mix. A final download cell can also archive partial results after interruption; partial or smoke results are not final findings.
+
+The app's current model is not changed. Existing held-out sites have already been inspected, so these comparisons remain exploratory. Rebuild the notebook with `python notebooks/build_feature_comparison_notebook.py`; workflow verification is `python tests/run_feature_comparison_smoke.py` with the model-validation/XGBoost environment available.
