@@ -24,3 +24,4 @@ frontend/*.tsbuildinfo
 !.env.example
 .pytest_cache/
 *.joblib
+!model/verified_poi_state_rf80_cv10/evaluated_pipeline.joblib

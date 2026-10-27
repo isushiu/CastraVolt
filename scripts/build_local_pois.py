@@ -2,7 +2,7 @@
 import argparse,gzip,hashlib,json
 from pathlib import Path
 import osmium
-from castravolt.features import RULES,RULE_HASH
+from castravolt.features import RULES,CATALOG_RULE_HASH as RULE_HASH
 from castravolt.locations import boundaries
 
 ROOT=Path(__file__).resolve().parents[1]

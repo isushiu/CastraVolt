@@ -430,3 +430,15 @@ Created notebooks/CastraVolt_POI_Category_State.ipynb using data/ML Data/updated
 
 
 27 October feature cleanup: removed state_ev_registrations from updated_mevnet.csv and its 1 km backup, plus adoption fields from derived audit tables. Current dataset has 1,902 unchanged rows and 11 columns: eight POIs, category, state and total_planned_chargers. Preparation script will not re-add adoption. Updated preparation hash and rebuilt CastraVolt_POI_Category_State.ipynb to accept the revised dataset. Registration source files retained separately for the dashboard.
+
+
+### Full 1 km result archive audited (27 October 2026)
+
+Both dataset hashes and all saved evaluation metrics verified. Uploaded candidate is default all-data RF, not tuned evaluated model. Recommended RF80/CV10 on training-CV evidence (1.90255 vs XGB 1.93471), with explicit post-hoc selection limitation; reconstructed evaluated artifact under model/verified_poi_state_rf80_cv10 reproduces all 380 saved test predictions. MAE 2.01239, rounded MAE 1.97895, within-two 80%; 10+ target sites MAE 6.9988. Important diagnostic: RF category+state-only CV MAE 1.89358 vs all features 1.90255, so no demonstrated POI benefit in that configuration. XGB shows some POI signal but category dominates both. Original app/model not replaced. See docs/POI_MODEL_HANDOFF.md and artifact diagnostic files.
+
+
+## Current model integration — 27 October 2026
+
+This decision supersedes earlier 3 km/adoption prediction specifications. The estimator uses eight POI counts within **1 km**, the confirmed host-site category and boundary-derived state. EV registration numbers are excluded from prediction; keep 2024–2026 data for the future monthly trends dashboard.
+
+The selected evaluated Random Forest is `model/verified_poi_state_rf80_cv10` (80/20 with training-only CV10). Results appear below the map, estimate total planned charging points, and use nearest whole number with halves upward and minimum one. Exact model, query-rule and OSM snapshot compatibility is required. New history stores no adoption context; old history is preserved. Research prototype wording reflects measured capacity accuracy limits, not a placeholder model. See BACKLOG.md and RESULTS.md for implementation status and validation.

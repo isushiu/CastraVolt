@@ -1,4 +1,4 @@
-"""Versioned feature preparation. Provisional POI rules cannot certify model parity."""
+"""Versioned 1 km feature preparation for the evaluated research model."""
 from datetime import datetime,timedelta
 from functools import lru_cache
 from importlib.resources import files
@@ -21,7 +21,7 @@ from castravolt.projects import owned_site
 from castravolt.network import tls_context
 
 router=APIRouter(prefix='/api/v1/sites',tags=['Feature preparation'])
-RADIUS=3000
+RADIUS=1000
 RULES={
  'nearby_mall_count':{'shop':['mall']},
  'nearby_petrol_count':{'amenity':['fuel']},
@@ -33,6 +33,9 @@ RULES={
  'nearby_parking_count':{'amenity':['parking']}}
 RULE_VERSION='provisional-centres-wikidata50m-v1'
 RULE_HASH=digest(json.dumps({'tags':RULES,'method':RULE_VERSION,'radius':RADIUS},sort_keys=True))
+# The reusable catalogue was built under this original identity. Its geographic
+# coverage supports 1 km queries; query radius is tracked separately by RULE_HASH.
+CATALOG_RULE_HASH=digest(json.dumps({'tags':RULES,'method':RULE_VERSION,'radius':3000},sort_keys=True))
 logger=logging.getLogger('castravolt')
 
 
@@ -151,17 +154,8 @@ class ModelFeatures(BaseModel):
     nearby_university_count:int=Field(ge=0)
     nearby_hospital_count:int=Field(ge=0)
     nearby_parking_count:int=Field(ge=0)
-    state_ev_registrations:int=Field(ge=0)
     category:str
     state:str
-
-
-class AdoptionContext(BaseModel):
-    reference_year:int
-    value:int
-    version:str
-    source_sha256:str
-    measure:str
 
 
 class PoiProvenance(BaseModel):
@@ -186,16 +180,15 @@ class PreparedContext(BaseModel):
     extracted_at:datetime
     cache_hit:bool
     provenance:PoiProvenance
-    adoption:AdoptionContext
     inference_eligible:bool=False
-    limitation:str='Live POI counting rules are provisional; equivalence to the training features is not verified.'
+    limitation:str='Research planning estimate; site-category dependence and larger-site errors limit accuracy.'
 
 
 @router.post('/{site_id}/features',response_model=PreparedContext,dependencies=[Depends(csrf)])
 def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user),db:Session=Depends(database)):
     site=owned_site(db,user,site_id)
     snapshot={'latitude':site.latitude,'longitude':site.longitude,'category':site.category,'updated_at':site.updated_at}
-    state=resolve_state(site.latitude,site.longitude);adoption=adoption_context(state)
+    state=resolve_state(site.latitude,site.longitude)
     throttle(request,db,'features',str(user.id))
     settings=request.app.state.settings
     local=None
@@ -244,6 +237,12 @@ def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user
     if not current_session(request,db): raise HTTPException(401,'Please sign in to continue.')
     db.expire_all();current=owned_site(db,user,site_id)
     if current.updated_at!=snapshot['updated_at']: raise HTTPException(409,'This site changed during lookup. Save the current selection and prepare again.')
+    model=getattr(request.app.state,'prediction_model',None)
+    eligible=bool(model and getattr(model,'radius_metres',None)==RADIUS
+        and getattr(model,'rule_sha256',None)==RULE_HASH
+        and getattr(model,'snapshot_sha256',None)==provenance.get('source_snapshot_sha256'))
+    limitation=('Research planning estimate; site-category dependence and larger-site errors limit accuracy.' if eligible
+        else 'The model or map source does not match the evaluated 1 km training setup. Use the bundled map snapshot and selected model.')
     return PreparedContext(site_id=str(site_id),site_updated_at=snapshot['updated_at'],features=ModelFeatures(**counts,
-        state_ev_registrations=adoption['value'],category=snapshot['category'],state=state),
-        extracted_at=extracted,cache_hit=hit,provenance=provenance,adoption=adoption)
+        category=snapshot['category'],state=state),extracted_at=extracted,cache_hit=hit,provenance=provenance,
+        inference_eligible=eligible,limitation=limitation)

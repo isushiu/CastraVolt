@@ -1182,39 +1182,6 @@
   },
   "components": {
     "schemas": {
-      "AdoptionContext": {
-        "properties": {
-          "reference_year": {
-            "type": "integer",
-            "title": "Reference Year"
-          },
-          "value": {
-            "type": "integer",
-            "title": "Value"
-          },
-          "version": {
-            "type": "string",
-            "title": "Version"
-          },
-          "source_sha256": {
-            "type": "string",
-            "title": "Source Sha256"
-          },
-          "measure": {
-            "type": "string",
-            "title": "Measure"
-          }
-        },
-        "type": "object",
-        "required": [
-          "reference_year",
-          "value",
-          "version",
-          "source_sha256",
-          "measure"
-        ],
-        "title": "AdoptionContext"
-      },
       "AuthResult": {
         "properties": {
           "user": {
@@ -1395,11 +1362,6 @@
             "minimum": 0.0,
             "title": "Nearby Parking Count"
           },
-          "state_ev_registrations": {
-            "type": "integer",
-            "minimum": 0.0,
-            "title": "State Ev Registrations"
-          },
           "category": {
             "type": "string",
             "title": "Category"
@@ -1420,7 +1382,6 @@
           "nearby_university_count",
           "nearby_hospital_count",
           "nearby_parking_count",
-          "state_ev_registrations",
           "category",
           "state"
         ],
@@ -1522,9 +1483,9 @@
             "format": "date-time",
             "title": "Site Updated At"
           },
-          "acknowledge_unverified_pois": {
+          "acknowledge_model_limitations": {
             "type": "boolean",
-            "title": "Acknowledge Unverified Pois",
+            "title": "Acknowledge Model Limitations",
             "default": false
           }
         },
@@ -1575,11 +1536,25 @@
             "title": "Poi Timestamp"
           },
           "adoption_reference_year": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Adoption Reference Year"
           },
           "adoption_value": {
-            "type": "integer",
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Adoption Value"
           },
           "rounding_policy": {
@@ -1631,7 +1606,7 @@
           "radius_metres": {
             "type": "integer",
             "title": "Radius Metres",
-            "default": 3000
+            "default": 1000
           },
           "extraction_rule_version": {
             "type": "string",
@@ -1641,7 +1616,7 @@
           "rule_sha256": {
             "type": "string",
             "title": "Rule Sha256",
-            "default": "7784129121cabddff6e4f0de3a0c38536178f9f6750e2ea7da81ddd8b6856942"
+            "default": "47df51e25751ad656cbdb495db37f8b6dde7eb38ebe600bd29a3512fd773be89"
           },
           "boundary_version": {
             "type": "string",
@@ -1660,9 +1635,6 @@
           "provenance": {
             "$ref": "#/components/schemas/PoiProvenance"
           },
-          "adoption": {
-            "$ref": "#/components/schemas/AdoptionContext"
-          },
           "inference_eligible": {
             "type": "boolean",
             "title": "Inference Eligible",
@@ -1671,7 +1643,7 @@
           "limitation": {
             "type": "string",
             "title": "Limitation",
-            "default": "Live POI counting rules are provisional; equivalence to the training features is not verified."
+            "default": "Research planning estimate; site-category dependence and larger-site errors limit accuracy."
           }
         },
         "type": "object",
@@ -1681,8 +1653,7 @@
           "features",
           "extracted_at",
           "cache_hit",
-          "provenance",
-          "adoption"
+          "provenance"
         ],
         "title": "PreparedContext"
       },

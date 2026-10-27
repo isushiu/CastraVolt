@@ -109,7 +109,7 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
     const current=revision.current;predictionKey.current??=crypto.randomUUID();const key=predictionKey.current;
     setPredicting(true);setPredictionError('');
     try{const result=await projectApi<Prediction>(`/sites/${saved.id}/predictions`,'POST',{
-      idempotency_key:key,site_updated_at:saved.updated_at,acknowledge_unverified_pois:true},controller.signal);
+      idempotency_key:key,site_updated_at:saved.updated_at,acknowledge_model_limitations:true},controller.signal);
       if(!controller.signal.aborted&&current===revision.current){setPrediction(result);predictionKey.current=null;}
     }catch(err){if(!controller.signal.aborted&&current===revision.current)setPredictionError(errorMessage(err));}
     finally{if(!controller.signal.aborted&&current===revision.current)setPredicting(false);}
@@ -123,7 +123,7 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
       {results.length>0&&<ul className="search-results" aria-label="Address search results">{results.map((item,index)=><li key={`${item.latitude}:${item.longitude}:${index}`}><button disabled={saving} onClick={()=>selectPoint(item,item)}><strong>{item.name}</strong><span>{item.address}</span></button></li>)}</ul>}
       <p className="provider-note">Search uses Nominatim · © OpenStreetMap contributors. Searches run only when submitted.</p></section>
       <SiteMap point={point} onSelect={selectPoint} disabled={saving}/>
-      <PredictionPanel result={prediction} ready={!!saved&&!!context&&!saving&&!contextBusy&&!addressLoading} busy={predicting} error={predictionError} onPredict={()=>void generatePrediction()} projectId={projectId}/>
+      <PredictionPanel result={prediction} ready={!!saved&&!!context&&context.inference_eligible&&!saving&&!contextBusy&&!addressLoading} busy={predicting} error={predictionError} onPredict={()=>void generatePrediction()} projectId={projectId}/>
     </div><section className="selection-panel"><div className="eyebrow">SELECTED LOCATION</div><h2>{point?'Your proposed site':'Choose a location'}</h2><p className="selection-description">Place a pin or choose a search result. Location details are derived from the pin.</p>
       <form onSubmit={save} className="workspace-form"><fieldset disabled={saving} className="site-fieldset"><dl className="coordinate-summary"><div><dt>Latitude</dt><dd>{point?point.latitude.toFixed(6):'—'}</dd></div><div><dt>Longitude</dt><dd>{point?point.longitude.toFixed(6):'—'}</dd></div></dl>
         {validating&&<p role="status">Checking study-state boundary…</p>}{locationError&&<div role="alert" className="auth-error">{locationError}{point&&<button type="button" className="text-button" onClick={()=>setPoint({...point})}>Retry location check</button>}</div>}
@@ -135,6 +135,6 @@ function EstimatorEditor({projectId,siteId,chooseProject}:{projectId:string;site
         <label className="category-confirm"><input type="checkbox" checked={confirmed} onChange={e=>{invalidate();setConfirmed(e.target.checked);}}/>I confirm the host-site category.</label>
         <button className="button primary" disabled={!point||!validation||!name.trim()||!confirmed||saving||addressLoading||!!saved}>{saving?'Saving…':saved?'Site saved':siteId?'Save site changes':'Save proposed site'}</button></fieldset>
         {saveError&&<p role="alert" className="auth-error">{saveError}</p>}{saved&&<div className="saved-site-message" role="status"><Check size={18}/><div>Site saved to {project?.name}.<Link to={`/projects/${projectId}`}>View project and site history →</Link></div></div>}
-      </form><FeatureContext context={context} busy={contextBusy} error={contextError} ready={!!saved&&!!validation&&!saving&&!addressLoading} onPrepare={()=>void prepareContext()} retryAt={contextRetryAt}/><div className="estimator-limitation"><strong>Study coverage</strong><p>State boundaries are checked using OSM-derived geoBoundaries (2017). Urban-only coverage is provisional. Facility counts use provisional counting rules; generated estimates remain experimental.</p><a href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Boundary source and attribution</a></div>
+      </form><FeatureContext context={context} busy={contextBusy} error={contextError} ready={!!saved&&!!validation&&!saving&&!addressLoading} onPrepare={()=>void prepareContext()} retryAt={contextRetryAt}/><div className="estimator-limitation"><strong>Study coverage</strong><p>State boundaries are checked using OSM-derived geoBoundaries (2017). Urban-only coverage is provisional. Facilities are counted within 1 km using the model’s preparation rules. Estimates are research planning guidance.</p><a href="https://www.geoboundaries.org/" target="_blank" rel="noreferrer">Boundary source and attribution</a></div>
     </section></div></>;
 }

@@ -103,3 +103,8 @@ Setup already installs the model-validation group. Manual serving should retain 
 `POST /api/v1/sites/{id}/predictions`: JSON idempotency_key (UUID), site_updated_at (aware timestamp) and acknowledge_unverified_pois=true. The latter is the labelled experimental development action, not scientific approval; production rejects unverified feature inference. No browser feature counts are accepted. Migration 0006 enforces key uniqueness. History GETs remain immutable/owned; metadata includes full model and source hashes.
 
 Full application verification adds tests/test_inference.py and tests/test_prediction_api.py to the existing suite. Experimental requests cannot mark POI parity verified. Retain all scientific limitations when transferring or demonstrating this prototype.
+
+
+## 1 km model transition (27 October 2026)
+
+Default model directory: model/verified_poi_state_rf80_cv10. Startup migration 0007_optional_adoption makes legacy adoption fields nullable without deleting their values. New predictions require acknowledge_model_limitations=true, use ten features and omit adoption snapshots. The local 1 km extractor must match the manifest query-rule hash and bundled snapshot hash; remote Overpass context is preview-only for this artifact. Model health reports radius and feature order. Research inference remains development-only. Restart via start.cmd after an update; do not replace the trusted artifact with the uploaded fixed candidate_model.joblib.

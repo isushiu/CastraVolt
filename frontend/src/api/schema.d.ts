@@ -423,19 +423,6 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        /** AdoptionContext */
-        AdoptionContext: {
-            /** Reference Year */
-            reference_year: number;
-            /** Value */
-            value: number;
-            /** Version */
-            version: string;
-            /** Source Sha256 */
-            source_sha256: string;
-            /** Measure */
-            measure: string;
-        };
         /** AuthResult */
         AuthResult: {
             user: components["schemas"]["Planner"];
@@ -518,8 +505,6 @@ export interface components {
             nearby_hospital_count: number;
             /** Nearby Parking Count */
             nearby_parking_count: number;
-            /** State Ev Registrations */
-            state_ev_registrations: number;
             /** Category */
             category: string;
             /** State */
@@ -569,10 +554,10 @@ export interface components {
              */
             site_updated_at: string;
             /**
-             * Acknowledge Unverified Pois
+             * Acknowledge Model Limitations
              * @default false
              */
-            acknowledge_unverified_pois: boolean;
+            acknowledge_model_limitations: boolean;
         };
         /** PredictionResult */
         PredictionResult: {
@@ -604,9 +589,9 @@ export interface components {
              */
             poi_timestamp: string;
             /** Adoption Reference Year */
-            adoption_reference_year: number;
+            adoption_reference_year: number | null;
             /** Adoption Value */
-            adoption_value: number;
+            adoption_value: number | null;
             /** Rounding Policy */
             rounding_policy: string;
             /**
@@ -629,7 +614,7 @@ export interface components {
             features: components["schemas"]["ModelFeatures"];
             /**
              * Radius Metres
-             * @default 3000
+             * @default 1000
              */
             radius_metres: number;
             /**
@@ -639,7 +624,7 @@ export interface components {
             extraction_rule_version: string;
             /**
              * Rule Sha256
-             * @default 7784129121cabddff6e4f0de3a0c38536178f9f6750e2ea7da81ddd8b6856942
+             * @default 47df51e25751ad656cbdb495db37f8b6dde7eb38ebe600bd29a3512fd773be89
              */
             rule_sha256: string;
             /**
@@ -655,7 +640,6 @@ export interface components {
             /** Cache Hit */
             cache_hit: boolean;
             provenance: components["schemas"]["PoiProvenance"];
-            adoption: components["schemas"]["AdoptionContext"];
             /**
              * Inference Eligible
              * @default false
@@ -663,7 +647,7 @@ export interface components {
             inference_eligible: boolean;
             /**
              * Limitation
-             * @default Live POI counting rules are provisional; equivalence to the training features is not verified.
+             * @default Research planning estimate; site-category dependence and larger-site errors limit accuracy.
              */
             limitation: string;
         };

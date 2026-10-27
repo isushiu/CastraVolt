@@ -9,17 +9,18 @@ def make_site(client,settings):
     return write(client,'POST',f'/projects/{pid}/sites',{'name':'KLCC','latitude':3.1579,'longitude':101.7116,'category':'Shopping Mall'}).json()['id']
 
 
-def test_owned_context_cached_with_eleven_features(client,account_settings,monkeypatch):
+def test_owned_context_cached_with_ten_features(client,account_settings,monkeypatch):
     from castravolt import features
     sid=make_site(client,account_settings);calls=[]
     def fetch(*args):calls.append(1);return payload([element('node',1,{'shop':'mall'})])
     monkeypatch.setattr(features,'fetch_overpass',fetch)
     response=write(client,'POST',f'/sites/{sid}/features')
     assert response.status_code==200,response.text
-    body=response.json();assert len(body['features'])==11
-    assert body['features']['state_ev_registrations']==1237
+    body=response.json();assert len(body['features'])==10
+    assert 'state_ev_registrations' not in body['features']
+    assert 'adoption' not in body
     assert body['features']['nearby_mall_count']==1
-    assert body['radius_metres']==3000 and body['inference_eligible'] is False
+    assert body['radius_metres']==1000 and body['inference_eligible'] is False
     assert write(client,'POST',f'/sites/{sid}/features').json()['cache_hit'] is True
     assert len(calls)==1
     from sqlalchemy import select,func
@@ -121,5 +122,5 @@ def test_local_context_uses_genuine_snapshot_without_remote_calls(client,account
         assert data['features']['nearby_mall_count']>0
         assert data['provenance']['provider']=='Local Geofabrik OSM snapshot'
         assert data['provenance']['source_snapshot_sha256']
-        assert data['inference_eligible'] is False
+        assert data['inference_eligible'] is True
         assert write(local,'POST',f'/sites/{sid}/features').json()['cache_hit'] is True

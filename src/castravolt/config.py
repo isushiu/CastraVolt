@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     overpass_url: str = 'https://overpass.private.coffee/api/interpreter'
     poi_cache_hours: int = Field(default=24,ge=1,le=168)
     poi_source: Literal['local','overpass'] = 'local'
-    model_directory: Path = Path('model/verified_rf80_cv5')
+    model_directory: Path = Path('model/verified_poi_state_rf80_cv10')
 
     @field_validator('geocoder_url','overpass_url')
     @classmethod

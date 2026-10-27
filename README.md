@@ -2,7 +2,7 @@
 
 CastraVolt helps planners estimate the total EV charging points for a proposed site in Kuala Lumpur or Selangor. It also displays monthly EV registration trends.
 
-Built with React, TypeScript, FastAPI and PostgreSQL. Internal login, projects, map/address selection and saved sites are available. Experimental model estimates and saved history are available; the trends dashboard is under development.
+Built with React, TypeScript, FastAPI and PostgreSQL. Internal login, projects, map/address selection and saved sites are available. Research model estimates and saved history are available; the trends dashboard is under development.
 
 ## Requirements
 
@@ -102,3 +102,7 @@ After updating, stop the app with Ctrl+C and run `.\start.cmd` once. The compact
 Save the site → **Prepare site context** → **Generate experimental estimate**. The output appears below the map and is saved to site history. It shows the total planned charging points. Editing the pin or inputs clears the current result; past snapshots stay in history.
 
 Estimates remain **experimental** because live POI counting rules are not yet verified against training. The original model is checked against saved test outputs. To update, restart with start.cmd (applies migration 0006). Setup installs the required model dependencies. On another computer, separately copy the trusted evaluated_pipeline.joblib into model/verified_rf80_cv5; model binaries are excluded from Git. Never replace it with the default deployment candidate.
+
+## Current estimator
+
+Uses the verified 1 km Random Forest with eight nearby-facility counts, host category and state. EV registrations are reserved for the trends dashboard. Estimates are research guidance. See [results](RESULTS.md) and [backlog](BACKLOG.md).

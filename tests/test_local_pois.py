@@ -11,15 +11,15 @@ def test_explicit_one_km_radius_excludes_facilities_between_one_and_three_km():
                           {'type':'node','id':2,'lat':3.015,'lon':101.5,'tags':{'amenity':'fuel'}}]}
     payload=query_snapshot(snapshot,3,101.5,radius_metres=1000)
     assert extract_counts(payload,3,101.5,radius_metres=1000)['nearby_petrol_count']==1
-    all_points=query_snapshot(snapshot,3,101.5)
-    assert extract_counts(all_points,3,101.5)['nearby_petrol_count']==2
+    all_points=query_snapshot(snapshot,3,101.5,radius_metres=3000)
+    assert extract_counts(all_points,3,101.5,radius_metres=3000)['nearby_petrol_count']==2
     assert extract_counts(all_points,3,101.5,radius_metres=1000)['nearby_petrol_count']==1
 
 
 def test_local_snapshot_returns_real_types_and_rejects_incomplete_coverage(tmp_path):
     from castravolt.local_pois import read_snapshot,query_snapshot
-    from castravolt.features import RULE_HASH,extract_counts
-    data={'coverage_bbox':[100.5,2.3,102.3,4.1],'rule_sha256':RULE_HASH,'source_timestamp':'2026-10-25T21:21:21Z',
+    from castravolt.features import CATALOG_RULE_HASH,extract_counts
+    data={'coverage_bbox':[100.5,2.3,102.3,4.1],'rule_sha256':CATALOG_RULE_HASH,'source_timestamp':'2026-10-25T21:21:21Z',
         'source_url':'https://download.geofabrik.de/source.osm.pbf','elements':[
         {'type':'node','id':1,'lat':3.1579,'lon':101.7116,'tags':{'shop':'mall'}},
         {'type':'way','id':2,'center':{'lat':3.1579,'lon':101.7116},'tags':{'amenity':'hospital'}},
@@ -28,7 +28,7 @@ def test_local_snapshot_returns_real_types_and_rejects_incomplete_coverage(tmp_p
     snapshot=read_snapshot(path,hashlib.sha256(path.read_bytes()).hexdigest())
     counts=extract_counts(query_snapshot(snapshot,3.1579,101.7116),3.1579,101.7116)
     assert counts['nearby_mall_count']==1 and counts['nearby_hospital_count']==1
-    with pytest.raises(HTTPException):query_snapshot(snapshot,4.09,102.29)
+    with pytest.raises(HTTPException):query_snapshot(snapshot,4.099,102.299)
     with pytest.raises(HTTPException):read_snapshot(path,'incorrect')
 
 

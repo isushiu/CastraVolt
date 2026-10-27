@@ -94,22 +94,22 @@ test('an unnamed new pin clears the previous name and asks for a manual name',as
 });
 
 test('site context is prepared only on request and is cleared when the pin moves',async()=>{
-  const fetcher=setup(path=>path.endsWith('/features')?Promise.resolve(new Response(JSON.stringify({features:{nearby_mall_count:2,nearby_petrol_count:1,nearby_hotel_count:3,nearby_office_count:4,nearby_transit_count:5,nearby_university_count:0,nearby_hospital_count:1,nearby_parking_count:8,state_ev_registrations:1237,state:'W.P. KUALA LUMPUR',category:'Office'},adoption:{reference_year:2025},provenance:{osm_base_timestamp:'2026-10-27'},extracted_at:'2026-10-27T00:00:00Z',extraction_rule_version:'provisional',cache_hit:false}))):undefined);
+  const fetcher=setup(path=>path.endsWith('/features')?Promise.resolve(new Response(JSON.stringify({features:{nearby_mall_count:2,nearby_petrol_count:1,nearby_hotel_count:3,nearby_office_count:4,nearby_transit_count:5,nearby_university_count:0,nearby_hospital_count:1,nearby_parking_count:8,state:'W.P. KUALA LUMPUR',category:'Office'},inference_eligible:true,radius_metres:1000,provenance:{osm_base_timestamp:'2026-10-27'},extracted_at:'2026-10-27T00:00:00Z',extraction_rule_version:'provisional',cache_hit:false}))):undefined);
   await chooseAndComplete();
   await waitFor(()=>expect((screen.getByRole('button',{name:'Save proposed site'}) as HTMLButtonElement).disabled).toBe(false),{timeout:3000});
   fireEvent.click(screen.getByRole('button',{name:'Save proposed site'}));await screen.findByText('Site saved to KL pilot.');
   expect(fetcher.mock.calls.some(([path])=>String(path).endsWith('/features'))).toBe(false);
   fireEvent.click(screen.getByRole('button',{name:'Prepare site context'}));
-  await screen.findByText('1,237 new EV car registrations');
+  await screen.findByText('Mapped facilities within 1 km');
   fireEvent.click(screen.getByRole('button',{name:'Choose Selangor pin'}));
-  expect(screen.queryByText('1,237 new EV car registrations')).toBeNull();
+  expect(screen.queryByText('Mapped facilities within 1 km')).toBeNull();
   expect((screen.getByRole('button',{name:'Prepare site context'}) as HTMLButtonElement).disabled).toBe(true);
 });
 
 test('prediction retries reuse a request key and edits clear the displayed result',async()=>{
   let attempts=0;const bodies:Record<string,unknown>[]=[];
   setup((path,options)=>{
-    if(path.endsWith('/features'))return Promise.resolve(new Response(JSON.stringify({features:{nearby_mall_count:2,nearby_petrol_count:1,nearby_hotel_count:3,nearby_office_count:4,nearby_transit_count:5,nearby_university_count:0,nearby_hospital_count:1,nearby_parking_count:8,state_ev_registrations:1237,state:'W.P. KUALA LUMPUR',category:'Office'},adoption:{reference_year:2025},provenance:{osm_base_timestamp:'2026-10-25',provider:'Local fixture'},extracted_at:'2026-10-27T00:00:00Z',extraction_rule_version:'provisional',cache_hit:false})));
+    if(path.endsWith('/features'))return Promise.resolve(new Response(JSON.stringify({features:{nearby_mall_count:2,nearby_petrol_count:1,nearby_hotel_count:3,nearby_office_count:4,nearby_transit_count:5,nearby_university_count:0,nearby_hospital_count:1,nearby_parking_count:8,state:'W.P. KUALA LUMPUR',category:'Office'},inference_eligible:true,radius_metres:1000,provenance:{osm_base_timestamp:'2026-10-25',provider:'Local fixture'},extracted_at:'2026-10-27T00:00:00Z',extraction_rule_version:'provisional',cache_hit:false})));
     if(path.endsWith('/predictions')&&options?.method==='POST'){
       bodies.push(JSON.parse(options.body as string));attempts++;
       if(attempts===1)return Promise.resolve(new Response('{"error":{"message":"Temporary failure"}}',{status:503}));
@@ -119,11 +119,11 @@ test('prediction retries reuse a request key and edits clear the displayed resul
   await chooseAndComplete();
   await waitFor(()=>expect((screen.getByRole('button',{name:'Save proposed site'}) as HTMLButtonElement).disabled).toBe(false),{timeout:3000});
   fireEvent.click(screen.getByRole('button',{name:'Save proposed site'}));await screen.findByText('Site saved to KL pilot.');
-  fireEvent.click(screen.getByRole('button',{name:'Prepare site context'}));await screen.findByText('1,237 new EV car registrations');
-  fireEvent.click(screen.getByRole('button',{name:'Generate experimental estimate'}));await screen.findByText('Temporary failure');
-  fireEvent.click(screen.getByRole('button',{name:'Generate experimental estimate'}));await screen.findByText('Saved to this site’s prediction history.');
+  fireEvent.click(screen.getByRole('button',{name:'Prepare site context'}));await screen.findByText('Mapped facilities within 1 km');
+  fireEvent.click(screen.getByRole('button',{name:'Generate estimate'}));await screen.findByText('Temporary failure');
+  fireEvent.click(screen.getByRole('button',{name:'Generate estimate'}));await screen.findByText('Saved to this site’s prediction history.');
   expect(bodies[0].idempotency_key).toBe(bodies[1].idempotency_key);
-  expect(bodies[0].acknowledge_unverified_pois).toBe(true);
+  expect(bodies[0].acknowledge_model_limitations).toBe(true);
   fireEvent.click(screen.getByRole('button',{name:'Choose Selangor pin'}));
   expect(screen.queryByText('Saved to this site’s prediction history.')).toBeNull();
 });

@@ -45,12 +45,12 @@ class Prediction(Base):
     model_version: Mapped[str] = mapped_column(String(100))
     extraction_rule_version: Mapped[str] = mapped_column(String(100))
     poi_timestamp: Mapped[datetime] = mapped_column(DateTime(timezone=True))
-    adoption_reference_year: Mapped[int] = mapped_column(Integer)
-    adoption_value: Mapped[int] = mapped_column(Integer)
+    adoption_reference_year: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    adoption_value: Mapped[int | None] = mapped_column(Integer, nullable=True)
     rounding_policy: Mapped[str] = mapped_column(String(100))
     idempotency_key: Mapped[str | None] = mapped_column(String(128))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
 
     @property
     def experimental(self):
-        return self.input_snapshot.get('validation',{}).get('poi_parity_verified') is not True
+        return self.input_snapshot.get('validation',{}).get('status') != 'validated_capacity_recommendation'

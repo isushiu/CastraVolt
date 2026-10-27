@@ -94,8 +94,8 @@ class PredictionResult(BaseModel):
     model_version: str
     extraction_rule_version: str
     poi_timestamp: datetime
-    adoption_reference_year: int
-    adoption_value: int
+    adoption_reference_year: int | None
+    adoption_value: int | None
     rounding_policy: str
     created_at: datetime
     experimental: bool

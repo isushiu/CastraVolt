@@ -15,7 +15,7 @@ def test_real_verified_model_reproduces_fixtures():
     from castravolt.inference import load_model
     from castravolt.config import Settings
     model=load_model(Settings())
-    fixtures=json.loads(Path('model/verified_rf80_cv5/prediction_fixtures.json').read_text())
+    fixtures=json.loads(Path('model/verified_poi_state_rf80_cv10/prediction_fixtures.json').read_text())
     for row in fixtures:
         raw=model.predict({key:row[key] for key in model.features})
         assert raw==pytest.approx(row['expected_raw_prediction'],abs=1e-8)
@@ -32,7 +32,7 @@ def test_wrong_hash_is_rejected_before_deserialization(tmp_path,monkeypatch):
     from pathlib import Path
     from castravolt.inference import load_model
     from castravolt.config import Settings
-    manifest=json.loads(Path('model/verified_rf80_cv5/manifest.json').read_text())
+    manifest=json.loads(Path('model/verified_poi_state_rf80_cv10/manifest.json').read_text())
     (tmp_path/'manifest.json').write_text(json.dumps(manifest))
     (tmp_path/'prediction_fixtures.json').write_text('[]')
     (tmp_path/'evaluated_pipeline.joblib').write_bytes(b'untrusted file')

@@ -400,3 +400,10 @@ Verified: 36 backend tests, 17 frontend tests and frontend build passed. Isolate
 ### Stage 5 local-source repair — 27 October 2026
 
 Facility availability is now verified using a bundled genuine Geofabrik OSM snapshot, dated 25 October 2026: 10,981 node/way/relation representations, 483 KB compressed, state coverage plus 3 km buffer. Default local mode bypasses public-service requests/cooldowns; source hash is part of the successful-count cache key. No raw 240 MB download is needed on another computer. Native certificate verification is used for remaining external HTTP calls. Real-browser context preparation at the reported pin succeeds. Verified 54 backend / 24 frontend tests and production build. Original training counting-rule parity remains the Stage 5 dependency; do not conflate resolved availability with model validity.
+
+
+## Current model integration — 27 October 2026
+
+This decision supersedes earlier 3 km/adoption prediction specifications. The estimator uses eight POI counts within **1 km**, the confirmed host-site category and boundary-derived state. EV registration numbers are excluded from prediction; keep 2024–2026 data for the future monthly trends dashboard.
+
+The selected evaluated Random Forest is `model/verified_poi_state_rf80_cv10` (80/20 with training-only CV10). Results appear below the map, estimate total planned charging points, and use nearest whole number with halves upward and minimum one. Exact model, query-rule and OSM snapshot compatibility is required. New history stores no adoption context; old history is preserved. Research prototype wording reflects measured capacity accuracy limits, not a placeholder model. See BACKLOG.md and RESULTS.md for implementation status and validation.

@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 export type Point={latitude:number;longitude:number};
-export const POI_RADIUS_METRES=3000;
+export const POI_RADIUS_METRES=1000;
 const tileUrl=import.meta.env.VITE_MAP_TILE_URL||'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const tileAttribution=import.meta.env.VITE_MAP_TILE_ATTRIBUTION||'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 const pin=L.divIcon({className:'planning-pin',iconSize:[34,44],iconAnchor:[17,43],html:'<svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="M17 42S2 26 2 17a15 15 0 1 1 30 0c0 9-15 25-15 25Z" fill="#6546D7" stroke="white" stroke-width="2"/><circle cx="17" cy="17" r="5" fill="white"/></svg>'});
@@ -33,10 +33,10 @@ export default function SiteMap({point,onSelect,disabled=false}:{point:Point|nul
     instance.setView(position,Math.max(instance.getZoom(),13));
   },[point?.latitude,point?.longitude]);
   useEffect(()=>{if(disabled)marker.current?.dragging?.disable();else marker.current?.dragging?.enable();},[disabled,point?.latitude,point?.longitude]);
-  return <section className="map-panel" aria-label="Proposed site map"><div className="map-toolbar"><span>Click the map to place a pin</span><span className="radius-label">3 km radius</span></div>
+  return <section className="map-panel" aria-label="Proposed site map"><div className="map-toolbar"><span>Click the map to place a pin</span><span className="radius-label">1 km radius</span></div>
     <div ref={host} className="site-map" aria-label="Interactive map of Kuala Lumpur and Selangor"/>
     {loading&&<p className="map-status" role="status">Loading map tiles…</p>}
     {error&&<div className="map-warning" role="alert">Map tiles could not load. Address search is still available. <button className="text-button" onClick={()=>{setError(false);setLoading(true);tiles.current?.redraw();}}>Retry map</button></div>}
-    <p className="map-caption">The dashed circle shows 3,000 metres around the pin. <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noreferrer">Report a map issue</a></p>
+    <p className="map-caption">The dashed circle shows 1,000 metres around the pin. <a href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noreferrer">Report a map issue</a></p>
   </section>;
 }

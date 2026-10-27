@@ -40,7 +40,7 @@ def test_feature_order_matches_the_evaluated_model_manifest():
     import json
     from pathlib import Path
     from castravolt.features import ModelFeatures
-    manifest=json.loads((Path(__file__).resolve().parents[1]/'model/verified_rf80_cv5/manifest.json').read_text())
+    manifest=json.loads((Path(__file__).resolve().parents[1]/'model/verified_poi_state_rf80_cv10/manifest.json').read_text())
     assert list(ModelFeatures.model_fields)==manifest['features']
 
 
