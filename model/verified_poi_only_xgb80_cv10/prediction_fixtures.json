@@ -1,0 +1,122 @@
+[
+  {
+    "nearby_mall_count": 0.0,
+    "nearby_petrol_count": 1.0,
+    "nearby_hotel_count": 0.0,
+    "nearby_office_count": 0.0,
+    "nearby_transit_count": 0.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 0.0,
+    "expected_raw_prediction": 3.1501026153564453,
+    "expected_half_up_count": 3
+  },
+  {
+    "nearby_mall_count": 1.0,
+    "nearby_petrol_count": 2.0,
+    "nearby_hotel_count": 0.0,
+    "nearby_office_count": 1.0,
+    "nearby_transit_count": 0.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 5.0,
+    "expected_raw_prediction": 4.9278564453125,
+    "expected_half_up_count": 5
+  },
+  {
+    "nearby_mall_count": 0.0,
+    "nearby_petrol_count": 1.0,
+    "nearby_hotel_count": 0.0,
+    "nearby_office_count": 0.0,
+    "nearby_transit_count": 0.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 0.0,
+    "expected_raw_prediction": 3.1501026153564453,
+    "expected_half_up_count": 3
+  },
+  {
+    "nearby_mall_count": 0.0,
+    "nearby_petrol_count": 2.0,
+    "nearby_hotel_count": 1.0,
+    "nearby_office_count": 1.0,
+    "nearby_transit_count": 0.0,
+    "nearby_university_count": 1.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 4.0,
+    "expected_raw_prediction": 3.5089964866638184,
+    "expected_half_up_count": 4
+  },
+  {
+    "nearby_mall_count": 1.0,
+    "nearby_petrol_count": 3.0,
+    "nearby_hotel_count": 1.0,
+    "nearby_office_count": 2.0,
+    "nearby_transit_count": 1.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 13.0,
+    "expected_raw_prediction": 4.567168712615967,
+    "expected_half_up_count": 5
+  },
+  {
+    "nearby_mall_count": 0.0,
+    "nearby_petrol_count": 0.0,
+    "nearby_hotel_count": 0.0,
+    "nearby_office_count": 0.0,
+    "nearby_transit_count": 0.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 0.0,
+    "expected_raw_prediction": 3.662660837173462,
+    "expected_half_up_count": 4
+  },
+  {
+    "nearby_mall_count": 0.0,
+    "nearby_petrol_count": 0.0,
+    "nearby_hotel_count": 0.0,
+    "nearby_office_count": 0.0,
+    "nearby_transit_count": 0.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 0.0,
+    "expected_raw_prediction": 3.662660837173462,
+    "expected_half_up_count": 4
+  },
+  {
+    "nearby_mall_count": 0.0,
+    "nearby_petrol_count": 1.0,
+    "nearby_hotel_count": 0.0,
+    "nearby_office_count": 6.0,
+    "nearby_transit_count": 1.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 9.0,
+    "expected_raw_prediction": 3.899343013763428,
+    "expected_half_up_count": 4
+  },
+  {
+    "nearby_mall_count": 1.0,
+    "nearby_petrol_count": 0.0,
+    "nearby_hotel_count": 0.0,
+    "nearby_office_count": 1.0,
+    "nearby_transit_count": 0.0,
+    "nearby_university_count": 1.0,
+    "nearby_hospital_count": 0.0,
+    "nearby_parking_count": 6.0,
+    "expected_raw_prediction": 5.096888065338135,
+    "expected_half_up_count": 5
+  },
+  {
+    "nearby_mall_count": 0.0,
+    "nearby_petrol_count": 3.0,
+    "nearby_hotel_count": 10.0,
+    "nearby_office_count": 31.0,
+    "nearby_transit_count": 3.0,
+    "nearby_university_count": 0.0,
+    "nearby_hospital_count": 2.0,
+    "nearby_parking_count": 39.0,
+    "expected_raw_prediction": 5.410330772399902,
+    "expected_half_up_count": 5
+  }
+]

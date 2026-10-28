@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     groq_timeout_seconds: int = Field(default=30,ge=5,le=60)
     poi_cache_hours: int = Field(default=24,ge=1,le=168)
     poi_source: Literal['local','overpass'] = 'local'
-    model_directory: Path = Path('model/verified_poi_state_rf80_cv10')
+    model_directory: Path = Path('model/verified_poi_category_rf80_cv10')
 
     @field_validator('geocoder_url','overpass_url')
     @classmethod

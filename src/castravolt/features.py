@@ -259,6 +259,7 @@ def prepare_features(site_id:UUID,request:Request,user:User=Depends(current_user
         and getattr(model,'snapshot_sha256',None)==provenance.get('source_snapshot_sha256'))
     limitation=('Research planning estimate; site-category dependence and larger-site errors limit accuracy.' if eligible
         else 'The model or map source does not match the evaluated 1 km training setup. Use the bundled map snapshot and selected model.')
+    if eligible and model.profile=='poi_only_xgb':limitation='POI-only trial: category and state are excluded from model inputs. Evaluation MAE was worse than the always-three baseline.'
     if model is None:limitation='The trained model is not loaded. Restore the verified model files and restart the backend.'
     return PreparedContext(site_id=str(site_id),site_updated_at=snapshot['updated_at'],features=ModelFeatures(**counts,
         category=snapshot['category'],state=state),extracted_at=extracted,cache_hit=hit,provenance=provenance,

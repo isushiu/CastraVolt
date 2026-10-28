@@ -898,6 +898,25 @@
         }
       }
     },
+    "/api/v1/reference/model-inputs": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Model Inputs",
+        "operationId": "model_inputs_api_v1_reference_model_inputs_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/locations/address": {
       "get": {
         "tags": [
@@ -2057,7 +2076,8 @@
           },
           "category": {
             "type": "string",
-            "title": "Category"
+            "title": "Category",
+            "default": "Unknown"
           },
           "address": {
             "type": "string",
@@ -2071,8 +2091,7 @@
         "required": [
           "name",
           "latitude",
-          "longitude",
-          "category"
+          "longitude"
         ],
         "title": "SiteInput"
       },
@@ -2167,7 +2186,8 @@
           },
           "category": {
             "type": "string",
-            "title": "Category"
+            "title": "Category",
+            "default": "Unknown"
           },
           "address": {
             "type": "string",
@@ -2213,7 +2233,6 @@
           "name",
           "latitude",
           "longitude",
-          "category",
           "id",
           "project_id",
           "state",

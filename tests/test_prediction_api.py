@@ -19,9 +19,9 @@ def test_real_experimental_prediction_is_saved_and_retries_are_idempotent(client
     assert record['input_snapshot']['poi']['radius_metres']==1000
     assert 'adoption' not in record['input_snapshot']
     assert record['adoption_reference_year'] is None and record['adoption_value'] is None
-    assert record['model_version'].startswith('rf80-cv10-1km-')
+    assert record['model_version'].startswith('rf-poi-category-80-cv10-1km-')
     assert record['displayed_total']==max(1,int(__import__('math').floor(record['raw_estimate']+.5)))
-    assert len(record['input_snapshot']['features'])==10
+    assert len(record['input_snapshot']['features'])==9
     assert record['input_snapshot']['validation']['poi_parity_verified'] is True
     assert write(client,'POST',f'/sites/{sid}/predictions',data).json()['id']==record['id']
     assert len(client.get(f'/api/v1/sites/{sid}/predictions').json())==1

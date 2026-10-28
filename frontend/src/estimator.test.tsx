@@ -12,6 +12,7 @@ function setup(extra?:(path:string,options?:RequestInit)=>Promise<Response>|unde
   const fetcher=vi.fn(async(url:string,options?:RequestInit)=>{
     const path=String(url),override=extra?.(path,options);if(override)return override;
     if(path.endsWith('/auth/csrf'))return new Response('{"csrf_token":"csrf"}');
+    if(path.endsWith('/reference/model-inputs'))return new Response(JSON.stringify({model_available:true,category_required:true,profile:'poi_category_rf',features:['category']}));
     if(path.endsWith('/reference/site-categories'))return new Response('["Office","Unknown"]');
     if(path.endsWith('/projects/p1/sites')||path.endsWith('/sites/s1'))return new Response(JSON.stringify(site));
     if(path.includes('/locations/address'))return new Response(JSON.stringify({latitude:3.1579,longitude:101.7116,state:'W.P. KUALA LUMPUR',name:'KLCC',address:'KLCC, Malaysia'}));
@@ -126,4 +127,20 @@ test('prediction retries reuse a request key and edits clear the displayed resul
   expect(bodies[0].acknowledge_model_limitations).toBe(true);
   fireEvent.click(screen.getByRole('button',{name:'Choose Selangor pin'}));
   expect(screen.queryByText('Saved to this site’s prediction history.')).toBeNull();
+});
+
+
+test('POI-only trial disables category and permits saving without its confirmation',async()=>{
+ const fetcher=setup(path=>path.endsWith('/reference/model-inputs')?Promise.resolve(new Response(JSON.stringify({model_available:true,category_required:false,profile:'poi_only_xgb',features:['nearby_mall_count']}))):undefined);
+ await screen.findByRole('heading',{name:'Site estimator'});
+ fireEvent.click(screen.getByRole('button',{name:'Choose KL pin'}));
+ await screen.findByText('W.P. KUALA LUMPUR');
+ fireEvent.change(screen.getByLabelText('Site name'),{target:{value:'POI trial site'}});
+ expect((screen.getByLabelText('Host-site category') as HTMLSelectElement).disabled).toBe(true);
+ expect(screen.queryByLabelText('I confirm the host-site category.')).toBeNull();
+ await waitFor(()=>expect((screen.getByRole('button',{name:'Save proposed site'}) as HTMLButtonElement).disabled).toBe(false),{timeout:3000});
+ fireEvent.click(screen.getByRole('button',{name:'Save proposed site'}));await screen.findByText('Site saved to KL pilot.');
+ const create=fetcher.mock.calls.find(([path,options])=>String(path).endsWith('/projects/p1/sites')&&options?.method==='POST');
+ expect(JSON.parse(create![1]!.body as string)).not.toHaveProperty('category');
+ expect(screen.getByText('POI-only trial')).toBeTruthy();
 });

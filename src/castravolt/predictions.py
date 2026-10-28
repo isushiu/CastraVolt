@@ -49,7 +49,8 @@ def predict(site_id:UUID,data:PredictionInput,request:Request,user:User=Depends(
     context=prepare_features(site_id,request,user,db)
     if not context.inference_eligible:raise HTTPException(409,context.limitation)
     if context.site_updated_at!=data.site_updated_at:raise HTTPException(409,'Site changed while preparing inputs. Save and try again.')
-    values=context.features.model_dump();db.commit()
+    prepared=context.features.model_dump()
+    values={key:prepared[key] for key in model.features};db.commit()
     try:raw=model.predict(values);rounded=display_count(raw)
     except Exception:raise HTTPException(503,'The model could not produce a finite estimate. No result was saved.') from None
     if not current_session(request,db):raise HTTPException(401,'Please sign in to continue.')
@@ -58,10 +59,10 @@ def predict(site_id:UUID,data:PredictionInput,request:Request,user:User=Depends(
     if replay:return replay
     if current.updated_at!=data.site_updated_at:raise HTTPException(409,'Site changed during estimation. Save the current selection and retry.')
     snapshot={'request_fingerprint':fingerprint,'site':{'name':current.name,'latitude':current.latitude,'longitude':current.longitude,
-        'address':current.address,'category':current.category,'state':values['state'],'updated_at':current.updated_at.isoformat()},
+        'address':current.address,'category':current.category,'state':prepared['state'],'updated_at':current.updated_at.isoformat()},
         'features':values,'poi':{'radius_metres':context.radius_metres,'rule_version':context.extraction_rule_version,
         'rule_sha256':context.rule_sha256,'provenance':context.provenance.model_dump(),'extracted_at':context.extracted_at.isoformat()},
-        'model':{'version':model.version,'sha256':model.sha256},
+        'model':{'version':model.version,'sha256':model.sha256,'profile':model.profile,'input_features':list(model.features)},
         'validation':{'poi_parity_verified':True,'status':'research_prototype','capacity_validated':False,
                       'acknowledged':True,'warning':context.limitation}}
     record=Prediction(site_id=site_id,requester_id=user.id,input_snapshot=snapshot,raw_estimate=raw,displayed_total=rounded,

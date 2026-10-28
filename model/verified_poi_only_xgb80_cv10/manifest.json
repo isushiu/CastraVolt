@@ -1,0 +1,60 @@
+{
+  "status": "prediction_parity_verified",
+  "serving_profile": "poi_only_xgb",
+  "selected_model": "XGBoost",
+  "features": [
+    "nearby_mall_count",
+    "nearby_petrol_count",
+    "nearby_hotel_count",
+    "nearby_office_count",
+    "nearby_transit_count",
+    "nearby_university_count",
+    "nearby_hospital_count",
+    "nearby_parking_count"
+  ],
+  "use_adoption": false,
+  "poi_radius_metres": 1000,
+  "poi_rule_sha256": "47df51e25751ad656cbdb495db37f8b6dde7eb38ebe600bd29a3512fd773be89",
+  "poi_snapshot_sha256": "d56e00cebd86a4f9d6b24158f43f84c8e5af07afd508cb9162c215e4a5f9bdb6",
+  "runtime": {
+    "sklearn": "1.6.1",
+    "numpy": "2.1.3",
+    "pandas": "2.2.3",
+    "xgboost": "3.4.1"
+  },
+  "selected_parameters": {
+    "model__colsample_bytree": 0.8,
+    "model__learning_rate": 0.03,
+    "model__max_depth": 3,
+    "model__n_estimators": 100,
+    "model__reg_lambda": 5,
+    "model__subsample": 1.0
+  },
+  "model_sha256": "5f2fd29124622e7871326348129a67da3604407d97040637c104c1b164f776a1",
+  "training_dataset_sha256": "d7bb8091af92f416ca212d35772a75f0e98c088a26ca02b56a0616bf39ea9458",
+  "portable_booster_sha256": "1effaeccfc303382d1128e4d12de90cb220a988b9f6447f41581a80a7f0be992",
+  "source_archive_sha256": "8b68a2511d48124bd6581d2b5b068d75184b97b43c69545f3f1c0ff6fce305f3",
+  "source_files": {
+    "run_metadata.json": "7fdf232b84783c773f8a17b877f9edbc986128028e97b8facd4f1a24e594bdc2",
+    "prepared_sites.csv": "f88412d627e7569ae5ab93b7a07e84913283adc2bca09eff517951c62ca257f3",
+    "holdout_assignments.csv": "da781c26496baa8d0f0df4043f4a0c8182f6d6156202f0edd7fb1df771376c67",
+    "holdout_predictions.csv": "cd3a9e5908c82836a2739c19ad6141aa55a21cf9cc5f49be8eeaf4fe672b58b4",
+    "comparison_summary.csv": "b6631d3f5f0a1c044044e5c89b72f9b4a185445514ec0f646fc6a83b052b7094"
+  },
+  "train_sites": 1522,
+  "test_sites": 380,
+  "maximum_prediction_difference": 1.7763568394002505e-15,
+  "training_cv_MAE": 2.606496524810791,
+  "metrics": {
+    "test_MAE": 2.5827362537384038,
+    "test_RMSE": 4.4405816351902665,
+    "test_R2": 0.0575414299964904,
+    "test_rounded_MAE": 2.5710526315789477
+  },
+  "selection_basis": "lowest training-CV MAE among POIsOnly candidates at 80/20; not lowest heldout error",
+  "limitations": [
+    "POI-only experimental trial; worse MAE than always-three baseline",
+    "previously examined test sites; not a fresh final test",
+    "zero mapped POIs does not establish zero capacity"
+  ]
+}

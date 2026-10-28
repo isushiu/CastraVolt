@@ -283,6 +283,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/reference/model-inputs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Model Inputs */
+        get: operations["model_inputs_api_v1_reference_model_inputs_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/locations/address": {
         parameters: {
             query?: never;
@@ -801,7 +818,10 @@ export interface components {
             latitude: number;
             /** Longitude */
             longitude: number;
-            /** Category */
+            /**
+             * Category
+             * @default Unknown
+             */
             category: string;
             /**
              * Address
@@ -830,7 +850,10 @@ export interface components {
             latitude: number;
             /** Longitude */
             longitude: number;
-            /** Category */
+            /**
+             * Category
+             * @default Unknown
+             */
             category: string;
             /**
              * Address
@@ -1630,6 +1653,26 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    model_inputs_api_v1_reference_model_inputs_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": unknown;
                 };
             };
         };

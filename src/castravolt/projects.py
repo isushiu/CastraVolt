@@ -2,7 +2,7 @@ from datetime import datetime
 from typing import Annotated
 from uuid import UUID
 
-from fastapi import APIRouter, Depends, HTTPException, Response
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -53,7 +53,7 @@ class SiteInput(Input):
     name: Name
     latitude: float = Field(ge=-90, le=90)
     longitude: float = Field(ge=-180, le=180)
-    category: str
+    category: str = 'Unknown'
     address: str = Field(default='', max_length=500)
 
     @model_validator(mode='after')
@@ -209,3 +209,11 @@ def prediction(prediction_id: UUID, user: User = Depends(current_user), db: Sess
     result = db.scalar(select(Prediction).join(Site).join(Project).where(Prediction.id == prediction_id, Project.owner_id == user.id))
     if result is None: raise HTTPException(404, 'Prediction not found.')
     return result
+
+
+@router.get('/reference/model-inputs')
+def model_inputs(request:Request,user:User=Depends(current_user)):
+    model=getattr(request.app.state,'prediction_model',None)
+    return {'model_available':model is not None,'features':list(model.features) if model else [],
+            'category_required':bool(model and 'category' in model.features),
+            'profile':model.profile if model else None}

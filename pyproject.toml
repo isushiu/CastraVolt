@@ -36,6 +36,7 @@ model-validation = [
     "numpy==2.1.3",
     "pandas==2.2.3",
     "scikit-learn==1.6.1",
+    "xgboost==3.4.1",
 ]
 poi-build = [
     "osmium>=4.3.2",

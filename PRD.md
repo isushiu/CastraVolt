@@ -317,3 +317,13 @@ The selected evaluated Random Forest is `model/verified_poi_state_rf80_cv10` (80
 Implemented Chart.js monthly timeline and calendar-year comparison for filtered electric motokar registrations. State/year/month controls apply together, reset restores all coverage, and an accessible monthly table supplies exact values. The imported snapshot contains 66 state/month records and 6,401 registrations: 2,688 in 2024, 1,797 in 2025 and 1,916 in January–September 2026. Unavailable 2026 months remain absent/null. Totals and averages are calculated in the backend; growth compares each displayed year/state with the same covered months in the previous year. A common January–September button supports fair 2026 comparisons.
 
 Groq explanations are optional and explicitly requested by the planner. Only server-derived public aggregates are transmitted. Persistent shared caching uses dataset version + canonical filters + configured model + prompt version. A lease prevents concurrent duplicate calls; successful summaries persist across sessions/restarts and do not expire merely because a month passes. Dataset or model/prompt/filter changes use a new cache identity. Charts work without Groq or during provider failures. The secret is backend-only in ignored .env. See docs/STAGE_7_IMPLEMENTATION.md.
+
+
+## Temporary POI-only trial — 28 October 2026
+
+For the user-requested behaviour trial, the app now selects the verified POIsOnly XGBoost candidate from the full feature-comparison export. Category is disabled and confirmation is unnecessary. Only eight 1 km POI counts enter prediction; state remains a coverage check. This is a reversible experiment, not an accuracy upgrade: CV MAE 2.606497 and test MAE 2.582736 are worse than the category-based models and the always-three test baseline. The previous RF and all saved history remain intact. Roll back through CASTRAVOLT_MODEL_DIRECTORY=model/verified_poi_state_rf80_cv10. See docs/POI_ONLY_TRIAL.md.
+
+
+## POIs + category restored — 28 October 2026
+
+User ended the POI-only trial. Active serving profile is poi_category_rf: eight 1 km POI counts + host category, with category selection/confirmation required again. State is coverage metadata only. The RF won training CV within this feature set (MAE 1.902717); all 380 saved held-out predictions match. POI-only and original ten-feature artifacts/history remain preserved. See docs/POI_CATEGORY_RESTORE.md.

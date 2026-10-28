@@ -112,3 +112,7 @@ Uses the verified 1 km Random Forest with eight nearby-facility counts, host cat
 In your local `.env`, paste the key after `CASTRAVOLT_GROQ_API_KEY=` and restart with `start.cmd`. Never paste it into frontend files or commit it. `CASTRAVOLT_GROQ_MODEL` defaults to `openai/gpt-oss-20b` and can be changed to a model available on your Groq account.
 
 Open **EV adoption trends**, choose filters, then click **Generate summary**. Only aggregate figures are sent to Groq. Identical filters/data/model/prompt reuse a saved PostgreSQL summary. Charts and calculated metrics work without the key. After pulling this update on another computer, run setup before start to install Chart.js.
+
+## Current estimator model
+
+The estimator uses **eight 1 km POI counts + site category**, served by the verified Random Forest. Category selection and confirmation are required. State checks supported coverage only. The POI-only trial is preserved separately. Restart after updating. See [model details](docs/POI_CATEGORY_RESTORE.md).
